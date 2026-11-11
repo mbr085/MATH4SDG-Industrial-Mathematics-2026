@@ -1,0 +1,20 @@
+.direnv/
+.venv/
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+
+# Private partner data and notebooks must never be published without approval.
+private/
+confidential/
+industry/private/
+projects/private/
+projects/**/private/
+data/raw/
+data/processed/
+.env
+.env.*
+!.envrc
