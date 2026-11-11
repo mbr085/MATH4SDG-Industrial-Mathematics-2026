@@ -1,0 +1,20 @@
+[project]
+name = "math4sdg-industrial-mathematics-2026"
+version = "0.1.0"
+description = "Python resources for the UDSM MATH4SDG industrial mathematics workshop"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "jupyterlab>=4.3,<5",
+  "ipykernel>=6,<8",
+  "numpy>=2,<3",
+  "pandas>=2.2,<4",
+  "matplotlib>=3.8,<4",
+  "scipy>=1.13,<2",
+  "scikit-learn>=1.6,<2",
+  "statsmodels>=0.14,<1",
+  "meteostat>=2.1.4,<3",
+]
+
+# The repository is a set of notebooks and scripts, not a Python package.
+[tool.uv]
+package = false
