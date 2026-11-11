@@ -30,10 +30,56 @@ The `.envrc` file says `use flake`. The first Nix invocation may fetch packages;
 
 ### Dependency reproducibility
 
-The committed `flake.lock` pins the same Nixpkgs revision used by [V26MAT102](https://github.com/mbr085/V26MAT102). The first `uv sync` will generate a `uv.lock` using the Python dependency requirements in `pyproject.toml`. **Commit that generated `uv.lock`** to freeze exact Python package versions for participants. A `uv.lock` is not included in this initial setup because dependency resolution could not be run in the authoring environment.
+The committed `flake.lock` pins the same Nixpkgs revision used by [V26MAT102](https://github.com/mbr085/V26MAT102). The committed `uv.lock` pins Python dependencies. Run `uv sync --locked` to prevent accidental lockfile changes.
 
 For other operating systems, install Python 3.12 and uv independently, then use `uv sync` and `uv run jupyter lab` (the Nix flake is optional).
 
 ## Project data
 
-**Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Separate MIT (code) and CC BY 4.0 (teaching content) licensing files will be added along with the substantive course materials.
+**Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
+
+## Optional backup project: East African temperature trends
+
+This repository now includes a **student-directed backup investigation**:
+[Is Dar es Salaam warmer than forty years ago?](projects/meteostat-temperature/README.md).
+It is **not** a scheduled series of lectures. It supports partner-led problem
+work when real industry datasets are delayed or too complex for inexperienced
+groups. Morning tool demonstrations and end-of-day plenaries can draw on it.
+
+The project adapts ideas from
+[MAT102 weather-data and regression notebooks](https://github.com/mbr085/V26MAT102),
+but uses **synthetic temperatures by default** and stresses missingness,
+seasonality, serial dependence, and scientific limitations.
+
+```sh
+uv sync --locked
+uv run jupyter lab
+```
+
+Open [the student notebook](notebooks/east_africa_temperature_trends.ipynb)
+from JupyterLab. It runs **offline**, generating deterministic artificial data
+in memory. Results in synthetic mode must not be reported as observations
+of Tanzania's climate.
+
+To download optional real Meteostat station data **while online**, before the
+event:
+
+```sh
+uv run python tools/download_meteostat.py --station 63894
+uv run python tools/download_meteostat.py --station 63862
+```
+
+The actual observations and metadata are saved under ignored `data/private/`;
+the notebook automatically uses the Dar es Salaam download if available.
+It does not fill missing observations or assert that the record is homogeneous.
+Confirm provenance, inventory, station history and provider licenses before
+sharing data or drawing scientific conclusions.
+
+For an offline smoke test:
+
+```sh
+uv run python -m unittest discover -s tests -v
+```
+
+See [the facilitator notes](projects/meteostat-temperature/FACILITATOR_NOTES.md)
+and [data policy](DATA_POLICY.md).
