@@ -2,6 +2,7 @@
 
 | Material | License / publication rule |
 | --- | --- |
+| Synthetic workplace-insurance claims created by `tools/synthetic_insurance.py` | **CC0 1.0**: entirely invented establishment-year examples, claim counts and arbitrary cost units; no relation to WCF, TIRA, insurers, actual rates or Tanzanian shillings |
 | Synthetic values produced by `tools/generate_synthetic_temperature.py` | **CC0 1.0**: free reuse; these are invented training values, not climate evidence |
 | NASA POWER daily T2M gridded reanalysis | **Not included**. Download privately and credit the NASA LaRC POWER project; follow the [POWER referencing guide](https://power.larc.nasa.gov/docs/referencing/), documenting service/version/access date and source methodology |
 | Meteostat historical station observations | **Not included**. Check current terms, original provider attributions and redistribution permission before sharing |

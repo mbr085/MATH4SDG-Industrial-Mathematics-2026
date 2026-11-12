@@ -17,6 +17,7 @@ data/private/
 data/raw/
 data/processed/
 data/synthetic_daily_temperature.csv
+data/synthetic_insurance_claims.csv
 .env
 .env.*
 !.envrc

@@ -13,3 +13,21 @@ reuse and distribution are explicitly permitted. For provenance and attribution
 see [DATA_LICENSES.md](../DATA_LICENSES.md), the
 [NASA POWER referencing guide](https://power.larc.nasa.gov/docs/referencing/),
 and the [Meteostat developer license page](https://dev.meteostat.net/license).
+
+
+## Insurance fallback data (entirely synthetic)
+
+The second backup project uses `tools/synthetic_insurance.py` to invent an
+establishment-by-year insurance dataset (2021–2025), requiring no internet or
+third-party information. The notebook calls the generator directly. A CSV copy
+can be generated with:
+
+```sh
+uv run python tools/synthetic_insurance.py
+```
+
+The CSV, `data/synthetic_insurance_claims.csv`, is ignored by Git. It must
+never be described as real Tanzanian insurance or worker compensation data.
+Synthetic monetary amounts use arbitrary accounting units, **not TZS**, and
+the generated values are offered under CC0 1.0. See
+[insurance project documentation](../projects/insurance-claims/README.md).

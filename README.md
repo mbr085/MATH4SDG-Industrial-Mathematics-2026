@@ -2,7 +2,7 @@
 
 Python and computational teaching resources for the **University of Dar es Salaam (UDSM)** MATH4SDG industrial mathematics bootcamp (18–23 November 2026) and follow-up workshop (3–4 December 2026).
 
-The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using Meteostat) may be introduced if industry data are difficult to use.
+The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using NASA POWER and synthetic insurance-claims analysis) may be introduced if industry data are difficult to use.
 
 ## NixOS: Python, uv and JupyterLab
 
@@ -106,7 +106,7 @@ uv run python tools/download_nasa_power.py --location dar_es_salaam
 uv run python tools/download_nasa_power.py --location dodoma
 ```
 
-The NASA POWER grid-cell data and download metadata are stored under ignored `data/private/`; the main notebook uses the Dar es Salaam POWER download if available. It does not fill missing values or assert that the reanalysis history is homogeneous or independently observed. **No live NASA POWER download has yet been verified from this repository.** Check coverage, methodology and provenance before drawing scientific conclusions.
+The NASA POWER grid-cell data and download metadata are stored under ignored `data/private/`; the main notebook uses the Dar es Salaam POWER download if available. It does not fill missing values or assert that the reanalysis history is homogeneous or independently observed. An instructor-run NASA POWER download produced full daily coverage for 1986–2025; inspect coverage and metadata again when retrieving the data locally. Check coverage, methodology and provenance before drawing scientific conclusions.
 
 The original Meteostat station series was found to lack sufficient early observations for the intended 40-year comparison. We retain it **only as a secondary investigation of observational gaps**. For that optional exercise:
 
@@ -124,3 +124,19 @@ uv run python -m unittest discover -s tests -v
 
 See [the NASA POWER facilitator notes](projects/nasa-power-temperature/FACILITATOR_NOTES.md)
 and [data policy](DATA_POLICY.md).
+
+
+## Optional backup project: Synthetic workplace insurance claims
+
+A second, complementary [student-led insurance investigation](projects/insurance-claims/README.md) works **completely offline** and requires no industry records. All establishment identifiers, sectors, zones, claim counts, and cost values are **invented** and are not statistics from WCF, TIRA, an insurer, or Tanzania.
+
+The notebook asks how to estimate *expected claim counts* while accounting for exposure measured in worker-years. Students compare a transparent baseline with an exposure-weighted Poisson regression, train on 2021–2024 and evaluate on a held-out 2025, and discuss limitations of a fitted model.
+
+```sh
+uv sync --locked
+uv run jupyter lab
+```
+
+Open [the student notebook](notebooks/synthetic_insurance_claims.ipynb). No download is needed; the notebook generates deterministic synthetic data in memory. See [facilitator guidance](projects/insurance-claims/FACILITATOR_NOTES.md). Run the [offline tests](tests/test_insurance_backup.py) with the existing `unittest` command above.
+
+The artificial records may be regenerated as a **local ignored CSV** using `uv run python tools/synthetic_insurance.py`. These classroom values have no real-world insurance interpretation; they are offered under CC0 1.0 and are documented in [DATA_LICENSES.md](DATA_LICENSES.md).

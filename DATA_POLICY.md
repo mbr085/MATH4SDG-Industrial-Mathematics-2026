@@ -20,3 +20,17 @@ an external AI system without authorization.
 
 Licenses: code [MIT](LICENSE), original teaching material
 [CC BY 4.0](LICENSE-CONTENT.md), datasets [separately](DATA_LICENSES.md).
+
+
+## Synthetic insurance backup
+
+The [insurance backup](projects/insurance-claims/README.md) generates an entirely
+**fictional establishment-level dataset** in memory. The names, records, claim
+frequencies, training-programme associations and accounting costs are
+fabricated. They do **not** originate from WCF, TIRA, any insurance partner, or
+any real institution. The fake costs are arbitrary units, **not TZS**.
+
+The generator and notebook are suitable for public GitHub. Do not substitute
+actual claims, policyholder records, workers' personal information, or
+identifiable organizational data in the public notebook or in external AI
+prompts. Publication of real project results still requires separate approval.
