@@ -73,7 +73,7 @@ def main() -> None:
     }
     output.with_suffix(".json").write_text(json.dumps(provenance, indent=2) + "\n", encoding="utf-8")
     print(f"Saved {output}: {provenance['nonmissing_days']} / {len(daily)} days with temperature")
-    print("The data are GRIDDDED REANALYSIS estimates, not weather-station measurements.")
+    print("The data are GRIDDED REANALYSIS estimates, not weather-station measurements.")
     print("Inspect metadata and source history before publication or scientific claims.")
 
 
