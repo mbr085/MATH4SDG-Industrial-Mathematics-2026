@@ -13,8 +13,10 @@ confidential/
 industry/private/
 projects/private/
 projects/**/private/
+data/private/
 data/raw/
 data/processed/
+data/synthetic_daily_temperature.csv
 .env
 .env.*
 !.envrc

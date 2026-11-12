@@ -74,4 +74,53 @@ do not load the helper. On non-NixOS hosts, the flake need not be used.
 
 ## Project data
 
-**Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Separate MIT (code) and CC BY 4.0 (teaching content) licensing files will be added along with the substantive course materials.
+**Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
+
+## Optional backup project: East African temperature trends
+
+This repository now includes a **student-directed backup investigation**:
+[Is Dar es Salaam warmer than forty years ago?](projects/nasa-power-temperature/README.md).
+It is **not** a scheduled series of lectures. It supports partner-led problem
+work when real industry datasets are delayed or too complex for inexperienced
+groups. Morning tool demonstrations and end-of-day plenaries can draw on it.
+
+The project adapts ideas from
+[MAT102 weather-data and regression notebooks](https://github.com/mbr085/V26MAT102),
+with NASA POWER gridded reanalysis as the primary real-data source and **explicitly labeled synthetic temperatures** as an offline fallback. It stresses source provenance, seasonality, serial dependence, missing observations, and scientific limitations. NASA POWER is a model-informed gridded product, **not** a weather-station record.
+
+```sh
+uv sync --locked
+uv run jupyter lab
+```
+
+Open [the student notebook](notebooks/east_africa_temperature_trends.ipynb)
+from JupyterLab. It runs **offline**, generating deterministic artificial data
+in memory. Results in synthetic mode must not be reported as observations
+of Tanzania's climate.
+
+To download the primary real NASA POWER grid-cell estimates **while online**, before the event:
+
+```sh
+uv run python tools/download_nasa_power.py --location dar_es_salaam
+# Optional comparison location:
+uv run python tools/download_nasa_power.py --location dodoma
+```
+
+The NASA POWER grid-cell data and download metadata are stored under ignored `data/private/`; the main notebook uses the Dar es Salaam POWER download if available. It does not fill missing values or assert that the reanalysis history is homogeneous or independently observed. **No live NASA POWER download has yet been verified from this repository.** Check coverage, methodology and provenance before drawing scientific conclusions.
+
+The original Meteostat station series was found to lack sufficient early observations for the intended 40-year comparison. We retain it **only as a secondary investigation of observational gaps**. For that optional exercise:
+
+```sh
+uv run python tools/download_meteostat.py --station 63894
+```
+
+Open [the station-missingness notebook](notebooks/meteostat_station_missingness.ipynb) and read the [station guidance](projects/meteostat-temperature/README.md).
+
+For an offline smoke test:
+
+```sh
+uv run python -m unittest discover -s tests -v
+```
+
+See [the NASA POWER facilitator notes](projects/nasa-power-temperature/FACILITATOR_NOTES.md)
+and [data policy](DATA_POLICY.md).
