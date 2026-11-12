@@ -13,6 +13,16 @@
         let
           pkgs = import nixpkgs { inherit system; };
           python = pkgs.python312;
+          # A Python startup hook preloads the C++ runtime for PyPI wheels.
+          # This does not change the dynamic linker environment of KDE/Firefox.
+          pythonRuntime = pkgs.writeTextDir "sitecustomize.py" ''
+            import ctypes
+
+            ctypes.CDLL(
+                "${pkgs.stdenv.cc.cc.lib}/lib/libstdc++.so.6",
+                mode=ctypes.RTLD_GLOBAL,
+            )
+          '';
         in
         {
           default = pkgs.mkShell {
@@ -27,11 +37,14 @@
             UV_PYTHON_DOWNLOADS = "never";
             UV_PYTHON_PREFERENCE = "only-system";
 
-            # Deliberately do not override LD_LIBRARY_PATH globally:
-            # KDE/xdg-open and other Nix-built GUI apps require their own
-            # compatible C++ runtime libraries. If a Python wheel needs a
-            # shared library, solve that separately rather than polluting
-            # every process launched from this development shell.
+            # Only Python processes receive libstdc++. The injected
+            # sitecustomize module is imported at Python startup and
+            # preloads libstdc++ before NumPy/ZeroMQ extensions are loaded.
+            # Crucially, do NOT export LD_LIBRARY_PATH: KDE and browsers
+            # must continue using their own compatible runtime libraries.
+            shellHook = ''
+              export PYTHONPATH="${pythonRuntime}''${PYTHONPATH:+:$PYTHONPATH}"
+            '';
           };
         });
     };
