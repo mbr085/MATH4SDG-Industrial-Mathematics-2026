@@ -6,10 +6,8 @@ containing secrets, or derived figures/models that may disclose restricted
 information. Obtain explicit data-owner permission before posting partner
 datasets or findings publicly.
 
-Meteostat station data are downloaded to Git-ignored `data/private/` by default.
-The accompanying provenance JSON records station, requested period, download
-time, and model-data settings; it does not establish station homogeneity or
-complete underlying-provider licensing.
+NASA POWER gridded temperature estimates and optional Meteostat station data are downloaded to Git-ignored `data/private/` by default.
+Accompanying provenance JSON records the requested place or station, dates, retrieval time and data source. These files do not establish independent validation or homogeneous trends. NASA POWER estimates represent grid cells; Meteostat station records may have large historical gaps and incomplete underlying-provider licensing.
 
 The offline temperature example is **fully synthetic**; even a statistically
 significant fitted “trend” from that dataset is not scientific evidence about
