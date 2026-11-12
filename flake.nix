@@ -27,15 +27,11 @@
             UV_PYTHON_DOWNLOADS = "never";
             UV_PYTHON_PREFERENCE = "only-system";
 
-            # Common shared libraries required by scientific Python wheels.
-            shellHook = ''
-              export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
-                pkgs.stdenv.cc.cc.lib
-                pkgs.zlib
-                pkgs.openssl
-                pkgs.libffi
-              ]}:''${LD_LIBRARY_PATH:-}"
-            '';
+            # Deliberately do not override LD_LIBRARY_PATH globally:
+            # KDE/xdg-open and other Nix-built GUI apps require their own
+            # compatible C++ runtime libraries. If a Python wheel needs a
+            # shared library, solve that separately rather than polluting
+            # every process launched from this development shell.
           };
         });
     };
