@@ -34,6 +34,29 @@ The committed `flake.lock` pins the same Nixpkgs revision used by [V26MAT102](ht
 
 For other operating systems, install Python 3.12 and uv independently, then use `uv sync` and `uv run jupyter lab` (the Nix flake is optional).
 
+### KDE/Firefox browser launching on NixOS
+
+Do **not** export a global `LD_LIBRARY_PATH` from this flake. An older C++
+runtime from the development environment can shadow the library needed by
+`kde-open` and make `xdg-open` fail with a `GLIBCXX_...` error.
+
+After updating your branch, unload any inherited old override with
+`direnv reload` and a fresh terminal session if necessary. As an immediate
+diagnostic, run `env -u LD_LIBRARY_PATH xdg-open https://www.python.org`.
+If Jupyter still does not open Firefox automatically, use the URL it prints
+or run `env BROWSER=firefox uv run jupyter lab`.
+
+Verify that NumPy and scientific dependencies still import with:
+
+```sh
+uv run python -c 'import numpy, scipy, pandas, sklearn, statsmodels; print("scientific Python OK")'
+```
+
+Some PyPI wheels may require additional native runtime libraries on NixOS;
+if this import check fails, address the missing library specifically (or use
+`nix-ld`) instead of overriding the entire shell's library search path.
+
+
 ## Project data
 
 **Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Separate MIT (code) and CC BY 4.0 (teaching content) licensing files will be added along with the substantive course materials.
