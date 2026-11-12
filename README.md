@@ -2,7 +2,7 @@
 
 Python and computational teaching resources for the **University of Dar es Salaam (UDSM)** MATH4SDG industrial mathematics bootcamp (18–23 November 2026) and follow-up workshop (3–4 December 2026).
 
-The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using Meteostat) may be introduced if industry data are difficult to use.
+The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using NASA POWER, with Meteostat for observation-quality comparisons) may be introduced if industry data are difficult to use.
 
 ## NixOS: Python, uv and JupyterLab
 
@@ -41,15 +41,14 @@ For other operating systems, install Python 3.12 and uv independently, then use 
 ## Optional backup project: East African temperature trends
 
 This repository now includes a **student-directed backup investigation**:
-[Is Dar es Salaam warmer than forty years ago?](projects/meteostat-temperature/README.md).
+[Is Dar es Salaam warmer than forty years ago?](projects/nasa-power-temperature/README.md).
 It is **not** a scheduled series of lectures. It supports partner-led problem
 work when real industry datasets are delayed or too complex for inexperienced
 groups. Morning tool demonstrations and end-of-day plenaries can draw on it.
 
 The project adapts ideas from
 [MAT102 weather-data and regression notebooks](https://github.com/mbr085/V26MAT102),
-but uses **synthetic temperatures by default** and stresses missingness,
-seasonality, serial dependence, and scientific limitations.
+with NASA POWER gridded reanalysis as the primary real-data source and **explicitly labeled synthetic temperatures** as an offline fallback. It stresses source provenance, seasonality, serial dependence, missing observations, and scientific limitations. NASA POWER is a model-informed gridded product, **not** a weather-station record.
 
 ```sh
 uv sync --locked
@@ -61,19 +60,23 @@ from JupyterLab. It runs **offline**, generating deterministic artificial data
 in memory. Results in synthetic mode must not be reported as observations
 of Tanzania's climate.
 
-To download optional real Meteostat station data **while online**, before the
-event:
+To download the primary real NASA POWER grid-cell estimates **while online**, before the event:
+
+```sh
+uv run python tools/download_nasa_power.py --location dar_es_salaam
+# Optional comparison location:
+uv run python tools/download_nasa_power.py --location dodoma
+```
+
+The NASA POWER grid-cell data and download metadata are stored under ignored `data/private/`; the main notebook uses the Dar es Salaam POWER download if available. It does not fill missing values or assert that the reanalysis history is homogeneous or independently observed. **No live NASA POWER download has yet been verified from this repository.** Check coverage, methodology and provenance before drawing scientific conclusions.
+
+The original Meteostat station series was found to lack sufficient early observations for the intended 40-year comparison. We retain it **only as a secondary investigation of observational gaps**. For that optional exercise:
 
 ```sh
 uv run python tools/download_meteostat.py --station 63894
-uv run python tools/download_meteostat.py --station 63862
 ```
 
-The actual observations and metadata are saved under ignored `data/private/`;
-the notebook automatically uses the Dar es Salaam download if available.
-It does not fill missing observations or assert that the record is homogeneous.
-Confirm provenance, inventory, station history and provider licenses before
-sharing data or drawing scientific conclusions.
+Open [the station-missingness notebook](notebooks/meteostat_station_missingness.ipynb) and read the [station guidance](projects/meteostat-temperature/README.md).
 
 For an offline smoke test:
 
@@ -81,5 +84,5 @@ For an offline smoke test:
 uv run python -m unittest discover -s tests -v
 ```
 
-See [the facilitator notes](projects/meteostat-temperature/FACILITATOR_NOTES.md)
+See [the NASA POWER facilitator notes](projects/nasa-power-temperature/FACILITATOR_NOTES.md)
 and [data policy](DATA_POLICY.md).
