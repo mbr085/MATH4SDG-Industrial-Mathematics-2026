@@ -54,6 +54,8 @@ def parse_daily_t2m(payload: dict, start_year: int, end_year: int) -> pd.DataFra
     if index.has_duplicates:
         raise ValueError("Duplicated date in POWER T2M response")
     fill_value = payload.get("header", {}).get("fill_value", -999)
+    if fill_value is None:
+        fill_value = -999
     values = values.replace([float(fill_value), -999.0], np.nan)
     values = values.mask(~np.isfinite(values))
     expected = pd.date_range(date(start_year, 1, 1), date(end_year, 12, 31), freq="D")
