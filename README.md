@@ -41,12 +41,14 @@ The original flake exported a global `LD_LIBRARY_PATH` containing
 but caused `xdg-open`/KDE to pick up an incompatible C++ runtime
 (`GLIBCXX_3.4.35 not found`). Simply removing the library path repaired KDE
 but caused NumPy and Jupyter's ZeroMQ extension to report that
-`libstdc++.so.6` was missing.
+`libstdc++.so.6` was missing. A first Python-only preload resolved that
+dependency, but NumPy then reported `libz.so.1` as missing.
 
 The development shell now injects a small Python `sitecustomize.py` module
 through `PYTHONPATH`. At **Python process startup only**, it preloads Nix's
-`libstdc++.so.6` with `ctypes.CDLL(..., mode=ctypes.RTLD_GLOBAL)`, allowing
-scientific Python extensions to resolve this dependency. This does **not**
+`libstdc++.so.6` and `libz.so.1` with
+`ctypes.CDLL(..., mode=ctypes.RTLD_GLOBAL)`, allowing compiled Python
+extensions to resolve these two dependencies. This does **not**
 export `LD_LIBRARY_PATH` to Firefox, `xdg-open`, or KDE. The startup hook
 is part of the flake and does not require changing the project-managed
 `uv.lock`. It is a targeted workaround for Python wheels on NixOS; if
