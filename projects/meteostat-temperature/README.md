@@ -1,30 +1,33 @@
-# Backup project: East African temperature trends
+# Secondary investigation: Meteostat station observation gaps
 
-**Problem:** Is Dar es Salaam Airport warmer than forty years ago, and how confident should we be?
+The original Meteostat backup was **not viable as the primary 40-year
+temperature-trend project**: the Dar es Salaam Airport daily series inspected
+by the instructor for 1986–2025 had too many gaps, especially in the early
+years. Our completeness criterion gave no eligible years in 1986–1995,
+preventing the intended early/late comparison.
 
-**Audience:** mixed undergraduate/MSc groups. **Status:** optional fallback for the industry bootcamp, **not** a prescribed lecture day or a substitute for a TMA project.
+This problem is scientifically useful and should be studied **as a missingness
+case**, not concealed by forward-filling or changing criteria to force a trend.
 
-Start at the repository root:
+**Primary temperature project:** [NASA POWER reanalysis](../nasa-power-temperature/README.md)
+provides a longer, more complete **gridded model-derived temperature estimate**
+for the Dar es Salaam location. These are **not** direct station observations.
+
+### Optional hands-on exercise
 
 ```sh
 uv sync --locked
+uv run python tools/download_meteostat.py --station 63894
 uv run jupyter lab
 ```
 
-Open `notebooks/east_africa_temperature_trends.ipynb`. It runs entirely offline with clearly identified **synthetic** data generated using `tools/generate_synthetic_temperature.py`. Synthetic results are NOT climate evidence.
+Open `notebooks/meteostat_station_missingness.ipynb`. It examines station
+coverage and, if the NASA POWER data are also downloaded, compares the sources
+only where station observations exist. It does not invent temperature readings
+for the missing early years.
 
-To use **real observations**, before the bootcamp while connected:
-
-```sh
-uv run python tools/download_meteostat.py --station 63894
-# Optional comparison (check inventory and source history):
-uv run python tools/download_meteostat.py --station 63862
-```
-
-The download script writes the observational CSV and provenance JSON under `data/private/`, ignored by Git. It disables Meteostat model-derived values, does not impute gaps, and intentionally does not publish raw data. Before attributing warming to anything, check station history, coverage, data provider, and possible site/instrument changes with TMA when available.
-
-**Minimal deliverable:** a plotted series, clear estimand, numerical estimate **if evidence permits**, uncertainty under stated assumptions, coverage checks, limitations, and one follow-up question. A justified “we cannot tell reliably from these data” is a valid result.
-
-**Challenge:** Extend to Dodoma or Nairobi; contrast the conventional interval and the HAC sensitivity analysis; compare seasonality-adjusted monthly fitting and annual summaries.
-
-Read [facilitator notes](FACILITATOR_NOTES.md), [dataset terms](../../DATA_LICENSES.md), and the [MAT102 antecedents](https://github.com/mbr085/V26MAT102).
+The station CSV and provenance JSON go to `data/private/` (Git-ignored).
+No restricted industry data or unpublished observations should be committed.
+See [facilitator guidance](FACILITATOR_NOTES.md),
+[data terms](../../DATA_LICENSES.md), and the
+[MAT102 antecedents](https://github.com/mbr085/V26MAT102).
