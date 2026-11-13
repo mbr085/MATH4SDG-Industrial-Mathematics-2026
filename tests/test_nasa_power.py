@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: MIT
 """Offline tests for NASA POWER parsing and provenance rules."""
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 from urllib.parse import parse_qs, urlparse
 
 import numpy as np
@@ -10,6 +12,7 @@ from scipy import stats
 
 from tools.nasa_power import build_url, parse_daily_t2m
 from tools.generate_synthetic_temperature import generate
+from tools.temperature_data import load_temperature_data
 from tools.temperature_methods import annual_means, estimate_trend
 
 
@@ -38,6 +41,50 @@ class PowerTests(unittest.TestCase):
             parse_daily_t2m({"error": "no weather here"}, 1986, 2025)
         with self.assertRaises(ValueError):
             build_url("dar_es_salaam", 1979, 2025)
+
+    def test_loader_synthetic_fallback_keeps_missing_values(self):
+        # No downloadable data required; never label generated values as observations.
+        with TemporaryDirectory() as directory:
+            missing_csv = Path(directory) / "not_present.csv"
+            data, source, figure_source, provenance = load_temperature_data(missing_csv)
+        self.assertIn("SYNTHETIC", source)
+        self.assertIn("SYNTHETIC", figure_source)
+        self.assertIn("synthetic practice", provenance)
+        self.assertEqual(data.index.min(), pd.Timestamp("1986-01-01"))
+        self.assertEqual(data.index.max(), pd.Timestamp("2025-12-31"))
+        self.assertTrue(data["temp"].isna().any())
+        self.assertFalse(data.index.has_duplicates)
+        expected = generate().set_index("date").loc["1986":"2025"]
+        pd.testing.assert_frame_equal(data, expected)
+
+    def test_loader_power_csv_checks_provenance_and_dates(self):
+        with TemporaryDirectory() as directory:
+            csv_path = Path(directory) / "power.csv"
+            pd.DataFrame({
+                "date": ["2020-01-03", "2020-01-01", "2020-01-02"],
+                "temp": ["29.1", "28.0", "invalid"],
+            }).to_csv(csv_path, index=False)
+
+            data, source, figure_source, provenance = load_temperature_data(csv_path)
+            self.assertIn("NASA POWER", source)
+            self.assertIn("NOT STATION OBSERVATIONS", source)
+            self.assertIn("GRID-CELL", figure_source)
+            self.assertIn("MISSING", provenance)
+            self.assertEqual(data.index[0], pd.Timestamp("2020-01-01"))
+            self.assertTrue(pd.isna(data.loc["2020-01-02", "temp"]))
+
+            csv_path.with_suffix(".json").write_text("{}", encoding="utf-8")
+            data_with_meta, _, _, provenance = load_temperature_data(csv_path)
+            pd.testing.assert_frame_equal(data_with_meta, data)
+            self.assertNotIn("MISSING", provenance)
+            self.assertIn(".json", provenance)
+
+            pd.DataFrame({
+                "date": ["2020-01-01", "2020-01-01"],
+                "temp": [28.0, 29.0],
+            }).to_csv(csv_path, index=False)
+            with self.assertRaisesRegex(ValueError, "Duplicate dates"):
+                load_temperature_data(csv_path)
 
     def test_visible_annual_aggregation_and_regression_match_reference(self):
         # Reproduce the notebook's short, explicit steps using only synthetic data.
