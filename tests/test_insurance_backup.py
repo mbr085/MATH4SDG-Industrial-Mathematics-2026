@@ -1,13 +1,17 @@
 # SPDX-License-Identifier: MIT
-"""Offline checks: all data in these tests are invented, not partner records."""
+"""Offline checks for an entirely synthetic insurance-claims exercise."""
 import unittest
 
 import numpy as np
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import PoissonRegressor
+from sklearn.metrics import mean_poisson_deviance
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
 
 from tools.insurance_methods import (
-    aggregate_rate, expected_counts, fit_frequency_model, poisson_rate_interval,
-    score_claim_counts, split_by_time, validate,
+    aggregate_rate, poisson_rate_interval, split_by_time, validate,
 )
 from tools.synthetic_insurance import SEED, SYNTHETIC_MARKER, generate
 
@@ -16,6 +20,22 @@ class SyntheticInsuranceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.df = generate(n_establishments=120, seed=SEED)
+
+    @staticmethod
+    def example_model(train):
+        """Mirror the transparent fit that students see in the notebook."""
+        features = ["sector", "zone", "programme"]
+        X = train[features].fillna("Unreported")
+        rate = train["claims_count"] / train["worker_years"]
+        encoder = ColumnTransformer([
+            ("categories", OneHotEncoder(handle_unknown="ignore"), features)
+        ])
+        model = Pipeline([
+            ("features", encoder),
+            ("poisson", PoissonRegressor(alpha=0.02, max_iter=1000)),
+        ])
+        model.fit(X, rate, poisson__sample_weight=train["worker_years"].to_numpy())
+        return model
 
     def test_reproducible_and_explicitly_synthetic(self):
         pd.testing.assert_frame_equal(self.df, generate(120, seed=SEED))
@@ -47,27 +67,43 @@ class SyntheticInsuranceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             poisson_rate_interval(-1, 10)
 
-    def test_model_predicts_positive_counts(self):
+    def test_model_predicts_positive_counts_without_hidden_helper(self):
         train, test = split_by_time(self.df)
-        model = fit_frequency_model(train)
-        expected = expected_counts(model, test)
-        self.assertEqual(expected.shape, (len(test),))
-        self.assertTrue(np.all(expected > 0))
-        self.assertTrue(np.isfinite(score_claim_counts(test.claims_count, expected)))
-        self.assertTrue(np.isfinite(score_claim_counts(test.claims_count,
-                          aggregate_rate(train) * test.worker_years.to_numpy())))
+        model = self.example_model(train)
+        predicted_rate = model.predict(test[["sector", "zone", "programme"]].fillna("Unreported"))
+        predicted_counts = predicted_rate * test["worker_years"].to_numpy()
+        self.assertEqual(predicted_counts.shape, (len(test),))
+        self.assertTrue(np.all(predicted_counts > 0))
+        self.assertTrue(np.isfinite(mean_poisson_deviance(test.claims_count, predicted_counts)))
+        baseline = aggregate_rate(train) * test.worker_years.to_numpy()
+        self.assertTrue(np.isfinite(mean_poisson_deviance(test.claims_count, baseline)))
+
+    def test_exposure_weighted_rate_deviance_identity(self):
+        train, test = split_by_time(self.df)
+        predicted_counts = aggregate_rate(train) * test.worker_years.to_numpy()
+        observed_counts = test.claims_count.to_numpy()
+        exposures = test.worker_years.to_numpy()
+        count_score = mean_poisson_deviance(observed_counts, predicted_counts)
+        weighted_rate_score = mean_poisson_deviance(
+            observed_counts / exposures,
+            predicted_counts / exposures,
+            sample_weight=exposures,
+        )
+        self.assertAlmostEqual(
+            weighted_rate_score, count_score * len(test) / exposures.sum()
+        )
 
     def test_2026_forecast_has_only_assumed_inputs(self):
-        # All synthetic 2025 outcomes are historical training targets here.
-        # The scenario has no 2026 claims or costs.
+        # The 2025 outcomes become historical training data for forecasting.
         scenario = self.df.loc[self.df["year"] == 2025, [
             "establishment_id", "sector", "zone", "programme", "worker_years"
         ]].copy()
         scenario["year"] = 2026
         self.assertNotIn("claims_count", scenario.columns)
         self.assertNotIn("total_claim_cost_units", scenario.columns)
-        model = fit_frequency_model(self.df)
-        forecast = expected_counts(model, scenario)
+        model = self.example_model(self.df)
+        future_rate = model.predict(scenario[["sector", "zone", "programme"]].fillna("Unreported"))
+        forecast = future_rate * scenario["worker_years"].to_numpy()
         self.assertEqual(forecast.shape, (len(scenario),))
         self.assertTrue(np.isfinite(forecast).all())
         self.assertTrue((forecast > 0).all())
