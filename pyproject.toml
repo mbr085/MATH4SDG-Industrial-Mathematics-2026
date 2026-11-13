@@ -2,9 +2,6 @@
 name = "math4sdg-industrial-mathematics-2026"
 version = "0.1.0"
 description = "Python resources for the UDSM MATH4SDG industrial mathematics workshop"
-readme = "README.md"
-license = "MIT"
-license-files = ["LICENSE"]
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "jupyterlab>=4.3,<5",
@@ -18,15 +15,9 @@ dependencies = [
   "meteostat>=2.1.4,<3",
 ]
 
-# uv sync installs the project in editable mode, together with all runtime tools.
-# The existing helpers are packaged without renaming their stable "tools" imports.
-[build-system]
-requires = ["uv_build>=0.10.0,<0.11.0"]
-build-backend = "uv_build"
-
-[tool.uv.build-backend]
-module-name = "tools"
-module-root = ""
+# The repository is a set of notebooks and scripts, not a Python package.
+[tool.uv]
+package = false
 
 [tool.pyright]
 venvPath = "."
