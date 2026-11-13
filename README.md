@@ -78,12 +78,12 @@ do not load the helper. On non-NixOS hosts, the flake need not be used.
 
 ## Student quick references
 
-These short reference sheets support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each illustrates a few library operations used in the workshop notebooks, links to official documentation, and suggests narrowly focused questions to ask AI assistants while independently checking the answers.
+These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
 
-- [pandas cheat sheet](reference/pandas.md) — inspect tables, select data, handle missing values, group by sector, calculate exposure-adjusted rates, and summarize time series.
-- [Matplotlib cheat sheet](reference/matplotlib.md) — make labelled plots using explicit `Axes` objects, compare model outputs with observations, and choose plots that communicate units and data provenance.
+- [pandas Jupyter cheat sheet](reference/pandas_cheatsheet.ipynb) — inspect tables, select data, handle missing values, group by sector, calculate exposure-adjusted rates, and summarize time series.
+- [Matplotlib Jupyter cheat sheet](reference/matplotlib_cheatsheet.ipynb) — make labelled plots using explicit `Axes` objects, compare model outputs with observations, and choose plots that communicate units and data provenance.
 
-The two optional backup notebooks link directly to both sheets. Do not share restricted industry data with external AI services.
+The two optional backup notebooks link directly to both references. In JupyterLab, open the `.ipynb` file, run its setup cell, and then run examples as needed. Do not share restricted industry data with external AI services.
 
 ## Optional backup project: East African temperature trends
 
