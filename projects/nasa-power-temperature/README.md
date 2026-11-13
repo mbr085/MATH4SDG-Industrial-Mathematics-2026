@@ -26,6 +26,12 @@ uv run jupyter lab
 Open `notebooks/east_africa_temperature_trends.ipynb`. The notebook looks for
 `data/private/nasa_power_dar_es_salaam_1986_2025.csv`. If absent, it automatically runs with an **explicitly labeled synthetic dataset** for offline practice. Never report synthetic output as a real observation.
 
+### Notebook conventions
+
+The notebook follows a **step-by-step scientific Python style**. Students see the data-source choice and provenance label, daily coverage, the 20-valid-days-per-month rule, the 12-month annual mean, the least-squares **design matrix and coefficients**, the conventional and HAC intervals, and nested-period sensitivity calculations **directly in Jupyter cells**. We retain the existing functions in `tools/temperature_methods.py` to independently check the outputs; they are **not** black boxes performing the notebook's main calculations. Figures identify whether the source is NASA POWER grid-cell reanalysis or **synthetic practice data**.
+
+This means the revised notebook has more, shorter cells. The [pandas](../../reference/pandas_cheatsheet.ipynb) and [Matplotlib](../../reference/matplotlib_cheatsheet.ipynb) Jupyter cheat sheets are optional references, not compulsory extra exercises. Data are never silently imputed.
+
 **Optional station-record exercise:** download `uv run python tools/download_meteostat.py --station 63894`, then open `notebooks/meteostat_station_missingness.ipynb`. It diagnoses station gaps and compares overlapping observed days with the NASA POWER reanalysis. It does not report a fictitious 40-year station trend.
 
 For a quick test:
