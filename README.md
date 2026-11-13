@@ -4,6 +4,19 @@ Python and computational teaching resources for the **University of Dar es Salaa
 
 The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using NASA POWER and synthetic insurance-claims analysis) may be introduced if industry data are difficult to use.
 
+## Quick start: install the Python tools
+
+**No separate workshop Python package is required.** If you have [uv](https://docs.astral.sh/uv/getting-started/installation/) installed and have cloned or downloaded this repository, run these commands **from the repository root**:
+
+```sh
+uv sync --locked
+uv run jupyter lab
+```
+
+`uv sync --locked` creates the project-local `.venv` and installs **all dependencies listed in the existing lockfile**. `uv run jupyter lab` starts the notebooks in that environment. Python **3.12** is required (uv usually obtains it automatically on non-NixOS systems). The scripts in `tools/` are repository helpers rather than a separately installed Python package.
+
+See the **[student installation guide](INSTALL.md)** for cloning the repository, NixOS instructions, offline preparation, environment checks and troubleshooting.
+
 ## NixOS: Python, uv and JupyterLab
 
 A Nix flake provides **Python 3.12** and **uv**. Python dependencies—including JupyterLab, NumPy, pandas, scikit-learn, statsmodels and Meteostat—are installed by uv into a project-local `.venv`. Do not separately install Python packages in the Nix shell.
@@ -136,6 +149,10 @@ uv run python -m unittest discover -s tests -v
 See [the NASA POWER facilitator notes](projects/nasa-power-temperature/FACILITATOR_NOTES.md)
 and [data policy](DATA_POLICY.md).
 
+
+## Optional short optimization challenge
+
+For groups wishing to explore a **non-statistical** industrial mathematics problem, see [Who should do which job?](projects/assignment-optimization/README.md). This is a single, wholly fictional worker–job assignment problem. Groups can formulate binary assignment variables and minimize total worker-hours; an optional `scipy.optimize.linear_sum_assignment` example allows them to verify a solution. The problem is short and open-ended, not a third substantial notebook or a compulsory lesson, and needs **no additional dependencies or external data**.
 
 ## Optional backup project: Synthetic workplace insurance claims
 
