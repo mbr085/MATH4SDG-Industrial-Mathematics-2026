@@ -4,11 +4,6 @@
 import numpy as np
 import pandas as pd
 from scipy.stats import chi2
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import PoissonRegressor
-from sklearn.metrics import mean_poisson_deviance
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
 
 FEATURES = ["sector", "zone", "programme"]
 
@@ -62,40 +57,3 @@ def poisson_rate_interval(n_claims: int, exposure: float, alpha: float = 0.05) -
     return float(lo), float(hi)
 
 
-def fit_frequency_model(train: pd.DataFrame) -> Pipeline:
-    """Poisson model of claim frequency per worker-year, weighted by exposure.
-
-    Use only historical rows with known outcomes; never fit on forecast years.
-    Claims and total cost are deliberately excluded
-    from FEATURES to prevent label leakage. Category preprocessing is fitted on
-    training data only; unseen categories in test are ignored.
-    """
-    validate(train)
-    X = train[FEATURES].fillna("Unreported")
-    rate = train["claims_count"] / train["worker_years"]
-    encoder = ColumnTransformer(
-        [("categories", OneHotEncoder(handle_unknown="ignore"), FEATURES)],
-        remainder="drop",
-    )
-    model = Pipeline([
-        ("features", encoder),
-        ("poisson", PoissonRegressor(alpha=0.02, max_iter=1000)),
-    ])
-    model.fit(X, rate, poisson__sample_weight=train["worker_years"].to_numpy())
-    return model
-
-
-def expected_counts(model: Pipeline, df: pd.DataFrame) -> np.ndarray:
-    """Return strictly positive predicted claim counts (rate times exposure)."""
-    if not (df["worker_years"] > 0).all():
-        raise ValueError("Exposure must be positive")
-    predicted_rate = model.predict(df[FEATURES].fillna("Unreported"))
-    predicted = predicted_rate * df["worker_years"].to_numpy()
-    if not np.isfinite(predicted).all() or not (predicted > 0).all():
-        raise ValueError("Predicted claim counts must be finite and positive")
-    return predicted
-
-
-def score_claim_counts(actual: pd.Series | np.ndarray, predicted: np.ndarray) -> float:
-    """Unweighted mean Poisson deviance for count predictions (smaller is better)."""
-    return float(mean_poisson_deviance(actual, predicted))
