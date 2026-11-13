@@ -29,13 +29,15 @@ These are teaching mechanisms, not rates or policy effects at WCF, TIRA, any ins
 
 **Data questions:** What is a worker-year? Is averaging row-wise frequencies appropriate? When do missing sector labels matter?
 
-**Modelling:** Why does the baseline use a ratio of *sums*? Derive the log-likelihood derivative for the intercept-only Poisson model. What is the role of the offset $\log(e_i)$? Ask AI for an implementation, then verify it independently.
+**Modelling:** Why does the baseline use a ratio of *sums*? Derive the log-likelihood derivative for the intercept-only Poisson model. What is the role of the offset $\log(e_i)$? **The code for selecting predictors, one-hot encoding, constructing the `Pipeline`, fitting `PoissonRegressor`, converting rates into counts and scoring is now visible in separate notebook cells.** Encourage students to inspect or modify these steps. Ask AI for an alternative implementation, then verify it independently. The regularization parameter `alpha=0.02` is a choice; objective normalization matters when comparing this weighted-rate model to an offset-parameterized count model.
 
 **Validation:** Keep 2025 as a held-out historical validation year and introduce 2026 only as a hypothetical forecast. Assume 2026 exposures, sectors, zones and programme statuses equal their 2025 values, explicitly labelled as planning assumptions, not observations. Refit using all 2021–2025 outcomes after evaluation and never invent 2026 claim outcomes. Why not split rows randomly when investigating the next year? Why can a model predict claim *expectations* but not exact individual annual counts? What changes in 2025? Could a model overfit to test-year results?
 
 **Uncertainty:** Simple exact Poisson-rate intervals assume a count model with independent events and a stable common rate. The generator violates some of those assumptions. Encourage students to distinguish conditional statistical uncertainty from omitted establishment differences, reporting bias, synthetic assumptions and the 2025 change.
 
 **Ethics:** No actual claims, person-level data, institutions or currency values are represented. Real-world pricing, safety and worker-compensation decisions require domain expertise, privacy safeguards, historical validation and fairness assessment. Do not upload real partner records to public GitHub or outside AI services without permission.
+
+**Poisson deviance:** The notebook uses `sklearn.metrics.mean_poisson_deviance` directly, rather than wrapping it in `score_claim_counts`. For counts $N_i$, means $\mu_i$ and exposure $e_i$, ask students to show $d(N_i,\mu_i)=e_i d(N_i/e_i,\mu_i/e_i)$. Therefore mean count deviance and exposure-weighted mean rate deviance are related by $n/\sum e_i$ on the same rows, so model rankings are identical. These are model-based discrepancies, not direct measures of uncertainty about real-world claims.
 
 **Teaching-code style:** Use simple pandas operations, minimal chaining, one conceptual step and one meaningful output per cell, and the Matplotlib `Axes` interface. The notebook begins with `import bootstrap` from `notebooks/bootstrap.py` rather than displaying path-management code; packaging remains open for later consideration. Pyright is configured in `pyproject.toml` to use the uv `.venv`.
 
