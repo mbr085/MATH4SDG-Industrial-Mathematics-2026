@@ -19,7 +19,7 @@ uv sync --locked
 uv run jupyter lab
 ```
 
-Open [the student notebook](../../notebooks/synthetic_insurance_claims.ipynb). It imports and runs `tools/synthetic_insurance.py` directly to create its local example data.
+Open [the student notebook](../../notebooks/synthetic_insurance_claims.ipynb) directly inside `notebooks/`. It imports `bootstrap`, a small helper stored beside the notebook that makes the existing `tools/` functions accessible. No extra package installation is required. Start JupyterLab at the repository root; the notebook kernel normally starts in its own `notebooks/` folder. Moving a notebook into an arbitrary subfolder may require updating the imports.
 
 Optional: create a CSV that can be opened in a spreadsheet (ignored by Git):
 
@@ -35,7 +35,7 @@ uv run python -m unittest discover -s tests -v
 
 ## Suggested group investigation
 
-The **minimum** is an analysis of the fictional records, a transparent baseline for claims per worker-year, a Poisson regression that accounts for exposure, and comparison on the held-out year 2025. A useful result includes one explanation of why the model might be misleading.
+The **minimum** is an analysis of the fictional records, a transparent baseline for claims per worker-year, a Poisson regression that accounts for exposure, and comparison on the held-out year 2025. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
 
 The **extensions** can be divided between groups: investigate missing sector labels and reporting bias; study claim severity (costs are recorded *after* claims); examine model calibration by sector; explore alternate validation windows; or test whether apparent correlations with the programme can be interpreted causally.
 
@@ -45,7 +45,7 @@ The synthetic data deliberately contain persistent unobserved establishment risk
 
 Facilitators circulate between groups and may introduce mathematical or computational tools in short morning plenaries when requested by the projects. The afternoon plenary can ask each group to report one finding, one source of uncertainty, and one next step.
 
-A five-minute end-of-project presentation should cover:
+A five-minute end-of-project presentation should include the held-out 2025 validation and an explicitly hypothetical 2026 forecast; no 2026 outcomes are supplied. It should cover:
 
 - What is predicted, for whom, and in which units?
 - Why do worker-years matter?
@@ -60,3 +60,7 @@ AI tools may help students develop Python, explain the Poisson objective or unco
 ### Technical reference
 
 The exposure-weighted Poisson frequency method follows the [scikit-learn example on insurance claims](https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html). This source explains modelling frequency as claims divided by exposure with exposure as sample weight; its examples use a different (real) insurance domain and are not data for this workshop.
+
+## Notebook style
+
+The student notebook favors short pandas steps rather than chains of operations, one conceptual step (and usually one visible output) per code cell, and explicit Matplotlib `Axes` methods rather than unnecessary `plt.show()` calls. These conventions are intended for students who are still learning scientific Python.
