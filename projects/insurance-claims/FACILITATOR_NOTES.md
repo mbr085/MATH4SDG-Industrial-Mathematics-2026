@@ -31,14 +31,16 @@ These are teaching mechanisms, not rates or policy effects at WCF, TIRA, any ins
 
 **Modelling:** Why does the baseline use a ratio of *sums*? Derive the log-likelihood derivative for the intercept-only Poisson model. What is the role of the offset $\log(e_i)$? Ask AI for an implementation, then verify it independently.
 
-**Validation:** Why not split rows randomly when investigating the next year? Why can a model predict claim *expectations* but not exact individual annual counts? What changes in 2025? Could a model overfit to test-year results?
+**Validation:** Keep 2025 as a held-out historical validation year and introduce 2026 only as a hypothetical forecast. Assume 2026 exposures, sectors, zones and programme statuses equal their 2025 values, explicitly labelled as planning assumptions, not observations. Refit using all 2021–2025 outcomes after evaluation and never invent 2026 claim outcomes. Why not split rows randomly when investigating the next year? Why can a model predict claim *expectations* but not exact individual annual counts? What changes in 2025? Could a model overfit to test-year results?
 
 **Uncertainty:** Simple exact Poisson-rate intervals assume a count model with independent events and a stable common rate. The generator violates some of those assumptions. Encourage students to distinguish conditional statistical uncertainty from omitted establishment differences, reporting bias, synthetic assumptions and the 2025 change.
 
 **Ethics:** No actual claims, person-level data, institutions or currency values are represented. Real-world pricing, safety and worker-compensation decisions require domain expertise, privacy safeguards, historical validation and fairness assessment. Do not upload real partner records to public GitHub or outside AI services without permission.
 
+**Teaching-code style:** Use simple pandas operations, minimal chaining, one conceptual step and one meaningful output per cell, and the Matplotlib `Axes` interface. The notebook begins with `import bootstrap` from `notebooks/bootstrap.py` rather than displaying path-management code; packaging remains open for later consideration. Pyright is configured in `pyproject.toml` to use the uv `.venv`.
+
 ## Five-minute group update
 
-Ask groups to state: their problem, baseline, model result **on held-out 2025**, one uncertainty, and a next action or question for the partner. A justified conclusion that the model is not reliable enough is a useful scientific outcome.
+Ask groups to state: their problem, baseline, model result **on held-out 2025**, a clearly hypothetical **2026** forecast, one uncertainty, and a next action or question for the partner. A justified conclusion that the model is not reliable enough is a useful scientific outcome.
 
 Scikit-learn reference: [Tweedie regression on insurance claims](https://scikit-learn.org/stable/auto_examples/linear_model/plot_tweedie_regression_insurance_claims.html), especially the exposure-weighted Poisson frequency model.
