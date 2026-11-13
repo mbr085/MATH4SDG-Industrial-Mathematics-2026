@@ -802,7 +802,7 @@ wheels = [
 [[package]]
 name = "math4sdg-industrial-mathematics-2026"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "ipykernel" },
     { name = "jupyterlab" },
