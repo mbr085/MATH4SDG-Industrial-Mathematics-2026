@@ -76,6 +76,15 @@ do not load the helper. On non-NixOS hosts, the flake need not be used.
 
 **Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
 
+## Student quick references
+
+These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
+
+- [pandas Jupyter cheat sheet](reference/pandas_cheatsheet.ipynb) — inspect tables, select data, handle missing values, group by sector, calculate exposure-adjusted rates, and summarize time series.
+- [Matplotlib Jupyter cheat sheet](reference/matplotlib_cheatsheet.ipynb) — make labelled plots using explicit `Axes` objects, compare model outputs with observations, and choose plots that communicate units and data provenance.
+
+The two optional backup notebooks link directly to both references. In JupyterLab, open the `.ipynb` file, run its setup cell, and then run examples as needed. Do not share restricted industry data with external AI services.
+
 ## Optional backup project: East African temperature trends
 
 This repository now includes a **student-directed backup investigation**:
