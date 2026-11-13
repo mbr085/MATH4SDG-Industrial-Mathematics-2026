@@ -143,6 +143,6 @@ The artificial records may be regenerated as a **local ignored CSV** using `uv r
 
 ### Insurance notebook presentation and editor setup
 
-For the [synthetic insurance claims notebook](notebooks/synthetic_insurance_claims.ipynb), introductory calculations are broken into understandable pandas steps with a single conceptual purpose per cell; plots use explicit Matplotlib `Axes` methods. The notebook evaluates predictions against 2025 and separately forecasts expected claims for a hypothetical 2026 scenario, with no 2026 outcomes supplied.
+For the [synthetic insurance claims notebook](notebooks/synthetic_insurance_claims.ipynb), introductory calculations are broken into understandable pandas steps with a single conceptual purpose per cell; plots use explicit Matplotlib `Axes` methods. The notebook directly constructs the one-hot encoder, Poisson regression pipeline and exposure-weighted fit, then calls `mean_poisson_deviance` without a scoring wrapper. It evaluates predictions against 2025 and separately forecasts expected claims for a hypothetical 2026 scenario, with no 2026 outcomes supplied.
 
 The notebook imports `bootstrap` from [notebooks/bootstrap.py](notebooks/bootstrap.py) to connect to the existing `tools` modules. Start JupyterLab from the project root and keep the supplied notebook inside the `notebooks/` directory. No local project package installation is required for now. The `[tool.pyright]` section in `pyproject.toml` points Neovim/Pyright at the uv-managed `.venv`.
