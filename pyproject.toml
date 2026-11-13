@@ -18,3 +18,8 @@ dependencies = [
 # The repository is a set of notebooks and scripts, not a Python package.
 [tool.uv]
 package = false
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.12"
