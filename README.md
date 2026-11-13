@@ -140,3 +140,9 @@ uv run jupyter lab
 Open [the student notebook](notebooks/synthetic_insurance_claims.ipynb). No download is needed; the notebook generates deterministic synthetic data in memory. See [facilitator guidance](projects/insurance-claims/FACILITATOR_NOTES.md). Run the [offline tests](tests/test_insurance_backup.py) with the existing `unittest` command above.
 
 The artificial records may be regenerated as a **local ignored CSV** using `uv run python tools/synthetic_insurance.py`. These classroom values have no real-world insurance interpretation; they are offered under CC0 1.0 and are documented in [DATA_LICENSES.md](DATA_LICENSES.md).
+
+### Insurance notebook presentation and editor setup
+
+For the [synthetic insurance claims notebook](notebooks/synthetic_insurance_claims.ipynb), introductory calculations are broken into understandable pandas steps with a single conceptual purpose per cell; plots use explicit Matplotlib `Axes` methods. The notebook evaluates predictions against 2025 and separately forecasts expected claims for a hypothetical 2026 scenario, with no 2026 outcomes supplied.
+
+The notebook imports `bootstrap` from [notebooks/bootstrap.py](notebooks/bootstrap.py) to connect to the existing `tools` modules. Start JupyterLab from the project root and keep the supplied notebook inside the `notebooks/` directory. No local project package installation is required for now. The `[tool.pyright]` section in `pyproject.toml` points Neovim/Pyright at the uv-managed `.venv`.
