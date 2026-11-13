@@ -11,7 +11,9 @@
 - Gridded estimates versus station observations: using their common observation dates, gaps and sampling bias.
 - How to interrogate AI-generated code and interpret the answers without outsourcing scientific judgment.
 
-**Focused discussion: sensitivity to the starting year (section 8).**
+**Pedagogical revision:** The notebook now exposes the core steps instead of calling `annual_means` and `estimate_trend` to do the analysis. Separate cells show how `resample("MS")` builds monthly counts and means, filters months with fewer than 20 valid daily values, forms an equal-weight annual summary only for years with all 12 qualifying months, constructs the least-squares matrix, and calculates the conventional and HAC intervals. The original helpers remain as an **independent computational check**. Plots use `Axes`, do not need routine `plt.show()`, and prominently distinguish synthetic data from reanalysis. Links to the pandas and Matplotlib notebook references are in the introduction.
+
+**Focused discussion: sensitivity to the starting year (section 9).**
 In an executed NASA POWER notebook reviewed for this project, the annual
 least-squares trend ending in 2025 was approximately **+0.152 °C/decade**
 when starting in 1986, but **+0.036 °C/decade** when starting in 2001.
