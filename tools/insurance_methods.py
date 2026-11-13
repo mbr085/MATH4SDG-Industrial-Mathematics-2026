@@ -65,7 +65,8 @@ def poisson_rate_interval(n_claims: int, exposure: float, alpha: float = 0.05) -
 def fit_frequency_model(train: pd.DataFrame) -> Pipeline:
     """Poisson model of claim frequency per worker-year, weighted by exposure.
 
-    Requires pre-2025 rows only. Claims and total cost are deliberately excluded
+    Use only historical rows with known outcomes; never fit on forecast years.
+    Claims and total cost are deliberately excluded
     from FEATURES to prevent label leakage. Category preprocessing is fitted on
     training data only; unseen categories in test are ignored.
     """
