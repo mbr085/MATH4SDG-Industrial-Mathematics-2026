@@ -57,6 +57,21 @@ class SyntheticInsuranceTests(unittest.TestCase):
         self.assertTrue(np.isfinite(score_claim_counts(test.claims_count,
                           aggregate_rate(train) * test.worker_years.to_numpy())))
 
+    def test_2026_forecast_has_only_assumed_inputs(self):
+        # All synthetic 2025 outcomes are historical training targets here.
+        # The scenario has no 2026 claims or costs.
+        scenario = self.df.loc[self.df["year"] == 2025, [
+            "establishment_id", "sector", "zone", "programme", "worker_years"
+        ]].copy()
+        scenario["year"] = 2026
+        self.assertNotIn("claims_count", scenario.columns)
+        self.assertNotIn("total_claim_cost_units", scenario.columns)
+        model = fit_frequency_model(self.df)
+        forecast = expected_counts(model, scenario)
+        self.assertEqual(forecast.shape, (len(scenario),))
+        self.assertTrue(np.isfinite(forecast).all())
+        self.assertTrue((forecast > 0).all())
+
     def test_rejects_unmarked_or_duplicate_records(self):
         tampered = self.df.copy()
         tampered.loc[tampered.index[0], "dataset_status"] = "OBSERVED"
