@@ -117,6 +117,8 @@ uv run python tools/download_nasa_power.py --location dodoma
 
 The NASA POWER grid-cell data and download metadata are stored under ignored `data/private/`; the main notebook uses the Dar es Salaam POWER download if available. It does not fill missing values or assert that the reanalysis history is homogeneous or independently observed. An instructor-run NASA POWER download produced full daily coverage for 1986–2025; inspect coverage and metadata again when retrieving the data locally. Check coverage, methodology and provenance before drawing scientific conclusions.
 
+The temperature notebook has been revised to make **monthly completeness, annual aggregation, least-squares fitting and uncertainty calculations visible in short executable cells**, with explicitly labelled source-specific plots. The original helper functions remain for independent checking. The pandas and Matplotlib Jupyter cheat sheets linked near the top provide optional command references.
+
 The original Meteostat station series was found to lack sufficient early observations for the intended 40-year comparison. We retain it **only as a secondary investigation of observational gaps**. For that optional exercise:
 
 ```sh
