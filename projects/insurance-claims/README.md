@@ -35,7 +35,7 @@ uv run python -m unittest discover -s tests -v
 
 ## Suggested group investigation
 
-The **minimum** is an analysis of the fictional records, a transparent baseline for claims per worker-year, a Poisson regression that accounts for exposure, and comparison on the held-out year 2025. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
+The **minimum** is an analysis of the fictional records, a transparent baseline for claims per worker-year, and a Poisson regression built directly in the notebook (one-hot encoding, `Pipeline`, `PoissonRegressor`, and exposure-weighted `fit`). Students evaluate predictions with scikit-learn's `mean_poisson_deviance` directly, then compare with held-out 2025. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
 
 The **extensions** can be divided between groups: investigate missing sector labels and reporting bias; study claim severity (costs are recorded *after* claims); examine model calibration by sector; explore alternate validation windows; or test whether apparent correlations with the programme can be interpreted causally.
 
@@ -63,4 +63,4 @@ The exposure-weighted Poisson frequency method follows the [scikit-learn example
 
 ## Notebook style
 
-The student notebook favors short pandas steps rather than chains of operations, one conceptual step (and usually one visible output) per code cell, and explicit Matplotlib `Axes` methods rather than unnecessary `plt.show()` calls. These conventions are intended for students who are still learning scientific Python.
+The student notebook favors short pandas steps rather than chains of operations, one conceptual step (and usually one visible output) per code cell, and explicit Matplotlib `Axes` methods rather than unnecessary `plt.show()` calls. The *model construction, fitting, prediction and scoring* are deliberately shown inside the notebook rather than hidden behind helper functions. A small optional activity shows why scoring counts or exposure-weighted rates by Poisson deviance produces identical model rankings on the same records (though the scales differ). These conventions are intended for students who are still learning scientific Python.
