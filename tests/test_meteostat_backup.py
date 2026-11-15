@@ -10,10 +10,10 @@ from tools.temperature_methods import annual_means, estimate_trend
 
 
 class BackupTests(unittest.TestCase):
-    def test_synthetic_is_reproducible_and_has_gaps(self):
+    def test_synthetic_is_reproducible_and_complete(self):
         a, b = generate(), generate()
         pd.testing.assert_frame_equal(a, b)
-        self.assertGreater(a["temp"].isna().sum(), 0)
+        self.assertFalse(a["temp"].isna().any())
         self.assertEqual(str(a["date"].iloc[0].date()), "1986-01-01")
         self.assertEqual(str(a["date"].iloc[-1].date()), "2025-12-31")
 
@@ -31,11 +31,12 @@ class BackupTests(unittest.TestCase):
         result = estimate_trend(annual)
         self.assertAlmostEqual(result["slope_c_decade"], 0.4, places=10)
 
-    def test_synthetic_yields_usable_years(self):
+    def test_synthetic_yields_all_40_years(self):
         frame = generate().set_index("date")
         annual, table = annual_means(frame["temp"])
-        self.assertGreaterEqual(len(annual), 15)
-        self.assertLess(len(annual), len(table))
+        # Keep the old helper for Meteostat; complete data qualify all years.
+        self.assertEqual(len(annual), 40)
+        self.assertEqual(len(annual), len(table))
         estimate_trend(annual)
 
 
