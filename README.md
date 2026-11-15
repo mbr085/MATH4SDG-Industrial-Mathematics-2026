@@ -120,7 +120,7 @@ For groups wishing to explore a **non-statistical** industrial mathematics probl
 
 A second, complementary [student-led insurance investigation](projects/insurance-claims/README.md) works **completely offline** and requires no industry records. All establishment identifiers, sectors, zones, claim counts, and cost values are **invented** and are not statistics from WCF, TIRA, an insurer, or Tanzania.
 
-The notebook asks how to estimate *expected claim counts* while accounting for exposure measured in worker-years. Students compare a transparent baseline with an exposure-weighted Poisson regression, train on 2021–2024 and evaluate on a held-out 2025, and discuss limitations of a fitted model.
+The notebook asks how to estimate *expected claim counts* while accounting for exposure measured in worker-years. Students compare a pooled constant-rate baseline, an exposure-adjusted rate for each sector–zone–programme profile (with simple smoothing), and a Poisson regression. All three are trained on 2021–2024 and evaluated on held-out 2025 data. The profile baseline uses the same recorded predictors but can be more flexible than the regression; students discuss what each comparison establishes.
 
 ```sh
 uv sync --locked
