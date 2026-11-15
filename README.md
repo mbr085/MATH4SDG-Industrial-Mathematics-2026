@@ -129,6 +129,8 @@ uv run jupyter lab
 
 Open [the student notebook](notebooks/synthetic_insurance_claims.ipynb). No download is needed; the notebook generates deterministic synthetic data in memory. See [facilitator guidance](projects/insurance-claims/FACILITATOR_NOTES.md). Run the [offline tests](tests/test_insurance_backup.py) with the existing `unittest` command above.
 
+An [optional advanced companion notebook](notebooks/advanced_insurance_size_and_exposure.ipynb) investigates company size, exposure and observed claim frequency, including the integer-count hyperbolas and an exposure-offset Poisson model. It is intended for groups seeking a further mathematical challenge; the introductory notebook remains the starting point.
+
 The artificial records may be regenerated as a **local ignored CSV** using `uv run python tools/synthetic_insurance.py`. These classroom values have no real-world insurance interpretation; they are offered under CC0 1.0 and are documented in [DATA_LICENSES.md](DATA_LICENSES.md).
 
 ### Insurance notebook presentation and editor setup
