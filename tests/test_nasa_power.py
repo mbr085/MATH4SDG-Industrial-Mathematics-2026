@@ -13,7 +13,7 @@ from scipy import stats
 from tools.nasa_power import build_url, parse_daily_t2m
 from tools.generate_synthetic_temperature import generate
 from tools.temperature_data import load_temperature_data
-from tools.temperature_methods import annual_means, estimate_trend
+from tools.temperature_methods import estimate_trend
 
 
 class PowerTests(unittest.TestCase):
@@ -42,7 +42,7 @@ class PowerTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_url("dar_es_salaam", 1979, 2025)
 
-    def test_loader_synthetic_fallback_keeps_missing_values(self):
+    def test_loader_synthetic_fallback_has_complete_daily_coverage(self):
         # No downloadable data required; never label generated values as observations.
         with TemporaryDirectory() as directory:
             missing_csv = Path(directory) / "not_present.csv"
@@ -52,7 +52,8 @@ class PowerTests(unittest.TestCase):
         self.assertIn("synthetic practice", provenance)
         self.assertEqual(data.index.min(), pd.Timestamp("1986-01-01"))
         self.assertEqual(data.index.max(), pd.Timestamp("2025-12-31"))
-        self.assertTrue(data["temp"].isna().any())
+        self.assertFalse(data["temp"].isna().any())
+        self.assertEqual(len(data), len(pd.date_range("1986-01-01", "2025-12-31", freq="D")))
         self.assertFalse(data.index.has_duplicates)
         expected = generate().set_index("date").loc["1986":"2025"]
         pd.testing.assert_frame_equal(data, expected)
@@ -86,30 +87,18 @@ class PowerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Duplicate dates"):
                 load_temperature_data(csv_path)
 
-    def test_visible_annual_aggregation_and_regression_match_reference(self):
-        # Reproduce the notebook's short, explicit steps using only synthetic data.
-        daily = generate().set_index("date")["temp"].asfreq("D")
-        monthly = pd.DataFrame({
-            "valid_days": daily.resample("MS").count(),
-            "mean_temp": daily.resample("MS").mean(),
-        })
-        monthly["eligible_mean"] = monthly["mean_temp"].where(
-            monthly["valid_days"] >= 20
-        )
-        months_per_year = monthly["eligible_mean"].resample("YS").count()
-        annual_candidates = monthly["eligible_mean"].resample("YS").mean()
-        annual = annual_candidates.loc[months_per_year == 12].copy()
+    def test_direct_annual_mean_and_regression(self):
+        # The main notebook uses all daily data, without monthly averaging.
+        dates = pd.date_range("1986-01-01", "2025-12-31", freq="D")
+        daily = generate().set_index("date")["temp"].reindex(dates)
+        self.assertTrue(np.isfinite(daily.to_numpy()).all())
+
+        annual = daily.resample("YS").mean()
         annual.index = annual.index.year
         annual.index.name = "year"
         annual.name = "mean_temp"
-
-        reference, _ = annual_means(daily, min_days_per_month=20)
-        pd.testing.assert_series_equal(annual, reference)
-        self.assertEqual(len(annual), 38)
-        self.assertEqual(
-            months_per_year.index[months_per_year < 12].year.tolist(),
-            [1997, 2010],
-        )
+        self.assertEqual(len(annual), 40)
+        self.assertAlmostEqual(annual.loc[1986], daily.loc["1986"].mean())
 
         years = annual.index.to_numpy(dtype=float)
         temps = annual.to_numpy(dtype=float)
@@ -130,7 +119,6 @@ class PowerTests(unittest.TestCase):
         np.testing.assert_allclose(
             conventional, reference_trend["conventional_ci_c_decade"]
         )
-
         hac = sm.OLS(temps, design).fit(
             cov_type="HAC", cov_kwds={"maxlags": 3}
         )
@@ -144,7 +132,10 @@ class PowerTests(unittest.TestCase):
         vals = {d.strftime("%Y%m%d"): float(24 + 0.03*(d.year-1986)) for d in dates}
         payload = {"properties": {"parameter": {"T2M": vals}}}
         daily = parse_daily_t2m(payload, 1986, 2025)
-        annual, _ = annual_means(daily.set_index("date")["temp"])
+        daily_series = daily.set_index("date")["temp"]
+        self.assertTrue(np.isfinite(daily_series.to_numpy()).all())
+        annual = daily_series.resample("YS").mean()
+        annual.index = annual.index.year
         self.assertEqual(len(annual), 40)
         trend = estimate_trend(annual)
         self.assertAlmostEqual(trend["slope_c_decade"], 0.30, places=5)
