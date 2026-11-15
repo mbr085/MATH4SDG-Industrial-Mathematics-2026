@@ -2,7 +2,8 @@
 """Generate synthetic daily temperatures for OFFLINE teaching (not climate observations).
 
 The series deliberately mixes an artificial warming trend, annual seasonality,
-serial dependence, missing days, and an unexplained 2008 discontinuity.
+serial dependence and an unexplained 2008 discontinuity, while preserving
+complete daily coverage for the trend exercise.
 It is not intended to resemble any particular Tanzanian weather station.
 """
 from pathlib import Path
@@ -29,11 +30,6 @@ def generate(seed: int = SEED) -> pd.DataFrame:
     # NOT climate evidence: artificial station step and artificial trend.
     jump = 0.55 * (dates >= pd.Timestamp("2008-01-01"))
     temp = 26.0 + 0.020 * elapsed_years + season + weather + jump
-    missing = rng.random(n) < 0.05
-    # Missing entire seasonal blocks can strongly bias naive annual averages.
-    missing |= (dates >= "1997-03-01") & (dates <= "1997-05-20")
-    missing |= (dates >= "2010-08-01") & (dates <= "2010-10-20")
-    temp = np.where(missing, np.nan, temp)
     return pd.DataFrame({"date": dates, "temp": temp})
 
 
