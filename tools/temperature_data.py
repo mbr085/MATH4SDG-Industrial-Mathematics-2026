@@ -24,7 +24,8 @@ def load_temperature_data(
 
     If the NASA POWER CSV exists, its values are gridded reanalysis estimates,
     NOT direct weather-station observations. Otherwise generate a completely
-    synthetic practice dataset. Missing temperatures are not imputed.
+    synthetic practice dataset with full daily coverage. The main notebook
+    rejects incomplete downloaded data; missing temperatures are not imputed.
 
     `power_csv` allows offline tests to supply a temporary input file.
     """
