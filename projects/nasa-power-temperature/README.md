@@ -32,7 +32,7 @@ The notebook follows a **step-by-step scientific Python style**. Technical input
 
 This means the revised notebook has more, shorter cells. The [pandas](../../reference/pandas_cheatsheet.ipynb) and [Matplotlib](../../reference/matplotlib_cheatsheet.ipynb) Jupyter cheat sheets are optional references, not compulsory extra exercises. Data are never silently imputed.
 
-**Optional station-record exercise:** download `uv run python tools/download_meteostat.py --station 63894`, then open `notebooks/meteostat_station_missingness.ipynb`. It diagnoses station gaps and compares overlapping observed days with the NASA POWER reanalysis. It does not report a fictitious 40-year station trend.
+**Optional station-record exercise:** download `uv run python tools/download_meteostat.py --station 63894`, then open `notebooks/optional_meteostat_station_missingness.ipynb`. It diagnoses station gaps and compares overlapping observed days with the NASA POWER reanalysis. It does not report a fictitious 40-year station trend.
 
 For a quick test:
 ```sh
