@@ -35,11 +35,25 @@ uv run python -m unittest discover -s tests -v
 
 ## Suggested group investigation
 
-The **minimum** is an analysis of the fictional records, a transparent baseline for claims per worker-year, and a Poisson regression built directly in the notebook (one-hot encoding, `Pipeline`, `PoissonRegressor`, and exposure-weighted `fit`). Students evaluate predictions with scikit-learn's `mean_poisson_deviance` directly, then compare with held-out 2025. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
+The **minimum** is an analysis of the fictional records, a pooled rate baseline, a simple exposure-adjusted rate baseline for each `sector`–`zone`–`programme` profile, and a Poisson regression built directly in the notebook (one-hot encoding, `Pipeline`, `PoissonRegressor`, and exposure-weighted `fit`). The profile baseline uses fixed smoothing toward the pooled rate and defaults to that pooled rate for profiles not represented in training. Students evaluate all three on the same held-out 2025 data using scikit-learn's `mean_poisson_deviance`. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
 
 The **extensions** can be divided between groups: investigate missing sector labels and reporting bias; study claim severity (costs are recorded *after* claims); examine model calibration by sector; explore alternate validation windows; or test whether apparent correlations with the programme can be interpreted causally.
 
 The synthetic data deliberately contain persistent unobserved establishment risk, changes in incidence in the last year and selective programme uptake. Students are not expected to infer the precise hidden mechanism, but should ask whether simple estimates and narrow confidence intervals capture these sources of uncertainty.
+
+## Optional advanced companion — company size and exposure
+
+For groups ready to go beyond the introductory modelling exercise, the
+[advanced company-size and exposure notebook](../../notebooks/advanced_insurance_size_and_exposure.ipynb)
+uses the **same entirely synthetic generator** to investigate how claim counts
+grow with exposure, why individual claim frequencies form hyperbolas, and
+whether a workforce-size association remains after exposure and measured
+covariates are accounted for. It includes exposure-adjusted size-group rates
+and an optional Poisson GLM with a log-exposure offset.
+
+The advanced notebook runs independently; it is **not required** for the
+introductory insurance investigation. The introductory notebook remains
+unchanged and is still the recommended starting point.
 
 ## Facilitation and reporting
 
