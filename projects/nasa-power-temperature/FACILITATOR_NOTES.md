@@ -5,13 +5,13 @@
 **Data source:** NASA POWER T2M is the daily average two-metre air temperature estimated for a coarse **reanalysis grid cell**, drawing principally on MERRA-2; it is **not a point observation from Dar es Salaam Airport**. NASA's method documentation records transitions between MERRA-2 and GEOS-IT near real time; this investigation ends in 2025, but users should still check source history and metadata. Do not imply independent observational confirmation from reanalysis.
 
 **Plenary possibilities (10–20 minutes):**
-- Data lineage and annual aggregation (12 adequately observed months, no forward-filling).
+- Data provenance, one daily-completeness check, and direct calendar-year means (no filling of missing values).
 - Least squares from a NumPy design matrix, then cross-check with SciPy.
 - Why the conventional confidence interval differs from a HAC/Newey–West interval; both are conditional on model assumptions.
 - Gridded estimates versus station observations: using their common observation dates, gaps and sampling bias.
 - How to interrogate AI-generated code and interpret the answers without outsourcing scientific judgment.
 
-**Pedagogical revision:** File paths, CSV loading, synthetic fallback, basic date validation and provenance checks are intentionally hidden in `tools/temperature_data.load_temperature_data()`, while the notebook always displays the source and provenance status. The notebook exposes the core mathematical steps instead of calling `annual_means` and `estimate_trend` to do the analysis. Separate cells show how `resample("MS")` builds monthly counts and means, filters months with fewer than 20 valid daily values, forms an equal-weight annual summary only for years with all 12 qualifying months, constructs the least-squares matrix, and calculates the conventional and HAC intervals. The original helpers remain as an **independent computational check**. Plots use `Axes`, do not need routine `plt.show()`, and prominently distinguish synthetic data from reanalysis. Links to the pandas and Matplotlib notebook references are in the introduction.
+**Pedagogical revision:** The main investigation now assumes **complete daily input** and checks this exactly once against the 1986–2025 calendar, including leap days. It rejects incomplete or non-finite series. Annual temperature means are computed directly from daily estimates by year; students do not need monthly coverage criteria, an equal-weight-month convention, or a separate reference-implementation check. The offline synthetic fallback is complete by design and remains prominently labelled. Notebook cells still show least-squares regression, conventional and HAC intervals, and overlapping-window sensitivity. The older `annual_means` helper and its missingness criteria remain relevant to the **separate optional Meteostat station exercise**, where daily observations are incomplete.
 
 **Focused discussion: sensitivity to the starting year (section 9).**
 In an executed NASA POWER notebook reviewed for this project, the annual
