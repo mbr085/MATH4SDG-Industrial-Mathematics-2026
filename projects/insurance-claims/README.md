@@ -41,6 +41,20 @@ The **extensions** can be divided between groups: investigate missing sector lab
 
 The synthetic data deliberately contain persistent unobserved establishment risk, changes in incidence in the last year and selective programme uptake. Students are not expected to infer the precise hidden mechanism, but should ask whether simple estimates and narrow confidence intervals capture these sources of uncertainty.
 
+## Optional advanced companion — company size and exposure
+
+For groups ready to go beyond the introductory modelling exercise, the
+[advanced company-size and exposure notebook](../../notebooks/advanced_insurance_size_and_exposure.ipynb)
+uses the **same entirely synthetic generator** to investigate how claim counts
+grow with exposure, why individual claim frequencies form hyperbolas, and
+whether a workforce-size association remains after exposure and measured
+covariates are accounted for. It includes exposure-adjusted size-group rates
+and an optional Poisson GLM with a log-exposure offset.
+
+The advanced notebook runs independently; it is **not required** for the
+introductory insurance investigation. The introductory notebook remains
+unchanged and is still the recommended starting point.
+
 ## Facilitation and reporting
 
 Facilitators circulate between groups and may introduce mathematical or computational tools in short morning plenaries when requested by the projects. The afternoon plenary can ask each group to report one finding, one source of uncertainty, and one next step.
