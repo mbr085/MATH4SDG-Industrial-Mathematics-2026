@@ -87,6 +87,17 @@ class PowerTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Duplicate dates"):
                 load_temperature_data(csv_path)
 
+    def test_daily_calendar_exposes_missing_dates_and_values(self):
+        # One completeness check catches an omitted date and a missing value.
+        dates = pd.date_range("2020-01-01", "2020-01-05", freq="D")
+        observations = pd.Series(
+            [27.0, np.nan, 27.5, 28.0],
+            index=dates.delete(2),
+        )
+        daily = observations.reindex(dates)
+        self.assertFalse(np.isfinite(daily.to_numpy()).all())
+        self.assertEqual(int(daily.isna().sum()), 2)
+
     def test_direct_annual_mean_and_regression(self):
         # The main notebook uses all daily data, without monthly averaging.
         dates = pd.date_range("1986-01-01", "2025-12-31", freq="D")
