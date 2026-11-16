@@ -62,7 +62,7 @@ The two optional backup notebooks link directly to both references. In JupyterLa
 
 ## Student investigations — apparent patterns and independent validation
 
-Two **independent, optional** Jupyter activities illustrate how convincing patterns can appear in synthetic measurements without corresponding to persistent or genuine group differences. They use only the packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
+Two **independent, optional** Jupyter activities invite students to propose candidate groups or distinguishing measurements and then evaluate their interpretations on fresh data. They use entirely synthetic teaching measurements and only packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
 
 - [Are these groups real? — clustering investigation](notebooks/clustering_investigation.ipynb). Start with two measurements for each of 90 objects, ask K-means for two groups, and investigate whether the **same group assignments** persist under fresh independent measurements.
 - [Which measurement distinguishes the groups? — feature selection investigation](notebooks/feature_selection_investigation.ipynb). Start with 100 observations, two supplied labels, and 200 measurements, then select a distinguishing feature and test the **same selected feature** on independent measurements.
