@@ -5,8 +5,8 @@ format:
   revealjs:
     theme: default
     css: math4sdg.css
-    # Use explicit horizontal rules instead of heading-based slide discovery.
-    slide-level: 0
+    # Only level-two headings start slides; panel titles stay inline.
+    slide-level: 2
     width: 1280
     height: 720
     margin: 0.055
@@ -44,8 +44,6 @@ Opening question to the room: From yesterday's industrial presentations, what wo
 
 **Do not preview the clustering notebook's conclusion.**
 :::
-
----
 
 ## Start with the decision, not the algorithm
 
@@ -111,8 +109,6 @@ Invite a student to recall one concrete problem presented by NBS, TMA, Creditinf
 Emphasize that the sequence is *iterative*: a failed validation may require revisiting the formulation or even the initial question.
 :::
 
----
-
 ## Some of the best mathematics happens before the data exist
 
 ::: {.eyebrow}
@@ -126,7 +122,7 @@ Plan what an experiment is designed to test.
 ::: {.columns}
 ::: {.column width="49%"}
 ::: {.contrast-card .collect-first}
-### Collect first
+**Collect first**
 
 **Measure → explore → interpret afterwards**
 
@@ -136,7 +132,7 @@ Plan what an experiment is designed to test.
 
 ::: {.column width="49%"}
 ::: {.contrast-card .plan-first}
-### Plan the test
+**Plan the test**
 
 **Question → analysis plan → experiment**
 
@@ -160,8 +156,6 @@ Exploration is legitimate for generating hypotheses, but a pattern selected usin
 
 This connects to your work on simple, efficient clustering and visualization, and the danger of treating attractive pictures as scientific conclusions.
 :::
-
----
 
 ## Insurance claims: counts need a denominator
 
@@ -214,8 +208,6 @@ Optional oral calculation: at a rate of 0.08 claims per worker-year, expected cl
 The pooled estimator is $\sum_i N_i / \sum_i e_i$. Lead into your story about proposing separate rates for the sector–zone–programme profiles as a baseline against Poisson regression.
 :::
 
----
-
 ## Does a more sophisticated model help?
 
 ::: {.eyebrow}
@@ -250,8 +242,6 @@ These numbers are from one synthetic validation run, with 2025 held out. They es
 Do not teach the technical details of Poisson regression during this introduction.
 :::
 
----
-
 ## Choose a method because of the question
 
 ::: {.eyebrow}
@@ -265,13 +255,13 @@ The bootcamp is problem-led, not an algorithm checklist.
 ::: {.columns}
 ::: {.column width="49%"}
 ::: {.tool-card}
-### Regression
+**Regression**
 
 How much? How many? What might happen next?
 :::
 
 ::: {.tool-card}
-### Dimensionality reduction
+**Dimensionality reduction**
 
 Can we simplify a complex representation responsibly?
 :::
@@ -279,13 +269,13 @@ Can we simplify a complex representation responsibly?
 
 ::: {.column width="49%"}
 ::: {.tool-card}
-### Clustering
+**Clustering**
 
 Are there useful groups? How would we validate them?
 :::
 
 ::: {.tool-card}
-### Neural networks
+**Neural networks**
 
 Would a flexible nonlinear model actually improve results?
 :::
@@ -299,8 +289,6 @@ The concept note lists regression, clustering, dimensionality reduction, and int
 
 Invite students to connect a partner problem to a mathematical *question*, not immediately to an algorithm.
 :::
-
----
 
 ## Work locally. Collaborate responsibly.
 
@@ -350,8 +338,6 @@ Privacy: work locally by default, and do not upload sensitive data, notebook out
 
 The clone command is a single line; other lines are separate commands.
 :::
-
----
 
 ## Your challenge: are these groups real?
 
