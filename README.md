@@ -60,6 +60,19 @@ These short **executable Jupyter notebooks** support students who are learning P
 
 The two optional backup notebooks link directly to both references. In JupyterLab, open the `.ipynb` file, run its setup cell, and then run examples as needed. Do not share restricted industry data with external AI services.
 
+## Further learning and datasets — Kaggle
+
+[Kaggle](https://www.kaggle.com/) offers optional, practical learning materials and a searchable [dataset collection](https://www.kaggle.com/datasets). Use these resources **on demand**, when they help answer a question arising from an industry-partner problem or an optional backup investigation. They are not required courses, a separate workshop project, or a replacement for this repository's Python/Jupyter environment.
+
+- [Pandas](https://www.kaggle.com/learn/pandas) — explore, filter, clean and summarize tabular data.
+- [Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning) — build basic prediction models and understand validation and overfitting.
+- [Time Series](https://www.kaggle.com/learn/time-series) — investigate trends, seasonality, lagged relationships and forecasting.
+- [Kaggle Datasets](https://www.kaggle.com/datasets) — find illustrative or supplementary public datasets when appropriate.
+
+**Evaluate data before using it:** check the original source, whether observations are real or synthetic, coverage and units, limitations, and the specific licence and permissions. Publicly downloadable does not necessarily mean reusable or redistributable. Do **not** upload restricted partner data to Kaggle or other external services, and do not commit downloaded data here without clear permission; see [Project data](#project-data), [DATA_POLICY.md](DATA_POLICY.md) and [DATA_LICENSES.md](DATA_LICENSES.md). The NASA POWER investigation remains our documented climate-data backup.
+
+Kaggle competitions often focus on predictive scores. For this bootcamp, **problem formulation, transparent assumptions, appropriate mathematics and interpretation** matter at least as much as model accuracy. Students can work entirely with the provided local notebooks; Kaggle accounts and online lessons are optional.
+
 ## Optional backup project: East African temperature trends
 
 This repository now includes a **student-directed backup investigation**:
