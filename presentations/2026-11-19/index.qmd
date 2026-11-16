@@ -1,0 +1,380 @@
+---
+# Intentionally no document title: the first Markdown slide is the title slide.
+# This avoids Quarto creating a ninth, automatic title slide.
+format:
+  revealjs:
+    theme: default
+    css: math4sdg.css
+    slide-level: 2
+    width: 1280
+    height: 720
+    margin: 0.055
+    center: false
+    transition: fade
+    controls: true
+    progress: true
+    slide-number: "c/t"
+    footer: "MATH4SDG · UDSM · 19 NOV 2026"
+    auto-stretch: false
+execute:
+  enabled: false
+---
+
+## From industrial problems to mathematical models {.opening-slide}
+
+::: {.eyebrow}
+MATH4SDG · UDSM · 19 NOVEMBER 2026
+:::
+
+::: {.lead-subtitle}
+— and reliable conclusions
+:::
+
+::: {.big-question}
+**What would count as a good answer?**
+:::
+
+::: {.notes}
+**Time: approximately 2 minutes.**
+
+Welcome. Refer to the industry presentations on Wednesday. This is **not** a systematic lecture on every machine-learning algorithm. It is about deciding which questions are worth asking, what data are appropriate, and when conclusions can be trusted.
+
+Opening question to the room: From yesterday's industrial presentations, what would count as a useful answer to one of the problems?
+
+**Do not preview the clustering notebook's conclusion.**
+:::
+
+## Start with the decision, not the algorithm
+
+::: {.eyebrow}
+THE PROBLEM COMES FIRST
+:::
+
+::: {.slide-subtitle}
+A model is valuable only in relation to a question.
+:::
+
+::: {.columns .step-row}
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">1</span>
+
+**Industrial question**
+
+What needs to be understood or decided?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">2</span>
+
+**Mathematical formulation**
+
+Which quantities, assumptions, or relations?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">3</span>
+
+**Evidence we need**
+
+What could support or challenge a claim?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">4</span>
+
+**Model and validation**
+
+What is the simplest useful approach?
+:::
+:::
+:::
+
+::: {.takeaway}
+Ask the partner: **What would make your answer useful?**
+:::
+
+::: {.notes}
+**Time: 4–5 minutes.**
+
+Invite a student to recall one concrete problem presented by NBS, TMA, Creditinfo Tanzania, or TIRA, without inventing details. Clarify the decision or use-case before introducing tools.
+
+Emphasize that the sequence is *iterative*: a failed validation may require revisiting the formulation or even the initial question.
+:::
+
+## Some of the best mathematics happens before the data exist
+
+::: {.eyebrow}
+EXPERIMENTAL DESIGN
+:::
+
+::: {.slide-subtitle}
+Plan what an experiment is designed to test.
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.contrast-card .collect-first}
+### Collect first
+
+**Measure → explore → interpret afterwards**
+
+*What patterns do the data suggest?*
+:::
+:::
+
+::: {.column width="49%"}
+::: {.contrast-card .plan-first}
+### Plan the test
+
+**Question → analysis plan → experiment**
+
+*What evidence will distinguish the hypotheses?*
+:::
+:::
+:::
+
+::: {.takeaway}
+Exploration is valuable. **Confirmation is a different task.**
+:::
+
+::: {.notes}
+**Time: 5–6 minutes.**
+
+Personal experience: working with biologists, an important contribution has often been insisting on precise comparisons and an analysis plan *before* collecting observations. Tell an authentic example if available; do not manufacture one.
+
+Question: If a biological experiment is designed to test a treatment effect, what outcome, controls, sampling and analysis should be decided before collecting data?
+
+Exploration is legitimate for generating hypotheses, but a pattern selected using the same data is not an independently confirmed result.
+
+This connects to your work on simple, efficient clustering and visualization, and the danger of treating attractive pictures as scientific conclusions.
+:::
+
+## Insurance claims: counts need a denominator
+
+::: {.eyebrow}
+A SIMPLE BASELINE
+:::
+
+::: {.slide-subtitle}
+Two establishments may face the same risk but have very different claim counts.
+:::
+
+::: {.columns}
+::: {.column width="54%"}
+::: {.math-panel}
+Expected number of claims:
+
+$$
+\mathbb E[N] = E\,\lambda
+$$
+
+<small>Exposure $E$ (worker-years) × claim rate $\lambda$</small>
+:::
+:::
+
+::: {.column width="44%"}
+::: {.comparison-panel}
+**Same rate, different exposure**
+
+- Small establishment: **20 worker-years**
+- Large establishment: **300 worker-years**
+
+More exposure means more opportunities for claims.
+:::
+:::
+:::
+
+::: {.takeaway}
+First baseline: $\displaystyle\widehat\lambda = \frac{\text{total observed claims}}{\text{total worker-years}}$.
+:::
+
+::: {.notes}
+**Time: approximately 5 minutes.**
+
+The example uses entirely **synthetic** insurance records. Do not imply that these claims or rates describe actual Tanzanian institutions.
+
+Explain worker-years as exposure. Raw claim counts are a misleading basis for comparing establishments with very different exposure.
+
+Optional oral calculation: at a rate of 0.08 claims per worker-year, expected claims for 20 and 300 worker-years would be 1.6 and 24.
+
+The pooled estimator is $\sum_i N_i / \sum_i e_i$. Lead into your story about proposing separate rates for the sector–zone–programme profiles as a baseline against Poisson regression.
+:::
+
+## Does a more sophisticated model help?
+
+::: {.eyebrow}
+MODEL COMPARISON
+:::
+
+::: {.slide-subtitle}
+Held-out **synthetic** 2025 data · mean Poisson deviance · lower is better
+:::
+
+::: {.results-table}
+| Approach | Mean Poisson deviance |
+|:--|--:|
+| One common rate | 2.607 |
+| **Profile-specific rates** | **1.990** |
+| Poisson regression | 2.458 |
+:::
+
+::: {.takeaway}
+Why might **profile-specific rates** outperform this regression?
+:::
+
+::: {.notes}
+**Time: 5–6 minutes.**
+
+Tell the true anecdote about introducing the profile-rate baseline: compute a simple rate for each sector–zone–programme profile and compare it with Poisson regression.
+
+Ask students for explanations. The profile baseline is conceptually simple but can have more parameters and represent interactions not included in a main-effects log-linear regression. It can also be unstable for rare profiles; the example uses smoothing.
+
+These numbers are from one synthetic validation run, with 2025 held out. They establish neither a universal preference for this model nor any fact about Tanzanian insurance claims.
+
+Do not teach the technical details of Poisson regression during this introduction.
+:::
+
+## Choose a method because of the question
+
+::: {.eyebrow}
+CHOOSE YOUR TOOLBOX
+:::
+
+::: {.slide-subtitle}
+The bootcamp is problem-led, not an algorithm checklist.
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.tool-card}
+### Regression
+
+How much? How many? What might happen next?
+:::
+
+::: {.tool-card}
+### Dimensionality reduction
+
+Can we simplify a complex representation responsibly?
+:::
+:::
+
+::: {.column width="49%"}
+::: {.tool-card}
+### Clustering
+
+Are there useful groups? How would we validate them?
+:::
+
+::: {.tool-card}
+### Neural networks
+
+Would a flexible nonlinear model actually improve results?
+:::
+:::
+:::
+
+::: {.notes}
+**Time: approximately 4 minutes.**
+
+The concept note lists regression, clustering, dimensionality reduction, and introductory neural networks. Acknowledge them explicitly, but do not make them compulsory for every group. Methods should follow the industrial question, supported by facilitators and the later R predictive-modelling session.
+
+Invite students to connect a partner problem to a mathematical *question*, not immediately to an algorithm.
+:::
+
+## Work locally. Collaborate responsibly.
+
+::: {.eyebrow}
+WORKING ENVIRONMENT
+:::
+
+::: {.slide-subtitle}
+One working Jupyter environment per group is enough to start.
+:::
+
+::: {.columns}
+::: {.column width="73%"}
+::: {.terminal-panel}
+**TERMINAL**
+
+```bash
+git clone https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026.git
+cd MATH4SDG-Industrial-Mathematics-2026
+uv sync --locked
+uv run jupyter lab
+```
+:::
+:::
+
+::: {.column width="25%"}
+::: {.qr-panel}
+![](assets/repo_qr.png){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
+
+[Repository and setup guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026)
+:::
+:::
+:::
+
+::: {.takeaway}
+**Do not upload restricted partner data** to public GitHub, cloud notebooks, or AI tools.
+:::
+
+::: {.notes}
+**Time: 2–3 minutes introduction, then approximately 15 minutes hands-on setup.**
+
+Both student notebooks from PR #13 have been merged into `main`. Ask students to clone the repository, consult `INSTALL.md` for installing `uv`, run `uv sync --locked`, and then `uv run jupyter lab`.
+
+If Git is unavailable, the repository can be downloaded as a ZIP. If setup takes too long, students should share laptops so each group has access to one working environment; UDSM facilitators can assist.
+
+Privacy: work locally by default, and do not upload sensitive data, notebook outputs, or partner descriptions to public repositories, cloud services, or external AI tools without explicit permission. A local environment is not itself a complete confidentiality safeguard.
+
+The clone command is a single line; other lines are separate commands.
+:::
+
+## Your challenge: are these groups real?
+
+::: {.eyebrow}
+STUDENT INVESTIGATION
+:::
+
+::: {.slide-subtitle}
+Investigate the evidence **before** deciding what the groups mean.
+:::
+
+::: {.columns}
+::: {.column width="72%"}
+::: {.activity-steps}
+1. **Inspect** — Look at 90 objects and two measurements.
+2. **Propose** — Ask K-means for two candidate groups.
+3. **Commit** — Write down what you think *before* seeing fresh data.
+4. **Test** — Keep the original assignments and inspect new measurements.
+:::
+:::
+
+::: {.column width="26%"}
+::: {.qr-panel}
+![](assets/clustering_qr.png){width="180" fig-alt="QR code linking to the clustering investigation notebook in the repository"}
+
+[Open the student notebook](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
+:::
+:::
+:::
+
+::: {.notes}
+**Time: 1 minute explanation; allow 15–20 minutes student work followed by 15–20 minutes discussion.**
+
+Tell students the measurements are wholly synthetic classroom data, without explaining their distribution. Do not display precalculated clustering results. Ask each group to write down its interpretation before examining the fresh measurements.
+
+Debrief questions: What did K-means guarantee? What happened when retaining the original labels on independent new measurements for the same objects? Why is finding *two new clusters* in the fresh data not validation of the old groups? How would they design a biological or industrial experiment to test the proposed classification?
+
+**The private facilitator notes contain the data-generation reveal; keep them out of student-facing material.**
+
+Mention the separate optional feature-selection notebook as a related experiment involving 200 measurements and *given* labels. Close by asking students to formulate their industrial problem, simplest baseline, assumptions, and needed evidence.
+:::
