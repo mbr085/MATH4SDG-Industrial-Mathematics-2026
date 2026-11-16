@@ -7,7 +7,7 @@ Editable source for the eight-slide Thursday 19 November 2026 presentation.
 - `index.qmd` — **primary presentation source**, text and equations in Quarto Markdown, plus speaker notes.
 - `math4sdg.css` — global slide typography, spacing, panels, tables, and colors.
 - `assets/repo_qr.svg` and `assets/clustering_qr.svg` — copied from the prior PowerPoint draft and linked into the slides.
-- `FACILITATOR_PRIVATE.md` — **private** reveal and discussion notes. Do not share with students in advance.
+- Private facilitator reveal and discussion notes are **kept outside this public repository**. Do not share them with students in advance.
 
 ## Preview and render
 
@@ -18,7 +18,7 @@ quarto preview index.qmd
 quarto render index.qmd --to revealjs
 ```
 
-The render command produces `math4sdg-19nov2026.html` and any support assets needed by your local Quarto version. Copy the output and support directory together if the render is not embedded into one HTML file.
+The render command produces `index.html` and any support assets needed by your local Quarto version. Copy the output and support directory together if the render is not embedded into one HTML file.
 
 Press **S** in the Reveal.js presentation to open the presenter view, including the slide's `.notes` content. (For this reason, do not distribute full presenter notes in advance.)
 
