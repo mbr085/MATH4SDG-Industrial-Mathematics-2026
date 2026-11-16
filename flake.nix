@@ -24,33 +24,15 @@
             ):
                 ctypes.CDLL(library, mode=ctypes.RTLD_GLOBAL)
           '';
-          # Match the working Quarto toolchain in workspace/math-notes.
-          # Reveal.js slides do not need a full TeX distribution.
-          quartoBundle = pkgs.quarto.overrideAttrs {
-            preFixup = ''
-              wrapProgram $out/bin/quarto \
-                --suffix PATH : ${pkgs.lib.makeBinPath [
-                  pkgs.coreutils
-                  pkgs.which
-                ]}
-            '';
-            installPhase = ''
-              runHook preInstall
-
-              mkdir -p "$out"
-              cp -r bin share "$out/"
-              ln -s tools/${pkgs.stdenv.hostPlatform.parsed.cpu.name}/pandoc "$out/bin/pandoc"
-
-              runHook postInstall
-            '';
-          };
+          # Use Nixpkgs' Quarto packaging, which patches bundled tools
+          # (including Deno) for NixOS. Reveal.js needs no TeX.
         in
         {
           default = pkgs.mkShell {
             packages = [
               python
               pkgs.uv
-              quartoBundle
+              pkgs.quarto
               pkgs.pkg-config
             ];
 
