@@ -352,10 +352,10 @@ Investigate the evidence **before** deciding what the groups mean.
 ::: {.columns}
 ::: {.column width="72%"}
 ::: {.activity-steps}
-1. **Inspect** — Look at 90 objects and two measurements.
-2. **Propose** — Ask K-means for two candidate groups.
-3. **Commit** — Write down what you think *before* seeing fresh data.
-4. **Test** — Keep the original assignments and inspect new measurements.
+1. **Inspect** — Explore 90 observations with two measurements each.
+2. **Partition** — Split by the sign of the first coordinate.
+3. **Predict** — Record what you expect for a fresh sample.
+4. **Test** — Apply the *same rule* to independent observations.
 :::
 :::
 
@@ -371,9 +371,9 @@ Investigate the evidence **before** deciding what the groups mean.
 ::: {.notes}
 **Time: 1 minute explanation; allow 15–20 minutes student work followed by 15–20 minutes discussion.**
 
-Tell students the measurements are wholly synthetic classroom data, without explaining their distribution. Do not display precalculated clustering results. Ask each group to write down its interpretation before examining the fresh measurements.
+Tell students the measurements are wholly synthetic classroom data, without explaining their distribution. Do not display precalculated clustering results. Emphasize that the two datasets contain **independent samples, not paired measurements of the same objects**. Ask students to record a prediction before examining the fresh sample.
 
-Debrief questions: What did K-means guarantee? What happened when retaining the original labels on independent new measurements for the same objects? Why is finding *two new clusters* in the fresh data not validation of the old groups? How would they design a biological or industrial experiment to test the proposed classification?
+Debrief questions: Does applying a fixed sign-based rule to both samples reproduce a useful geometric partition? What does a similar silhouette score say, and what does it fail to say, about distinct underlying populations? Would another direction through the origin work similarly? How would students design a biological or industrial experiment to test an interpretation of the groups? K-means is an optional extension only.
 
 **The private facilitator notes contain the data-generation reveal; keep them out of student-facing material.**
 
