@@ -51,6 +51,18 @@ See the [full student installation guide](INSTALL.md) for more detail, verificat
 
 **Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
 
+## Thursday plenary — editable Quarto slides
+
+The eight-slide presentation for **19 November 2026**, *From Industrial Problems to Mathematical Models — and Reliable Conclusions*, is maintained as editable [Quarto / Reveal.js source](presentations/2026-11-19/index.qmd), with [presentation instructions](presentations/2026-11-19/README.md). It introduces experimental design, transparent baselines, model validation, and the optional clustering activity; the data-generating reveal is deliberately kept outside this public repository.
+
+After entering the repository's Nix development shell (via direnv or `nix develop`), preview it locally with:
+
+```sh
+quarto preview presentations/2026-11-19/index.qmd
+```
+
+The presentation is **not a compulsory machine-learning lesson**. Students work primarily on partner-provided problems; the slide source and synthetic exercises are open resources.
+
 ## Student quick references
 
 These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
