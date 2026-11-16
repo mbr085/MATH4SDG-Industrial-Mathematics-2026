@@ -60,6 +60,15 @@ These short **executable Jupyter notebooks** support students who are learning P
 
 The two optional backup notebooks link directly to both references. In JupyterLab, open the `.ipynb` file, run its setup cell, and then run examples as needed. Do not share restricted industry data with external AI services.
 
+## Student investigations — apparent patterns and independent validation
+
+Two **independent, optional** Jupyter activities illustrate how convincing patterns can appear in synthetic measurements without corresponding to persistent or genuine group differences. They use only the packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
+
+- [Are these groups real? — clustering investigation](notebooks/clustering_investigation.ipynb). Start with two measurements for each of 90 objects, ask K-means for two groups, and investigate whether the **same group assignments** persist under fresh independent measurements.
+- [Which measurement distinguishes the groups? — feature selection investigation](notebooks/feature_selection_investigation.ipynb). Start with 100 observations, two supplied labels, and 200 measurements, then select a distinguishing feature and test the **same selected feature** on independent measurements.
+
+The pre-generated, wholly fictional CSV files are under [`data/exercises/`](data/exercises/). Keep the repository folder structure when opening the notebooks locally; they load their files using relative paths. **Run the discovery part and write down an interpretation before opening the fresh data.** These are independent exercises rather than a required sequence. They do not use data from any Tanzanian institution or industrial partner.
+
 ## Further learning and datasets — Kaggle
 
 [Kaggle](https://www.kaggle.com/) offers optional, practical learning materials and a searchable [dataset collection](https://www.kaggle.com/datasets). Use these resources **on demand**, when they help answer a question arising from an industry-partner problem or an optional backup investigation. They are not required courses, a separate workshop project, or a replacement for this repository's Python/Jupyter environment.
