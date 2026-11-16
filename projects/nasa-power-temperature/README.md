@@ -34,7 +34,7 @@ The offline synthetic fallback now has **complete daily coverage** and deliberat
 
 Missing station observations are handled by the separate Meteostat investigation; the older `tools/temperature_methods.annual_means` function remains available for that exercise, but is no longer used by the main NASA POWER notebook.
 
-**Optional station-record exercise:** download `uv run python tools/download_meteostat.py --station 63894`, then open `notebooks/meteostat_station_missingness.ipynb`. It diagnoses station gaps and compares overlapping observed days with the NASA POWER reanalysis. It does not report a fictitious 40-year station trend.
+**Optional station-record exercise:** download `uv run python tools/download_meteostat.py --station 63894`, then open `notebooks/optional_meteostat_station_missingness.ipynb`. It diagnoses station gaps and compares overlapping observed days with the NASA POWER reanalysis. It does not report a fictitious 40-year station trend.
 
 For a quick test:
 ```sh

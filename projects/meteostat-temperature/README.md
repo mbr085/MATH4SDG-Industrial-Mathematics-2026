@@ -21,7 +21,7 @@ uv run python tools/download_meteostat.py --station 63894
 uv run jupyter lab
 ```
 
-Open `notebooks/meteostat_station_missingness.ipynb`. It examines station
+Open `notebooks/optional_meteostat_station_missingness.ipynb`. It examines station
 coverage and, if the NASA POWER data are also downloaded, compares the sources
 only where station observations exist. It does not invent temperature readings
 for the missing early years.

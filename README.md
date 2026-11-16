@@ -107,13 +107,17 @@ The NASA POWER grid-cell data and download metadata are stored under ignored `da
 
 The temperature notebook makes **one daily-completeness check**, then calculates **annual means directly from daily temperatures** before least-squares fitting and uncertainty analysis. Its synthetic offline fallback also has complete daily coverage; missing station observations are explored separately in the optional Meteostat investigation. The pandas and Matplotlib Jupyter cheat sheets linked near the top remain optional references.
 
-The original Meteostat station series was found to lack sufficient early observations for the intended 40-year comparison. The optional station exercise focuses on **missing observations and their consequences**, rather than duplicating the complete-data trend analysis. For that optional exercise:
+### Optional investigation: Missing weather-station observations
+
+The original Meteostat station record lacks sufficient early observations for the intended 1986–2025 comparison. The [optional Meteostat missingness notebook](notebooks/optional_meteostat_station_missingness.ipynb) examines observational gaps rather than forcing a temperature trend. When both datasets are available, it also compares station observations with NASA POWER grid-cell estimates on overlapping dates only.
+
+This is a **supplementary data-quality exercise**, not a third substantial backup project or a required activity. Download the station observations while online:
 
 ```sh
 uv run python tools/download_meteostat.py --station 63894
 ```
 
-Open [the station-missingness notebook](notebooks/meteostat_station_missingness.ipynb) and read the [station guidance](projects/meteostat-temperature/README.md).
+See the [Meteostat project guidance](projects/meteostat-temperature/README.md) for background and data cautions.
 
 For an offline smoke test:
 
