@@ -6,7 +6,7 @@ Editable source for the eight-slide Thursday 19 November 2026 presentation.
 
 - `index.qmd` — **primary presentation source**, text and equations in Quarto Markdown, plus speaker notes.
 - `math4sdg.css` — global slide typography, spacing, panels, tables, and colors.
-- `assets/repo_qr.png` and `assets/clustering_qr.png` — copied from the prior PowerPoint draft and linked into the slides.
+- `assets/repo_qr.svg` and `assets/clustering_qr.svg` — copied from the prior PowerPoint draft and linked into the slides.
 - `FACILITATOR_PRIVATE.md` — **private** reveal and discussion notes. Do not share with students in advance.
 
 ## Preview and render
