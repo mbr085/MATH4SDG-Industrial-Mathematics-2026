@@ -315,7 +315,7 @@ uv run jupyter lab
 
 ::: {.column width="25%"}
 ::: {.qr-panel}
-![](assets/repo_qr.png){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
+![](assets/repo_qr.svg){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
 
 [Repository and setup guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026)
 :::
@@ -360,7 +360,7 @@ Investigate the evidence **before** deciding what the groups mean.
 
 ::: {.column width="26%"}
 ::: {.qr-panel}
-![](assets/clustering_qr.png){width="180" fig-alt="QR code linking to the clustering investigation notebook in the repository"}
+![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the clustering investigation notebook in the repository"}
 
 [Open the student notebook](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
 :::
