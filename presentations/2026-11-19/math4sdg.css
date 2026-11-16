@@ -1,0 +1,84 @@
+/* MATH4SDG · Quarto / Reveal.js. Change values here to restyle every slide. */
+:root {
+  --m4-navy: #142a3d;
+  --m4-teal: #007f78;
+  --m4-blue: #2f6f98;
+  --m4-warm: #e8b36e;
+  --m4-text: #1b2b39;
+  --m4-muted: #586e7d;
+  --m4-soft: #eff5f6;
+  --m4-border: #d8e4e6;
+}
+.reveal {
+  font-family: "Source Sans Pro", "Aptos", "DejaVu Sans", sans-serif;
+  color: var(--m4-text);
+  font-size: 30px;
+}
+.reveal .slides section { text-align: left; }
+.reveal h2 {
+  color: var(--m4-navy);
+  font-size: 1.43em;
+  font-weight: 700;
+  line-height: 1.13;
+  letter-spacing: -0.022em;
+  text-transform: none;
+  margin: 0 0 0.23em;
+}
+.reveal h3 { color: var(--m4-navy); font-size: 0.87em; margin: 0 0 .3em; text-transform: none; }
+.reveal p { margin: .28em 0 .65em; }
+.reveal a { color: var(--m4-blue); }
+.reveal strong { color: var(--m4-navy); }
+.reveal .eyebrow {
+  order: -1;
+  color: var(--m4-teal);
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-weight: 750;
+  font-size: .47em;
+  margin-top: .17em;
+  margin-bottom: 1.05em;
+}
+.reveal .slide-subtitle { color: var(--m4-muted); font-size: .72em; margin: -.01em 0 1em; }
+.reveal .opening-slide { padding-top: 2.3em; }
+.reveal .opening-slide h2 { max-width: 830px; font-size: 1.85em; line-height: 1.14; }
+.reveal .opening-slide .eyebrow { color: var(--m4-teal); }
+.reveal .lead-subtitle { font-size: 1.14em; color: var(--m4-blue); font-weight: 600; margin-top: .7em; }
+.reveal .big-question {
+  width: max-content; max-width: 90%; background: var(--m4-soft);
+  border-left: 6px solid var(--m4-teal); border-radius: 9px;
+  font-size: .9em; margin-top: 2.0em; padding: .4em .75em;
+}
+.reveal .columns { gap: .4em; }
+.reveal .step-row { margin-top: .8em; }
+.reveal .step-box { border: 1px solid var(--m4-border); background: #f6f9fa; border-radius: 12px; min-height: 235px; padding: 16px; font-size: .65em; }
+.reveal .step-box p { margin-top: .4em; }
+.reveal .step-box strong { font-size: 1.17em; display: block; min-height: 2.4em; }
+.reveal .step-number { color: var(--m4-teal); font-size: .92em; font-weight: 800; border: 2px solid var(--m4-teal); border-radius: 50%; display: inline-flex; width: 1.4em; height: 1.4em; justify-content: center; align-items: center; }
+.reveal .takeaway { color: var(--m4-navy); border-left: 6px solid var(--m4-teal); background: var(--m4-soft); padding: .3em .6em; margin-top: 1.05em; border-radius: 5px; font-size: .73em; }
+.reveal .takeaway p { margin: .1em 0; }
+.reveal .contrast-card { border-radius: 14px; border: 1px solid var(--m4-border); padding: .75em .8em; min-height: 240px; font-size: .76em; }
+.reveal .contrast-card p { margin-top: .55em; }
+.reveal .collect-first { background: #f7f8f9; }
+.reveal .plan-first { background: #ecf7f4; border-color: #8ac8bc; }
+.reveal .math-panel, .reveal .comparison-panel { border: 1px solid var(--m4-border); border-radius: 12px; background: #f5f9fa; padding: .75em; min-height: 245px; font-size: .79em; }
+.reveal .math-panel .math.display { font-size: 1.3em; }
+.reveal .math-panel small { font-size: .65em; color: var(--m4-muted); }
+.reveal .comparison-panel ul { font-size: .87em; margin-left: .8em; }
+.reveal .comparison-panel li { margin-bottom: .35em; }
+.reveal .results-table table { width: 100%; font-size: .84em; }
+.reveal .results-table th { background: var(--m4-navy); color: white; padding: .28em .55em; }
+.reveal .results-table td { padding: .38em .55em; border-bottom: 1px solid var(--m4-border); }
+.reveal .results-table tr:nth-child(2) td { background: #e8f6f1; }
+.reveal .tool-card { border-left: 5px solid var(--m4-blue); background: #f3f7f9; border-radius: 7px; padding: .52em .6em; min-height: 150px; margin-bottom: .45em; font-size: .72em; }
+.reveal .tool-card p { margin: .15em 0 .25em; }
+.reveal .terminal-panel { background: #18283a; color: #eef8f8; border-radius: 12px; padding: .55em .65em; min-height: 278px; }
+.reveal .terminal-panel strong { color: #78e3d2; font-family: monospace; font-size: .63em; letter-spacing: .15em; }
+.reveal .terminal-panel pre { width: 100%; background: transparent; box-shadow: none; margin: .15em 0; }
+.reveal .terminal-panel code { background: transparent !important; color: #f0f5f6; font-size: 0.53em; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-wrap; }
+.reveal .qr-panel { text-align: center; font-size: .62em; }
+.reveal .qr-panel img { display: block; margin: .2em auto .8em; border: none; box-shadow: none; max-width: 100%; }
+.reveal .activity-steps { background: #f5f9fa; border: 1px solid var(--m4-border); border-radius: 12px; padding: .35em .8em; font-size: .8em; }
+.reveal .activity-steps ol { margin-left: .9em; }
+.reveal .activity-steps li { padding: .18em 0 .43em; }
+.reveal .slide-number { font-size: 16px !important; }
+.reveal .footer { font-size: .35em; opacity: .75; }
