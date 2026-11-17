@@ -223,11 +223,14 @@ Held-out **synthetic** 2025 data · mean Poisson deviance · lower is better
 :::
 
 ::: {.results-table}
-| Approach | Mean Poisson deviance |
-|:--|--:|
-| One common rate | 2.607 |
-| **Profile-specific rates** | **1.990** |
-| Poisson regression | 2.458 |
+| Approach | Mean Poisson deviance | Expected 2025 claims |
+|:--|--:|--:|
+| One common rate | 2.607 | 1,651 |
+| **Profile-specific rates** | **1.990** | 1,622 |
+| Poisson regression | 2.458 | 1,648 |
+| Simulation truth *(oracle)* | 1.044 | 1,995 |
+
+<small>Observed in 2025: <strong>1,996 claims</strong> across 600 synthetic establishment-years. Expected totals rounded.</small>
 :::
 
 ::: {.takeaway}
@@ -241,9 +244,11 @@ Why might **profile-specific rates** outperform this regression?
 
 **The one simple idea (about 1.5 minutes).** Use the **same claims-divided-by-worker-years calculation** as before. For the pooled baseline, calculate it once across all training companies. For the profile baseline, repeat it separately for companies with each sector–zone–programme combination. When predicting for a company, use the rate for its profile and multiply by its exposure. The implemented notebook adds some smoothing for sparse profiles, but that technical detail need not interrupt the oral explanation.
 
-**Compare and ask (about 2 minutes).** The results on held-out **synthetic** 2025 data are 2.607 for the pooled rate, 1.990 for the profile baseline and 2.458 for Poisson regression (mean Poisson deviance; lower is better). Ask: "How could this extremely simple idea outperform the fitted regression?" Allow a few responses before discussing the explanation.
+**Compare and ask (about 2 minutes).** On the **same 600 held-out synthetic 2025 establishment-years**, the fitted approaches have mean Poisson deviances of 2.607 (pooled), 1.990 (profile) and 2.458 (regression). Their predicted total claim counts, rounded, are 1,651, 1,622 and 1,648, respectively. There were **1,996 actually simulated claims** in 2025. Ask: "How could this simple baseline outperform the fitted regression?" Invite a few explanations.
 
-**Interpretation (about 1 minute).** The procedure is easy to understand, but allowing a different rate for every profile can be statistically flexible: it captures interactions among sector, zone and programme that a main-effects-only log-linear regression may omit. It can also be unstable if there are few training observations in a profile. We are not concluding that simple models always win, or that these synthetic results characterize real Tanzanian insurance data.
+The added **simulation-truth oracle** uses the exact conditional expected counts from the generator, including latent establishment risk and the 2025 change. Its mean Poisson deviance is **1.044** and its expected claim total is approximately **1,995**. The oracle is *not* an available fitted model: we reconstructed these expectations from the simulator's own mechanism. Even with those correct conditional means, realized Poisson counts fluctuate, so the oracle's deviance is not zero. It would be misleading to treat the observed counts themselves as a predictive benchmark (their saturated deviance is trivially zero).
+
+**Interpretation (about 1 minute).** The procedure is easy to understand, but allowing a different rate for every profile can be statistically flexible: it captures interactions among sector, zone and programme that a main-effects-only log-linear regression may omit. It can also be unstable with limited exposure in a profile. All three historically fitted models underestimate the 2025 total; the simulator deliberately raises underlying incidence in 2025, illustrating distribution shift. "All models are wrong" should invite critical model checking, not suggest that the oracle's correct *expected values* ought to equal noisy outcomes. These synthetic results say nothing about real Tanzanian insurance claims.
 
 End with the key lesson: understand which information a model uses, try the simplest meaningful comparison, and validate on new data. There is no need to teach the mechanics of Poisson regression in this session.
 :::
