@@ -255,7 +255,7 @@ Held-out **synthetic** 2025 · 600 establishment-years · lower error scores are
 | Approach | Expected claims | $\ell^1$ error | Mean Poisson deviance |
 |:--|--:|--:|--:|
 | One common rate | 1,651 | 1,298 | 2.607 |
-| **Profile-specific rates** | 1,622 | **1,108** | **1.990** |
+| **Profile-specific rates** | 1,622 | **1,107** | **1.988** |
 | Poisson regression | 1,648 | 1,253 | 2.458 |
 | Simulation truth *(oracle)* | 1,995 | 776 | 1.044 |
 
@@ -271,7 +271,7 @@ Which model is best depends on **what we want to predict**.
 
 While preparing this presentation, I first included only the most basic and the most advanced models for claim prediction. It made me think about one model training on more information than the other one.
 
-I asked myself: "What if I made a basic model using the same information as the advanced model?" I tried to understand what the Poisson regression was using and realized it was using the companies' profiles—sector, zone and programme. I simply split the companies into profiles and made a basic claim-rate model for each profile, using the same claims-divided-by-worker-years calculation. The notebook includes some smoothing for sparse profiles.
+I asked myself: "What if I made a basic model using the same information as the advanced model?" I tried to understand what the Poisson regression was using and realized it was using the companies' profiles—sector, zone and programme. I simply split the companies into profiles and made a basic claim-rate model for each profile, using the same claims-divided-by-worker-years calculation.
 
 Now we have three models giving three different predictions. **Which model should we prefer? Does this table teach us anything?**
 
