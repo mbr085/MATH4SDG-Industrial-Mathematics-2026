@@ -376,7 +376,7 @@ Here are instructions on how to start exploring the material I have provided for
 
 I will help you with this now. Let's take **15 minutes** for this. I can also help you after this session.
 
-Ask students to open the repository, consult \`INSTALL.md\` if necessary, and start JupyterLab using the commands on the screen. If setup is difficult, students can share computers; one working environment per group is enough to begin. A ZIP download is possible if Git is not installed.
+Ask students to open the repository, consult `INSTALL.md` if necessary, and start JupyterLab using the commands on the screen. If setup is difficult, students can share computers; one working environment per group is enough to begin. A ZIP download is possible if Git is not installed.
 
 **Reminder:** Work locally by default. Do not upload restricted industry data, notebook outputs or partner material to public GitHub, cloud notebooks or external AI services without permission.
 :::
@@ -413,7 +413,7 @@ Investigate the evidence **before** deciding what the groups mean.
 ::: {.notes}
 **Time: approximately 1 minute introduction; then 15–20 minutes investigation and 15–20 minutes discussion.**
 
-Here is a simple notebook I would like you to explore: \`notebooks/clustering_investigation.ipynb\`.
+Here is a simple notebook I would like you to explore: `notebooks/clustering_investigation.ipynb`.
 
 The notebook imports **two independent samples**. Please, **before examining the fresh sample, record a prediction**.
 
