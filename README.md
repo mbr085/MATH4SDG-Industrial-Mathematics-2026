@@ -51,6 +51,18 @@ See the [full student installation guide](INSTALL.md) for more detail, verificat
 
 **Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
 
+## Thursday plenary — editable Quarto slides
+
+The eight-slide presentation for **19 November 2026**, *From Industrial Problems to Mathematical Models — and Reliable Conclusions*, is maintained as editable [Quarto / Reveal.js source](presentations/2026-11-19/index.qmd), with [presentation instructions](presentations/2026-11-19/README.md). It introduces experimental design, transparent baselines, model validation, and the optional clustering activity; the data-generating reveal is deliberately kept outside this public repository.
+
+After entering the repository's Nix development shell (via direnv or `nix develop`), preview it locally with:
+
+```sh
+quarto preview presentations/2026-11-19/index.qmd
+```
+
+The presentation is **not a compulsory machine-learning lesson**. Students work primarily on partner-provided problems; the slide source and synthetic exercises are open resources.
+
 ## Student quick references
 
 These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
@@ -64,7 +76,7 @@ The two optional backup notebooks link directly to both references. In JupyterLa
 
 Two **independent, optional** Jupyter activities invite students to propose candidate groups or distinguishing measurements and then evaluate their interpretations on fresh data. They use entirely synthetic teaching measurements and only packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
 
-- [Are these groups real? — clustering investigation](notebooks/clustering_investigation.ipynb). Start with two measurements for each of 90 objects, ask K-means for two groups, and investigate whether the **same group assignments** persist under fresh independent measurements.
+- [Are these groups real? — clustering investigation](notebooks/clustering_investigation.ipynb). Apply a fixed sign-based rule to two-dimensional measurements, then check whether its geometric quality persists in an **independent sample**. The rows are not paired or remeasurements of the same objects; K-means is an optional extension.
 - [Which measurement distinguishes the groups? — feature selection investigation](notebooks/feature_selection_investigation.ipynb). Start with 100 observations, two supplied labels, and 200 measurements, then select a distinguishing feature and test the **same selected feature** on independent measurements.
 
 The pre-generated, wholly fictional CSV files are under [`data/exercises/`](data/exercises/). Keep the repository folder structure when opening the notebooks locally; they load their files using relative paths. **Run the discovery part and write down an interpretation before opening the fresh data.** These are independent exercises rather than a required sequence. They do not use data from any Tanzanian institution or industrial partner.

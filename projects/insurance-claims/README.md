@@ -35,7 +35,7 @@ uv run python -m unittest discover -s tests -v
 
 ## Suggested group investigation
 
-The **minimum** is an analysis of the fictional records, a pooled rate baseline, a simple exposure-adjusted rate baseline for each `sector`–`zone`–`programme` profile, and a Poisson regression built directly in the notebook (one-hot encoding, `Pipeline`, `PoissonRegressor`, and exposure-weighted `fit`). The profile baseline uses fixed smoothing toward the pooled rate and defaults to that pooled rate for profiles not represented in training. Students evaluate all three on the same held-out 2025 data using scikit-learn's `mean_poisson_deviance`. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
+The **minimum** is an analysis of the fictional records, a pooled rate baseline, a simple exposure-adjusted rate baseline for each `sector`–`zone`–`programme` profile, and a Poisson regression built directly in the notebook (one-hot encoding, `Pipeline`, `PoissonRegressor`, and exposure-weighted `fit`). The profile baseline estimates each rate directly as total historical claims divided by total worker-years for that profile. In the supplied synthetic data, all test profiles occur in training with positive rates; new or zero-claim profiles would need an explicit decision in other datasets. Students evaluate all three on the same held-out 2025 data using scikit-learn's `mean_poisson_deviance`. Then refit the chosen model on 2021–2025 and forecast expected 2026 claims under an explicitly hypothetical planning scenario, reusing 2025 exposure and predictors as assumptions. The dataset contains no 2026 outcomes. A useful result includes one explanation of why the model might be misleading.
 
 The **extensions** can be divided between groups: investigate missing sector labels and reporting bias; study claim severity (costs are recorded *after* claims); examine model calibration by sector; explore alternate validation windows; or test whether apparent correlations with the programme can be interpreted causally.
 
@@ -52,8 +52,7 @@ covariates are accounted for. It includes exposure-adjusted size-group rates
 and an optional Poisson GLM with a log-exposure offset.
 
 The advanced notebook runs independently; it is **not required** for the
-introductory insurance investigation. The introductory notebook remains
-unchanged and is still the recommended starting point.
+introductory insurance investigation. The introductory notebook remains the recommended starting point.
 
 ## Facilitation and reporting
 

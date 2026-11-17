@@ -1,0 +1,5 @@
+# Quarto-generated output stays local; source files are tracked.
+/index.html
+/index_files/
+/index_cache/
+/.quarto/

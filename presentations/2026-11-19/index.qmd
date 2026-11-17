@@ -1,0 +1,433 @@
+---
+# Intentionally no document title: the first Markdown slide is the title slide.
+# This avoids Quarto creating a ninth, automatic title slide.
+format:
+  revealjs:
+    theme: default
+    css: math4sdg.css
+    # Only level-two headings start slides; panel titles stay inline.
+    slide-level: 2
+    width: 1280
+    height: 720
+    margin: 0.055
+    center: false
+    transition: fade
+    controls: true
+    progress: true
+    slide-number: "c/t"
+    footer: "MATH4SDG · UDSM · 19 NOV 2026"
+    auto-stretch: false
+execute:
+  enabled: false
+---
+
+## From industrial problems to mathematical models {.opening-slide}
+
+::: {.eyebrow}
+MATH4SDG · UDSM · 19 NOVEMBER 2026
+:::
+
+::: {.lead-subtitle}
+— and reliable conclusions
+:::
+
+::: {.big-question}
+**What would count as a good answer?**
+:::
+
+::: {.notes}
+**Time: approximately 2 minutes.**
+
+Hello and welcome. I am happy to be here at UDSM again, with an opportunity to get to know new people and meet old friends.
+
+Yesterday we saw what our industry partners have to share with us, and what they think they want.
+
+My presentation is **not** a systematic lecture on machine learning. It is about how to get started: which questions are worth asking, what data are appropriate, and, given the questions and data, which conclusions can be trusted.
+
+**Question:** From yesterday's industrial presentations, given their questions and data, what would count as a good answer? Would it be a number, a figure, or something else?
+
+Keep this brief and move to the four stages on slide 2. Do not give away the clustering investigation's conclusion.
+:::
+
+## Start with the decision, not the algorithm
+
+::: {.eyebrow}
+THE PROBLEM COMES FIRST
+:::
+
+::: {.slide-subtitle}
+A model is valuable only in relation to a question.
+:::
+
+::: {.columns .step-row}
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">1</span>
+
+**Industrial question**
+
+What needs to be understood or decided?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">2</span>
+
+**Mathematical formulation**
+
+Which quantities, assumptions, or relations?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">3</span>
+
+**Evidence we need**
+
+What could support or challenge a claim?
+:::
+:::
+
+::: {.column width="24%"}
+::: {.step-box}
+<span class="step-number">4</span>
+
+**Model and validation**
+
+What is the simplest useful approach?
+:::
+:::
+:::
+
+::: {.takeaway}
+Ask the partner: **What would make your answer useful?**
+:::
+
+::: {.notes}
+**Time: approximately 4 minutes.**
+
+**Start with the decision, not the algorithm.**
+
+There are several levels. What operational decisions may our partners make after their questions have been answered? And how do we answer a question about the data—which model should we choose?
+
+For the partners, what would be a good answer? How could an answer make them act differently? We want to present convincing and reliable answers. Would the answer be a number, a figure, or something else?
+
+Let's look at the screen.
+
+1. How can the partner act differently? What do they need in order to do so?
+2. Identify the structure, variables, units, assumptions and comparisons.
+3. How can we use the available data to challenge or support an answer?
+4. Build models answering the question. Start with a simple baseline. Choose more elaborate models if needed. Decide how to validate the answers: are they good enough? Consider uncertainty and sensitivity, not just a numerical score.
+
+**Question for students:** "What would our industry partners do differently if we could give them a reliable answer?" Use an actual example from yesterday, without inventing details about a partner. Other questions can wait until group work.
+
+This is **not a one-way pipeline**. Evidence may force us to revise the model, the formulation, or even the question. Sometimes the most important work happens before anyone collects data.
+:::
+
+## Some of the best mathematics happens before the data exist
+
+::: {.eyebrow}
+EXPERIMENTAL DESIGN
+:::
+
+::: {.slide-subtitle}
+Plan what an experiment is designed to test.
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.contrast-card .collect-first}
+**Collect first**
+
+**Measure → explore → interpret afterwards**
+
+*What patterns do the data suggest?*
+:::
+:::
+
+::: {.column width="49%"}
+::: {.contrast-card .plan-first}
+**Plan the test**
+
+**Question → analysis plan → experiment**
+
+*What evidence will distinguish the hypotheses?*
+:::
+:::
+:::
+
+::: {.takeaway}
+Exploration is valuable. **Confirmation is a different task.**
+:::
+
+::: {.notes}
+**Time: approximately 7 minutes, including a short discussion.**
+
+**Some of the best mathematics happens before the data exist.** Plan what an experiment is designed to test.
+
+I have done some work with biologists. It is always interesting. In their way, they know a lot of mathematical truths. Sometimes they have come to me after collecting and inspecting data. At other times, we have planned experiments together.
+
+When we plan together, there is some tension. They know what they would like to explore, but sometimes they are not sure how to analyse the data. I have opinions about data, but I need to learn about their theory and methods. On top of it, they have fancy instruments they want to play with. After long discussions, they may decide to change their measurements, and I learn some biology. Often, when everything is as simple as possible, both mathematics and biology perform at their best.
+
+Look at the two approaches on the screen: *collect first* and *plan the test*. Exploration is valuable. Confirmation is a different task. Exploring data can suggest questions and patterns; if we want to confirm a claim, we should be clear about the comparison and how it will be assessed. A pattern found by looking at the data is not independently confirmed merely by evaluating it on those same data.
+
+**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
+
+What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
+
+Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
+
+**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
+
+**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
+
+This leads us to a very simple insurance prediction.
+:::
+
+## Insurance claims: counts need a denominator
+
+::: {.eyebrow}
+A SIMPLE BASELINE
+:::
+
+::: {.slide-subtitle}
+Two establishments may face the same risk but have very different claim counts.
+:::
+
+::: {.columns}
+::: {.column width="54%"}
+::: {.math-panel}
+**Claim rate**
+
+$$\frac{\text{Observed claims}}{\text{Worker-years}}$$
+
+<small>To predict expected claims: multiply the rate by exposure.</small>
+:::
+:::
+
+::: {.column width="44%"}
+::: {.comparison-panel}
+**Same rate, different exposure**
+
+- Small establishment: **20 worker-years**
+- Large establishment: **300 worker-years**
+
+More exposure means more opportunities for claims.
+:::
+:::
+:::
+
+::: {.takeaway}
+Start with one claim rate for all companies. Could it vary by profile?
+:::
+
+::: {.notes}
+**Time: approximately 4 minutes.**
+
+In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into **36 different "profiles"**, as in the synthetic notebook.
+
+A simple model gives all companies the same claim rate. The **expected** number of claims made by a company is the number of worker-years multiplied by the claim rate. If all companies have the same claim rate, then we can estimate this rate as the total number of observed claims divided by the total number of worker-years.
+
+A somewhat more advanced approach is to have one claim rate per "profile".
+
+An even more advanced model may use common features across profiles to predict the claim rates for the different profiles. This can be done with a statistical method called **Poisson regression**.
+
+Is there a good way to decide which model to use? Can we assess the accuracy of predictions?
+
+*Presenter's caution: The calculation predicts expected claims, not the exact random count that will occur. Poisson regression is the model; the Poisson distribution is a distribution used for counts.*
+
+Transition to slide 5: compare predictions on data not used to fit the models.
+:::
+
+## Does a more sophisticated model help?
+
+::: {.eyebrow}
+MODEL COMPARISON
+:::
+
+::: {.slide-subtitle}
+Held-out **synthetic** 2025 · 600 establishment-years · lower error scores are better
+:::
+
+::: {.results-table}
+| Approach | Expected claims | $\ell^1$ error | Mean Poisson deviance |
+|:--|--:|--:|--:|
+| One common rate | 1,651 | 1,298 | 2.607 |
+| **Profile-specific rates** | 1,622 | **1,107** | **1.988** |
+| Poisson regression | 1,648 | 1,253 | 2.458 |
+| Simulation truth *(oracle)* | 1,995 | 776 | 1.044 |
+
+<small>Observed: <strong>1,996 claims</strong>. Expected totals and L¹ distances rounded; the oracle knows the simulator.</small>
+:::
+
+::: {.takeaway}
+Which model is best depends on **what we want to predict**.
+:::
+
+::: {.notes}
+**Time: approximately 6 minutes.**
+
+While preparing this presentation, I first included only the most basic and the most advanced models for claim prediction. It made me think about one model training on more information than the other one.
+
+I asked myself: "What if I made a basic model using the same information as the advanced model?" I tried to understand what the Poisson regression was using and realized it was using the companies' profiles—sector, zone and programme. I simply split the companies into profiles and made a basic claim-rate model for each profile, using the same claims-divided-by-worker-years calculation.
+
+Now we have three models giving three different predictions. **Which model should we prefer? Does this table teach us anything?**
+
+The last row is different: it gives the **true conditional expected claim counts from the simulator**, using the mechanism that generated the data, including unobserved risk and the 2025 change. It is not another fitted model or another sample of observed counts. The **1,996 actual simulated claims** are the random outcomes; the oracle's expected total is about 1,995.
+
+Which fitted model predicts the **total number of claims** most accurately? The common-rate model comes closest to that total, yet has the worst two establishment-level scores. How do you think the **$\ell^1$-error** is calculated? We sum the absolute differences between each predicted count and observed count. Errors of opposite signs can cancel in a total, but not in this sum.
+
+The deviance is a **theoretically motivated goodness-of-fit score when predicting Poisson mean counts**. It measures individual discrepancies differently from $\ell^1$, but it is **not automatically the best measure for every purpose**. If the insurer mainly needs the overall total, the error in the total is relevant; if it needs reliable establishment-level predictions, the other scores matter. Here the profile model has the best $\ell^1$ and Poisson deviance among the fitted models, although it is not closest to the overall total.
+
+Even the oracle has nonzero errors: knowing the true conditional *means* does not tell us exactly which random counts will occur. All three fitted models underestimate the 2025 total; the simulator includes a change in incidence in 2025. The example is wholly synthetic and says nothing about actual Tanzanian insurance claims.
+
+**Question to the room, if time allows:** "Which model would you prefer, and for what purpose?" The other questions are prompts, not a requirement to start a long discussion.
+
+**If we could obtain more data, what would we do with it?** We could investigate why the 2025 predictions were low, consider different information, or evaluate future predictions independently—not simply use test outcomes to make our earlier score look better.
+
+We come back to the question from the beginning: **what would count as a good answer?**
+:::
+
+## Choose a method because of the question
+
+::: {.eyebrow}
+CHOOSE YOUR TOOLBOX
+:::
+
+::: {.slide-subtitle}
+The bootcamp is problem-led, not an algorithm checklist.
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.tool-card}
+**Regression**
+
+How much? How many? What might happen next?
+:::
+
+::: {.tool-card}
+**Dimensionality reduction**
+
+Can we simplify a complex representation responsibly?
+:::
+:::
+
+::: {.column width="49%"}
+::: {.tool-card}
+**Clustering**
+
+Are there useful groups? How would we validate them?
+:::
+
+::: {.tool-card}
+**Neural networks**
+
+Would a flexible nonlinear model actually improve results?
+:::
+:::
+:::
+
+::: {.notes}
+**Time: approximately 3 minutes.**
+
+Here are some common tools for data analysis. You will need to choose the ones appropriate for your projects. You will learn about some of these at this workshop.
+
+Not every project needs every method. The industrial question comes before the choice of algorithm.
+:::
+
+## Work locally. Collaborate responsibly.
+
+::: {.eyebrow}
+WORKING ENVIRONMENT
+:::
+
+::: {.slide-subtitle}
+One working Jupyter environment per group is enough to start.
+:::
+
+::: {.columns}
+::: {.column width="73%"}
+::: {.terminal-panel}
+**TERMINAL**
+
+```bash
+git clone https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026.git
+cd MATH4SDG-Industrial-Mathematics-2026
+uv sync --locked
+uv run jupyter lab
+```
+:::
+:::
+
+::: {.column width="25%"}
+::: {.qr-panel}
+![](assets/repo_qr.svg){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
+
+[Repository and setup guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026)
+:::
+:::
+:::
+
+::: {.takeaway}
+**Do not upload restricted partner data** to public GitHub, cloud notebooks, or AI tools.
+:::
+
+::: {.notes}
+**Time: approximately 2–3 minutes introduction, then 15 minutes setup.**
+
+Here are instructions on how to start exploring the material I have provided for the workshop.
+
+I will help you with this now. Let's take **15 minutes** for this. I can also help you after this session.
+
+Ask students to open the repository, consult `INSTALL.md` if necessary, and start JupyterLab using the commands on the screen. If setup is difficult, students can share computers; one working environment per group is enough to begin. A ZIP download is possible if Git is not installed.
+
+**Reminder:** Work locally by default. Do not upload restricted industry data, notebook outputs or partner material to public GitHub, cloud notebooks or external AI services without permission.
+:::
+
+## Your challenge: are these groups real?
+
+::: {.eyebrow}
+STUDENT INVESTIGATION
+:::
+
+::: {.slide-subtitle}
+Investigate the evidence **before** deciding what the groups mean.
+:::
+
+::: {.columns}
+::: {.column width="72%"}
+::: {.activity-steps}
+1. **Inspect** — Explore 90 observations with two measurements each.
+2. **Partition** — Split by the sign of the first coordinate.
+3. **Predict** — Record what you expect for a fresh sample.
+4. **Test** — Apply the *same rule* to independent observations.
+:::
+:::
+
+::: {.column width="26%"}
+::: {.qr-panel}
+![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the clustering investigation notebook in the repository"}
+
+[Open the student notebook](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
+:::
+:::
+:::
+
+::: {.notes}
+**Time: approximately 1 minute introduction; then 15–20 minutes investigation and 15–20 minutes discussion.**
+
+Here is a simple notebook I would like you to explore: `notebooks/clustering_investigation.ipynb`.
+
+The notebook imports **two independent samples**. Please, **before examining the fresh sample, record a prediction**.
+
+Let me keep the debrief questions until after you have worked on the notebook. I will help during the investigation.
+
+**For the discussion afterwards:** Does a similar geometric clustering score on the new sample show that there are distinct real populations? What else would we need to investigate? Could another simple dividing rule work as well? This is a question about evidence and interpretation, not just about obtaining a score.
+
+Do not disclose the Gaussian data-generating mechanism or precomputed scores before the students have completed the investigation and recorded their ideas. Keep the private facilitator reveal out of public slides and notes shared in advance.
+
+At the end, return to the industrial problems: What is your question, what simple baseline could you use, and what evidence would count as a good answer?
+:::
