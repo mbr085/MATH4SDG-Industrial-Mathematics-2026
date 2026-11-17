@@ -226,13 +226,19 @@ Start with one claim rate for all companies. Could it vary by profile?
 ::: {.notes}
 **Time: approximately 4 minutes.**
 
-This is an entirely **synthetic** insurance example; the observations do not describe any Tanzanian institution.
+In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into, say, **11 different "profiles"**.
 
-Explain the denominator: a large establishment may have more claims simply because it accounts for more worker-years. Compare the small establishment (20 worker-years) and the larger one (300 worker-years). At the *same* rate of 0.08 claims per worker-year, their expected counts would be 1.6 and 24.
+A simple model gives all companies the same claim rate. The **expected** number of claims made by a company is the number of worker-years multiplied by the claim rate. If all companies have the same claim rate, then we can estimate this rate as the total number of observed claims divided by the total number of worker-years.
 
-To estimate a claim rate, divide the total observed claims by the total worker-years. Do this **once using all training observations** to get the pooled baseline. Multiply that estimated rate by an establishment's exposure to estimate its expected claim count.
+A somewhat more advanced approach is to have one claim rate per "profile".
 
-Ask: "Is it reasonable to assume every company has the same rate?" The next slide uses the same calculation, but separately for each company profile. No extra mathematical notation is needed.
+An even more advanced model may use common features across profiles to predict the claim rates for the different profiles. This can be done with a statistical method called **Poisson regression**.
+
+Is there a good way to decide which model to use? Can we assess the accuracy of predictions?
+
+*Presenter's caution: "11" is just an illustrative number of profiles in the hypothetical example, not a statement about the notebook. The calculation predicts expected claims, not the exact random count that will occur. Poisson regression is the model; the Poisson distribution is a distribution used for counts.*
+
+Transition to slide 5: compare predictions on data not used to fit the models.
 :::
 
 ## Does a more sophisticated model help?
