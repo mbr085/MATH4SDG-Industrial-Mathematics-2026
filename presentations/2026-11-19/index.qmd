@@ -178,11 +178,11 @@ Two establishments may face the same risk but have very different claim counts.
 ::: {.math-panel}
 Expected number of claims:
 
-$$
-\mathbb E[N] = E\,\lambda
-$$
+$
+\mathbb E[N_i] = e_i\,\lambda
+$
 
-<small>Exposure $E$ (worker-years) × claim rate $\lambda$</small>
+<small>Exposure $e_i$ (worker-years) × claim rate $\lambda$</small>
 :::
 :::
 
@@ -199,19 +199,19 @@ More exposure means more opportunities for claims.
 :::
 
 ::: {.takeaway}
-First baseline: $\displaystyle\widehat\lambda = \frac{\text{total observed claims}}{\text{total worker-years}}$.
+First baseline: $\widehat\lambda=C/W$, with $C$ total claims and $W$ total worker-years.
 :::
 
 ::: {.notes}
-**Time: approximately 5 minutes.**
+**Time: approximately 4 minutes.**
 
-The example uses entirely **synthetic** insurance records. Do not imply that these claims or rates describe actual Tanzanian institutions.
+This is an entirely **synthetic** insurance example; the records do not describe Tanzanian institutions.
 
-Explain worker-years as exposure. Raw claim counts are a misleading basis for comparing establishments with very different exposure.
+For establishment $i$, let $N_i$ be its observed number of claims and $e_i$ its exposure in worker-years. Even at the same risk level $\lambda$, expected claims vary with exposure: $\mathbb E[N_i]=e_i\lambda$. Use the 20 versus 300 worker-year example to ask: "Would more claims necessarily mean greater risk?" An optional common rate of 0.08 claims per worker-year gives expected counts of 1.6 and 24.
 
-Optional oral calculation: at a rate of 0.08 claims per worker-year, expected claims for 20 and 300 worker-years would be 1.6 and 24.
+**Introduce two totals.** Write $C=\sum_i N_i$ for total claims and $W=\sum_i e_i$ for total worker-years (total exposure). Then the simplest pooled-rate estimate is $\widehat\lambda=C/W$. Note that $\sum_i N_i$ counts *claims*, not worker-years.
 
-The pooled estimator is $\sum_i N_i / \sum_i e_i$. Lead into your story about proposing separate rates for the sector–zone–programme profiles as a baseline against Poisson regression.
+Ask: "Is it reasonable to assume that all companies have the same claim rate?" That motivates bringing in the company profiles on slide 5.
 :::
 
 ## Does a more sophisticated model help?
@@ -237,15 +237,22 @@ Why might **profile-specific rates** outperform this regression?
 :::
 
 ::: {.notes}
-**Time: 5–6 minutes.**
+**Time: approximately 6 minutes.**
 
-Tell the true anecdote about introducing the profile-rate baseline: compute a simple rate for each sector–zone–programme profile and compare it with Poisson regression.
+**The actual anecdote (about 1.5 minutes).** "I tried to understand what information the Poisson model used for training and realized that it used the profiles of the companies: sector, zone and programme. From there the profile baseline was a small leap. I asked: what is the simplest model I could think of using the *same information*?" The answer was a claim-rate table for the observed profiles.
 
-Ask students for explanations. The profile baseline is conceptually simple but can have more parameters and represent interactions not included in a main-effects log-linear regression. It can also be unstable for rare profiles; the example uses smoothing.
+**The mathematics (about 1.5 minutes).** Continue the notation from slide 4. For profile $g$, set
+$$
+C_g=\sum_{i:\,g(i)=g}N_i,\qquad
+W_g=\sum_{i:\,g(i)=g}e_i.
+$$
+These are the total number of claims and total worker-years in that profile. The simple *unsmoothed* rate is $\widehat\lambda_g=C_g/W_g$ (for $W_g>0$), predicting $e_i\widehat\lambda_{g(i)}$ claims for company $i$. Contrast with the pooled rate $\widehat\lambda=C/W$. The actual notebook uses smoothing to stabilize sparse profiles; its predictions need not equal the raw ratios.
 
-These numbers are from one synthetic validation run, with 2025 held out. They establish neither a universal preference for this model nor any fact about Tanzanian insurance claims.
+**Comparison and question (about 2 minutes).** On held-out **synthetic** 2025 observations, mean Poisson deviance was 2.607 for the common rate, 1.990 for the profile baseline and 2.458 for the Poisson regression (lower is better). Ask students: "How could this simpler idea outperform the fitted regression?"
 
-Do not teach the technical details of Poisson regression during this introduction.
+**Interpretation (about 1 minute).** Conceptual simplicity is not the same as lower model flexibility. Profile-specific rates represent interactions among sector, zone and programme that a *main-effects-only* log-linear Poisson regression may omit. However, rates for profiles with little exposure can be unstable. These numbers do not show that simple approaches always win, that Poisson regression is fundamentally inferior, or anything about real Tanzanian insurance claims.
+
+Conclude: understanding which information a model uses can suggest a meaningful baseline, and fresh data help test it. Avoid teaching regression mechanics in this introduction.
 :::
 
 ## Choose a method because of the question
