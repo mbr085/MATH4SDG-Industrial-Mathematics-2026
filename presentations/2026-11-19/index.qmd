@@ -38,11 +38,15 @@ MATH4SDG · UDSM · 19 NOVEMBER 2026
 ::: {.notes}
 **Time: approximately 2 minutes.**
 
-Welcome. Refer to the industry presentations on Wednesday. This is **not** a systematic lecture on every machine-learning algorithm. It is about deciding which questions are worth asking, what data are appropriate, and when conclusions can be trusted.
+Hello and welcome. I am happy to be here at UDSM again, with an opportunity to get to know new people and meet old friends.
 
-Opening question to the room: From yesterday's industrial presentations, what would count as a useful answer to one of the problems?
+Yesterday we saw what our industry partners have to share with us, and what they think they want.
 
-**Do not preview the clustering notebook's conclusion.**
+My presentation is **not** a systematic lecture on machine learning. It is about how to get started: which questions are worth asking, what data are appropriate, and, given the questions and data, which conclusions can be trusted.
+
+**Question:** From yesterday's industrial presentations, given their questions and data, what would count as a good answer? Would it be a number, a figure, or something else?
+
+Keep this brief and move to the four stages on slide 2. Do not give away the clustering investigation's conclusion.
 :::
 
 ## Start with the decision, not the algorithm
@@ -102,15 +106,24 @@ Ask the partner: **What would make your answer useful?**
 :::
 
 ::: {.notes}
-**Time: 4 minutes, including one short exchange.**
+**Time: approximately 4 minutes.**
 
-**Opening (0:00–0:45).** Pick up the opening question: "What would count as a useful answer?" An industrial partner may want to explain a process, make a decision, or decide what to measure next. The objective is not to use a favourite algorithm; it is to improve that understanding or decision.
+**Start with the decision, not the algorithm.**
 
-**Ask the room (0:45–2:00).** "Think of one problem presented yesterday. What would the partner do differently if we had a reliable answer?" Invite one concrete response, then ask: "What quantity or comparison would help?" Use an actual Wednesday problem once known; do not invent requirements or data on behalf of NBS, TMA, Creditinfo Tanzania, or TIRA. If the problem remains vague, identifying the missing decision is itself a useful first step.
+There are several levels. What operational decisions may our partners make after their questions have been answered? And how do we answer a question about the data—which model should we choose?
 
-**Work through the four boxes (2:00–3:30).** (1) State the decision or explanation sought. (2) Identify variables, units, assumptions and comparisons. (3) Ask what observations would support *or challenge* an answer. (4) Start with a transparent baseline and a suitable way to evaluate whether the result is useful. Not every problem is a prediction problem; validation may involve checking uncertainty, consistency, sensitivity or expert constraints rather than only a numerical score.
+For the partners, what would be a good answer? How could an answer make them act differently? We want to present convincing and reliable answers. Would the answer be a number, a figure, or something else?
 
-**Close (3:30–4:00).** This is not a one-way pipeline: evidence may force us to revise the model, the formulation or even the question. Transition: "Sometimes the most important mathematical work happens before anyone collects data."
+Let's look at the screen.
+
+1. How can the partner act differently? What do they need in order to do so?
+2. Identify the structure, variables, units, assumptions and comparisons.
+3. How can we use the available data to challenge or support an answer?
+4. Build models answering the question. Start with a simple baseline. Choose more elaborate models if needed. Decide how to validate the answers: are they good enough? Consider uncertainty and sensitivity, not just a numerical score.
+
+**Question for students:** "What would our industry partners do differently if we could give them a reliable answer?" Use an actual example from yesterday, without inventing details about a partner. Other questions can wait until group work.
+
+This is **not a one-way pipeline**. Evidence may force us to revise the model, the formulation, or even the question. Sometimes the most important work happens before anyone collects data.
 :::
 
 ## Some of the best mathematics happens before the data exist
@@ -150,17 +163,27 @@ Exploration is valuable. **Confirmation is a different task.**
 :::
 
 ::: {.notes}
-**Time: approximately 7 minutes, including discussion.**
+**Time: approximately 7 minutes, including a short discussion.**
 
-**Personal perspective (0:00–1:30).** In collaborations with biologists, one of my most valuable contributions has sometimes been asking researchers, *before an experiment*, to explain exactly what they hoped to learn and how they planned to analyse the observations. Such a conversation can change the measurements, controls and comparisons in the experiment itself. It is possible to work on sophisticated mathematics while insisting that the scientific question—not the sophistication of the method—comes first.
+**Some of the best mathematics happens before the data exist.** Plan what an experiment is designed to test.
 
-**Hypothetical example (1:30–3:15).** "Suppose we want to find out whether a treatment changes growth." This is an illustrative example, not a claim about a particular collaboration. Before collecting data, we should agree on the experimental unit, the untreated comparison, the primary measurement and time window, and the relevant variation and replication. What difference would be scientifically meaningful? If we omit the control or confuse repeated measurements with independent replicates, no elegant algorithm can repair the experimental design afterwards.
+I have done some work with biologists. It is always interesting. In their way, they know a lot of mathematical truths. Sometimes they have come to me after collecting and inspecting data. At other times, we have planned experiments together.
 
-**Ask students (3:15–4:45).** "What is one thing we should decide *before* measuring, so that we could distinguish a treatment effect from ordinary variation?" Take one or two contributions. If needed, prompt: "What exactly would we compare?" or "Which observations are truly independent?" Keep the exchange short and concrete.
+When we plan together, there is some tension. They know what they would like to explore, but sometimes they are not sure how to analyse the data. I have opinions about data, but I need to learn about their theory and methods. On top of it, they have fancy instruments they want to play with. After long discussions, they may decide to change their measurements, and I learn some biology. Often, when everything is as simple as possible, both mathematics and biology perform at their best.
 
-**Exploration and confirmation (4:45–6:15).** The two panels represent *different legitimate purposes*, not good science versus bad science. Exploration reveals patterns, problems and new hypotheses. Confirmation asks whether evidence supports a clearly stated claim, with an appropriate comparison and analysis plan. If we inspect many measurements, select the most striking finding, and assess it only on those same observations, we cannot call it an independent confirmation. New evidence or a clearly separated validation step can help. Even when industrial data have already been collected, clarify what would count as convincing evidence before selecting a flattering result.
+Look at the two approaches on the screen: *collect first* and *plan the test*. Exploration is valuable. Confirmation is a different task. Exploring data can suggest questions and patterns; if we want to confirm a claim, we should be clear about the comparison and how it will be assessed. A pattern found by looking at the data is not independently confirmed merely by evaluating it on those same data.
 
-**Transition (6:15–7:00).** "Mathematics helps us decide what to measure, what to compare and what would convince us—not just which model to fit." Return later to the difference between a reproducible numerical pattern and a justified scientific interpretation. Do not disclose the clustering activity's generating mechanism.
+**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
+
+What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
+
+Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
+
+**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
+
+**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
+
+This leads us to a very simple insurance prediction.
 :::
 
 ## Insurance claims: counts need a denominator
@@ -240,17 +263,25 @@ Which model is best depends on **what we want to predict**.
 ::: {.notes}
 **Time: approximately 6 minutes.**
 
-**Your actual anecdote (about 1.5 minutes).** "I wanted to understand what information the Poisson regression used to train. It used the companies' profiles—sector, zone and programme. That suggested a very small leap: what is the simplest model I can think of using exactly the same information?"
+While preparing this presentation, I first included only the most basic and the most advanced models for claim prediction. It made me think about one model training on more information than the other one.
 
-**The one simple idea (about 1.5 minutes).** Use the **same claims-divided-by-worker-years calculation** as before. For the pooled baseline, calculate it once across all training companies. For the profile baseline, repeat it separately for companies with each sector–zone–programme combination. When predicting for a company, use the rate for its profile and multiply by its exposure. The implemented notebook adds some smoothing for sparse profiles, but that technical detail need not interrupt the oral explanation.
+I asked myself: "What if I made a basic model using the same information as the advanced model?" I tried to understand what the Poisson regression was using and realized it was using the companies' profiles—sector, zone and programme. I simply split the companies into profiles and made a basic claim-rate model for each profile, using the same claims-divided-by-worker-years calculation. The notebook includes some smoothing for sparse profiles.
 
-**Compare and ask (about 2 minutes).** There were **1,996 realized claims** in the same 600 held-out synthetic 2025 establishment-years. Among fitted approaches, the common-rate baseline predicts the overall total most closely (1,651, versus 1,648 for regression and 1,622 for the profile baseline). Yet it has the *largest* sum of absolute establishment-level errors, the $\ell^1$ distance (1,298, versus 1,253 and 1,108), and the *worst* mean Poisson deviance (2.607, versus 2.458 and 1.990). Ask: "How can the best prediction of the total have the worst establishment-level errors?" Give students a moment to answer. In a total, positive and negative errors cancel; in $\ell^1$ they do not. Poisson deviance penalizes individual discrepancies differently from absolute error. Both establishment-level scores happen to favor the profile baseline here, but they need not agree for other data.
+Now we have three models giving three different predictions. **Which model should we prefer? Does this table teach us anything?**
 
-The **simulation-truth oracle** uses exact conditional expected counts from the generator, including latent establishment risk and the 2025 change. Its expected claim total is approximately **1,995**, $\ell^1$ distance **776** and mean Poisson deviance **1.044**. This is a simulation-only reference, *not* a model fitted to training data. Even the correct conditional means cannot predict individual random outcomes exactly, so neither error score is zero. Using the observed counts themselves as predictions would tautologically produce zero deviance, not a meaningful forecasting benchmark.
+The last row is different: it gives the **true conditional expected claim counts from the simulator**, using the mechanism that generated the data, including unobserved risk and the 2025 change. It is not another fitted model or another sample of observed counts. The **1,996 actual simulated claims** are the random outcomes; the oracle's expected total is about 1,995.
 
-**Interpretation (about 1 minute).** A separate rate per profile is easy to describe but can represent interactions absent from a main-effects-only log-linear regression, and can be unstable with little training exposure. All three fitted approaches underestimate the 2025 total; the simulator deliberately raises incidence in 2025, illustrating distribution shift. The best evaluation criterion depends on the industrial decision: estimating the entire portfolio total differs from predicting claims establishment by establishment. The 2025 results cannot settle how the methods would behave on real insurance data.
+Which fitted model predicts the **total number of claims** most accurately? The common-rate model comes closest to that total, yet has the worst two establishment-level scores. How do you think the **$\ell^1$-error** is calculated? We sum the absolute differences between each predicted count and observed count. Errors of opposite signs can cancel in a total, but not in this sum.
 
-End with the key lesson: understand which information a model uses, try a transparent baseline, choose evaluation criteria that answer the *industrial question*, and check them on independent data. Do not teach the mechanics of Poisson regression in this introduction.
+The deviance is a **theoretically motivated goodness-of-fit score when predicting Poisson mean counts**. It measures individual discrepancies differently from $\ell^1$, but it is **not automatically the best measure for every purpose**. If the insurer mainly needs the overall total, the error in the total is relevant; if it needs reliable establishment-level predictions, the other scores matter. Here the profile model has the best $\ell^1$ and Poisson deviance among the fitted models, although it is not closest to the overall total.
+
+Even the oracle has nonzero errors: knowing the true conditional *means* does not tell us exactly which random counts will occur. All three fitted models underestimate the 2025 total; the simulator includes a change in incidence in 2025. The example is wholly synthetic and says nothing about actual Tanzanian insurance claims.
+
+**Question to the room, if time allows:** "Which model would you prefer, and for what purpose?" The other questions are prompts, not a requirement to start a long discussion.
+
+**If we could obtain more data, what would we do with it?** We could investigate why the 2025 predictions were low, consider different information, or evaluate future predictions independently—not simply use test outcomes to make our earlier score look better.
+
+We come back to the question from the beginning: **what would count as a good answer?**
 :::
 
 ## Choose a method because of the question
@@ -294,11 +325,11 @@ Would a flexible nonlinear model actually improve results?
 :::
 
 ::: {.notes}
-**Time: approximately 4 minutes.**
+**Time: approximately 3 minutes.**
 
-The concept note lists regression, clustering, dimensionality reduction, and introductory neural networks. Acknowledge them explicitly, but do not make them compulsory for every group. Methods should follow the industrial question, supported by facilitators and the later R predictive-modelling session.
+Here are some common tools for data analysis. You will need to choose the ones appropriate for your projects. You will learn about some of these at this workshop.
 
-Invite students to connect a partner problem to a mathematical *question*, not immediately to an algorithm.
+Not every project needs every method. The industrial question comes before the choice of algorithm.
 :::
 
 ## Work locally. Collaborate responsibly.
@@ -339,15 +370,15 @@ uv run jupyter lab
 :::
 
 ::: {.notes}
-**Time: 2–3 minutes introduction, then approximately 15 minutes hands-on setup.**
+**Time: approximately 2–3 minutes introduction, then 15 minutes setup.**
 
-Both student notebooks from PR #13 have been merged into `main`. Ask students to clone the repository, consult `INSTALL.md` for installing `uv`, run `uv sync --locked`, and then `uv run jupyter lab`.
+Here are instructions on how to start exploring the material I have provided for the workshop.
 
-If Git is unavailable, the repository can be downloaded as a ZIP. If setup takes too long, students should share laptops so each group has access to one working environment; UDSM facilitators can assist.
+I will help you with this now. Let's take **15 minutes** for this. I can also help you after this session.
 
-Privacy: work locally by default, and do not upload sensitive data, notebook outputs, or partner descriptions to public repositories, cloud services, or external AI tools without explicit permission. A local environment is not itself a complete confidentiality safeguard.
+Ask students to open the repository, consult \`INSTALL.md\` if necessary, and start JupyterLab using the commands on the screen. If setup is difficult, students can share computers; one working environment per group is enough to begin. A ZIP download is possible if Git is not installed.
 
-The clone command is a single line; other lines are separate commands.
+**Reminder:** Work locally by default. Do not upload restricted industry data, notebook outputs or partner material to public GitHub, cloud notebooks or external AI services without permission.
 :::
 
 ## Your challenge: are these groups real?
@@ -380,13 +411,17 @@ Investigate the evidence **before** deciding what the groups mean.
 :::
 
 ::: {.notes}
-**Time: 1 minute explanation; allow 15–20 minutes student work followed by 15–20 minutes discussion.**
+**Time: approximately 1 minute introduction; then 15–20 minutes investigation and 15–20 minutes discussion.**
 
-Tell students the measurements are wholly synthetic classroom data, without explaining their distribution. Do not display precalculated clustering results. Emphasize that the two datasets contain **independent samples, not paired measurements of the same objects**. Ask students to record a prediction before examining the fresh sample.
+Here is a simple notebook I would like you to explore: \`notebooks/clustering_investigation.ipynb\`.
 
-Debrief questions: Does applying a fixed sign-based rule to both samples reproduce a useful geometric partition? What does a similar silhouette score say, and what does it fail to say, about distinct underlying populations? Would another direction through the origin work similarly? How would students design a biological or industrial experiment to test an interpretation of the groups? K-means is an optional extension only.
+The notebook imports **two independent samples**. Please, **before examining the fresh sample, record a prediction**.
 
-**The private facilitator notes contain the data-generation reveal; keep them out of student-facing material.**
+Let me keep the debrief questions until after you have worked on the notebook. I will help during the investigation.
 
-Mention the separate optional feature-selection notebook as a related experiment involving 200 measurements and *given* labels. Close by asking students to formulate their industrial problem, simplest baseline, assumptions, and needed evidence.
+**For the discussion afterwards:** Does a similar geometric clustering score on the new sample show that there are distinct real populations? What else would we need to investigate? Could another simple dividing rule work as well? This is a question about evidence and interpretation, not just about obtaining a score.
+
+Do not disclose the Gaussian data-generating mechanism or precomputed scores before the students have completed the investigation and recorded their ideas. Keep the private facilitator reveal out of public slides and notes shared in advance.
+
+At the end, return to the industrial problems: What is your question, what simple baseline could you use, and what evidence would count as a good answer?
 :::
