@@ -102,11 +102,15 @@ Ask the partner: **What would make your answer useful?**
 :::
 
 ::: {.notes}
-**Time: 4–5 minutes.**
+**Time: 4 minutes, including one short exchange.**
 
-Invite a student to recall one concrete problem presented by NBS, TMA, Creditinfo Tanzania, or TIRA, without inventing details. Clarify the decision or use-case before introducing tools.
+**Opening (0:00–0:45).** Pick up the opening question: "What would count as a useful answer?" An industrial partner may want to explain a process, make a decision, or decide what to measure next. The objective is not to use a favourite algorithm; it is to improve that understanding or decision.
 
-Emphasize that the sequence is *iterative*: a failed validation may require revisiting the formulation or even the initial question.
+**Ask the room (0:45–2:00).** "Think of one problem presented yesterday. What would the partner do differently if we had a reliable answer?" Invite one concrete response, then ask: "What quantity or comparison would help?" Use an actual Wednesday problem once known; do not invent requirements or data on behalf of NBS, TMA, Creditinfo Tanzania, or TIRA. If the problem remains vague, identifying the missing decision is itself a useful first step.
+
+**Work through the four boxes (2:00–3:30).** (1) State the decision or explanation sought. (2) Identify variables, units, assumptions and comparisons. (3) Ask what observations would support *or challenge* an answer. (4) Start with a transparent baseline and a suitable way to evaluate whether the result is useful. Not every problem is a prediction problem; validation may involve checking uncertainty, consistency, sensitivity or expert constraints rather than only a numerical score.
+
+**Close (3:30–4:00).** This is not a one-way pipeline: evidence may force us to revise the model, the formulation or even the question. Transition: "Sometimes the most important mathematical work happens before anyone collects data."
 :::
 
 ## Some of the best mathematics happens before the data exist
@@ -146,15 +150,17 @@ Exploration is valuable. **Confirmation is a different task.**
 :::
 
 ::: {.notes}
-**Time: 5–6 minutes.**
+**Time: approximately 7 minutes, including discussion.**
 
-Personal experience: working with biologists, an important contribution has often been insisting on precise comparisons and an analysis plan *before* collecting observations. Tell an authentic example if available; do not manufacture one.
+**Personal perspective (0:00–1:30).** In collaborations with biologists, one of my most valuable contributions has sometimes been asking researchers, *before an experiment*, to explain exactly what they hoped to learn and how they planned to analyse the observations. Such a conversation can change the measurements, controls and comparisons in the experiment itself. It is possible to work on sophisticated mathematics while insisting that the scientific question—not the sophistication of the method—comes first.
 
-Question: If a biological experiment is designed to test a treatment effect, what outcome, controls, sampling and analysis should be decided before collecting data?
+**Hypothetical example (1:30–3:15).** "Suppose we want to find out whether a treatment changes growth." This is an illustrative example, not a claim about a particular collaboration. Before collecting data, we should agree on the experimental unit, the untreated comparison, the primary measurement and time window, and the relevant variation and replication. What difference would be scientifically meaningful? If we omit the control or confuse repeated measurements with independent replicates, no elegant algorithm can repair the experimental design afterwards.
 
-Exploration is legitimate for generating hypotheses, but a pattern selected using the same data is not an independently confirmed result.
+**Ask students (3:15–4:45).** "What is one thing we should decide *before* measuring, so that we could distinguish a treatment effect from ordinary variation?" Take one or two contributions. If needed, prompt: "What exactly would we compare?" or "Which observations are truly independent?" Keep the exchange short and concrete.
 
-This connects to your work on simple, efficient clustering and visualization, and the danger of treating attractive pictures as scientific conclusions.
+**Exploration and confirmation (4:45–6:15).** The two panels represent *different legitimate purposes*, not good science versus bad science. Exploration reveals patterns, problems and new hypotheses. Confirmation asks whether evidence supports a clearly stated claim, with an appropriate comparison and analysis plan. If we inspect many measurements, select the most striking finding, and assess it only on those same observations, we cannot call it an independent confirmation. New evidence or a clearly separated validation step can help. Even when industrial data have already been collected, clarify what would count as convincing evidence before selecting a flattering result.
+
+**Transition (6:15–7:00).** "Mathematics helps us decide what to measure, what to compare and what would convince us—not just which model to fit." Return later to the difference between a reproducible numerical pattern and a justified scientific interpretation. Do not disclose the clustering activity's generating mechanism.
 :::
 
 ## Insurance claims: counts need a denominator
