@@ -219,22 +219,22 @@ MODEL COMPARISON
 :::
 
 ::: {.slide-subtitle}
-Held-out **synthetic** 2025 data · mean Poisson deviance · lower is better
+Held-out **synthetic** 2025 · 600 establishment-years · lower error scores are better
 :::
 
 ::: {.results-table}
-| Approach | Mean Poisson deviance | Expected 2025 claims |
-|:--|--:|--:|
-| One common rate | 2.607 | 1,651 |
-| **Profile-specific rates** | **1.990** | 1,622 |
-| Poisson regression | 2.458 | 1,648 |
-| Simulation truth *(oracle)* | 1.044 | 1,995 |
+| Approach | Expected claims | $\ell^1$ error | Mean Poisson deviance |
+|:--|--:|--:|--:|
+| One common rate | 1,651 | 1,298 | 2.607 |
+| **Profile-specific rates** | 1,622 | **1,108** | **1.990** |
+| Poisson regression | 1,648 | 1,253 | 2.458 |
+| Simulation truth *(oracle)* | 1,995 | 776 | 1.044 |
 
-<small>Observed in 2025: <strong>1,996 claims</strong> across 600 synthetic establishment-years. Expected totals rounded.</small>
+<small>Observed: <strong>1,996 claims</strong>. Expected totals and L¹ distances rounded; the oracle knows the simulator.</small>
 :::
 
 ::: {.takeaway}
-Why might **profile-specific rates** outperform this regression?
+Which model is best depends on **what we want to predict**.
 :::
 
 ::: {.notes}
@@ -244,13 +244,13 @@ Why might **profile-specific rates** outperform this regression?
 
 **The one simple idea (about 1.5 minutes).** Use the **same claims-divided-by-worker-years calculation** as before. For the pooled baseline, calculate it once across all training companies. For the profile baseline, repeat it separately for companies with each sector–zone–programme combination. When predicting for a company, use the rate for its profile and multiply by its exposure. The implemented notebook adds some smoothing for sparse profiles, but that technical detail need not interrupt the oral explanation.
 
-**Compare and ask (about 2 minutes).** On the **same 600 held-out synthetic 2025 establishment-years**, the fitted approaches have mean Poisson deviances of 2.607 (pooled), 1.990 (profile) and 2.458 (regression). Their predicted total claim counts, rounded, are 1,651, 1,622 and 1,648, respectively. There were **1,996 actually simulated claims** in 2025. Ask: "How could this simple baseline outperform the fitted regression?" Invite a few explanations.
+**Compare and ask (about 2 minutes).** There were **1,996 realized claims** in the same 600 held-out synthetic 2025 establishment-years. Among fitted approaches, the common-rate baseline predicts the overall total most closely (1,651, versus 1,648 for regression and 1,622 for the profile baseline). Yet it has the *largest* sum of absolute establishment-level errors, the $\ell^1$ distance (1,298, versus 1,253 and 1,108), and the *worst* mean Poisson deviance (2.607, versus 2.458 and 1.990). Ask: "How can the best prediction of the total have the worst establishment-level errors?" Give students a moment to answer. In a total, positive and negative errors cancel; in $\ell^1$ they do not. Poisson deviance penalizes individual discrepancies differently from absolute error. Both establishment-level scores happen to favor the profile baseline here, but they need not agree for other data.
 
-The added **simulation-truth oracle** uses the exact conditional expected counts from the generator, including latent establishment risk and the 2025 change. Its mean Poisson deviance is **1.044** and its expected claim total is approximately **1,995**. The oracle is *not* an available fitted model: we reconstructed these expectations from the simulator's own mechanism. Even with those correct conditional means, realized Poisson counts fluctuate, so the oracle's deviance is not zero. It would be misleading to treat the observed counts themselves as a predictive benchmark (their saturated deviance is trivially zero).
+The **simulation-truth oracle** uses exact conditional expected counts from the generator, including latent establishment risk and the 2025 change. Its expected claim total is approximately **1,995**, $\ell^1$ distance **776** and mean Poisson deviance **1.044**. This is a simulation-only reference, *not* a model fitted to training data. Even the correct conditional means cannot predict individual random outcomes exactly, so neither error score is zero. Using the observed counts themselves as predictions would tautologically produce zero deviance, not a meaningful forecasting benchmark.
 
-**Interpretation (about 1 minute).** The procedure is easy to understand, but allowing a different rate for every profile can be statistically flexible: it captures interactions among sector, zone and programme that a main-effects-only log-linear regression may omit. It can also be unstable with limited exposure in a profile. All three historically fitted models underestimate the 2025 total; the simulator deliberately raises underlying incidence in 2025, illustrating distribution shift. "All models are wrong" should invite critical model checking, not suggest that the oracle's correct *expected values* ought to equal noisy outcomes. These synthetic results say nothing about real Tanzanian insurance claims.
+**Interpretation (about 1 minute).** A separate rate per profile is easy to describe but can represent interactions absent from a main-effects-only log-linear regression, and can be unstable with little training exposure. All three fitted approaches underestimate the 2025 total; the simulator deliberately raises incidence in 2025, illustrating distribution shift. The best evaluation criterion depends on the industrial decision: estimating the entire portfolio total differs from predicting claims establishment by establishment. The 2025 results cannot settle how the methods would behave on real insurance data.
 
-End with the key lesson: understand which information a model uses, try the simplest meaningful comparison, and validate on new data. There is no need to teach the mechanics of Poisson regression in this session.
+End with the key lesson: understand which information a model uses, try a transparent baseline, choose evaluation criteria that answer the *industrial question*, and check them on independent data. Do not teach the mechanics of Poisson regression in this introduction.
 :::
 
 ## Choose a method because of the question
