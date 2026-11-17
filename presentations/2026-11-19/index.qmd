@@ -226,7 +226,7 @@ Start with one claim rate for all companies. Could it vary by profile?
 ::: {.notes}
 **Time: approximately 4 minutes.**
 
-In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into, say, **11 different "profiles"**.
+In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into **36 different "profiles"**, as in the synthetic notebook.
 
 A simple model gives all companies the same claim rate. The **expected** number of claims made by a company is the number of worker-years multiplied by the claim rate. If all companies have the same claim rate, then we can estimate this rate as the total number of observed claims divided by the total number of worker-years.
 
@@ -236,7 +236,7 @@ An even more advanced model may use common features across profiles to predict t
 
 Is there a good way to decide which model to use? Can we assess the accuracy of predictions?
 
-*Presenter's caution: "11" is just an illustrative number of profiles in the hypothetical example, not a statement about the notebook. The calculation predicts expected claims, not the exact random count that will occur. Poisson regression is the model; the Poisson distribution is a distribution used for counts.*
+*Presenter's caution: The calculation predicts expected claims, not the exact random count that will occur. Poisson regression is the model; the Poisson distribution is a distribution used for counts.*
 
 Transition to slide 5: compare predictions on data not used to fit the models.
 :::
