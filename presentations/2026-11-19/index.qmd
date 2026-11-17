@@ -178,9 +178,7 @@ Two establishments may face the same risk but have very different claim counts.
 ::: {.math-panel}
 **Claim rate**
 
-$
-\frac{\text{Observed claims}}{\text{Worker-years}}
-$
+$\frac{\text{Observed claims}}{\text{Worker-years}}$
 
 <small>To predict expected claims: multiply the rate by exposure.</small>
 :::
