@@ -176,13 +176,13 @@ Two establishments may face the same risk but have very different claim counts.
 ::: {.columns}
 ::: {.column width="54%"}
 ::: {.math-panel}
-Expected number of claims:
+**Claim rate**
 
-$$
-\mu_i=e_i\,\lambda
-$$
+$
+\frac{\text{Observed claims}}{\text{Worker-years}}
+$
 
-<small>Exposure $e_i$ (worker-years) × claim rate $\lambda$</small>
+<small>To predict expected claims: multiply the rate by exposure.</small>
 :::
 :::
 
@@ -199,19 +199,19 @@ More exposure means more opportunities for claims.
 :::
 
 ::: {.takeaway}
-First baseline: $\widehat\lambda=C/E$, with $C$ total claims and $E$ total worker-years.
+Start with one claim rate for all companies. Could it vary by profile?
 :::
 
 ::: {.notes}
 **Time: approximately 4 minutes.**
 
-This is an entirely **synthetic** insurance example; the records do not describe Tanzanian institutions.
+This is an entirely **synthetic** insurance example; the observations do not describe any Tanzanian institution.
 
-For establishment $i$, write $c_i$ for its observed claim count and $e_i$ for its exposure in worker-years. Its *expected* claim count is $\mu_i=e_i\lambda$, where $\lambda$ is the rate per worker-year. Thus equal rates need not mean equal claim counts. Use the 20 versus 300 worker-year example to ask: "Would more claims necessarily mean greater risk?" An optional rate of 0.08 claims per worker-year gives expected counts of 1.6 and 24.
+Explain the denominator: a large establishment may have more claims simply because it accounts for more worker-years. Compare the small establishment (20 worker-years) and the larger one (300 worker-years). At the *same* rate of 0.08 claims per worker-year, their expected counts would be 1.6 and 24.
 
-**Introduce aggregate notation.** Let $C=\sum_i c_i$ be total observed claims and $E=\sum_i e_i$ total worker-years. Then the pooled-rate baseline is simply $\widehat\lambda=C/E$. Keep lowercase $c_i,e_i$ for individual records and uppercase $C,E$ for their aggregates.
+To estimate a claim rate, divide the total observed claims by the total worker-years. Do this **once using all training observations** to get the pooled baseline. Multiply that estimated rate by an establishment's exposure to estimate its expected claim count.
 
-Ask: "Is it reasonable to assume all companies have the same claim rate?" This leads to separate rates for the company profiles.
+Ask: "Is it reasonable to assume every company has the same rate?" The next slide uses the same calculation, but separately for each company profile. No extra mathematical notation is needed.
 :::
 
 ## Does a more sophisticated model help?
@@ -239,20 +239,15 @@ Why might **profile-specific rates** outperform this regression?
 ::: {.notes}
 **Time: approximately 6 minutes.**
 
-**The actual anecdote (about 1.5 minutes).** "I tried to understand what information the Poisson model used for training and realized that it used the profiles of the companies: sector, zone and programme. From there the profile baseline was a small leap. I asked: what is the simplest model I could think of using the *same information*?" The answer was a claim-rate table for the observed profiles.
+**Your actual anecdote (about 1.5 minutes).** "I wanted to understand what information the Poisson regression used to train. It used the companies' profiles—sector, zone and programme. That suggested a very small leap: what is the simplest model I can think of using exactly the same information?"
 
-**The mathematics (about 1.5 minutes).** Continue the notation from slide 4. For each profile $g$, let
-$$
-C_g=\sum_{i:\,g(i)=g}c_i,\qquad
-E_g=\sum_{i:\,g(i)=g}e_i.
-$$
-These are the profile's total claims and total exposure in worker-years. The simplest *unsmoothed* profile rate is $\widehat\lambda_g=C_g/E_g$ (when $E_g>0$); the predicted claim count for establishment $i$ is $\widehat\mu_i=e_i\widehat\lambda_{g(i)}$. Compare the pooled rate $\widehat\lambda=C/E$: the same calculation, applied to the whole dataset or separately by profile. The implemented notebook uses smoothing for sparse profiles, so its predictions need not equal these raw ratios.
+**The one simple idea (about 1.5 minutes).** Use the **same claims-divided-by-worker-years calculation** as before. For the pooled baseline, calculate it once across all training companies. For the profile baseline, repeat it separately for companies with each sector–zone–programme combination. When predicting for a company, use the rate for its profile and multiply by its exposure. The implemented notebook adds some smoothing for sparse profiles, but that technical detail need not interrupt the oral explanation.
 
-**Comparison and question (about 2 minutes).** On held-out **synthetic** 2025 observations, mean Poisson deviance was 2.607 for the common rate, 1.990 for the profile baseline and 2.458 for the Poisson regression (lower is better). Ask students: "How could this simpler idea outperform the fitted regression?"
+**Compare and ask (about 2 minutes).** The results on held-out **synthetic** 2025 data are 2.607 for the pooled rate, 1.990 for the profile baseline and 2.458 for Poisson regression (mean Poisson deviance; lower is better). Ask: "How could this extremely simple idea outperform the fitted regression?" Allow a few responses before discussing the explanation.
 
-**Interpretation (about 1 minute).** Conceptual simplicity is not the same as lower statistical flexibility. Separate rates for combinations of sector, zone and programme can represent interactions that a *main-effects-only* log-linear Poisson regression may omit. But estimates based on little exposure can be unstable. These scores do not establish that simpler approaches always win, that Poisson regression is fundamentally inferior, or anything about real Tanzanian insurance claims.
+**Interpretation (about 1 minute).** The procedure is easy to understand, but allowing a different rate for every profile can be statistically flexible: it captures interactions among sector, zone and programme that a main-effects-only log-linear regression may omit. It can also be unstable if there are few training observations in a profile. We are not concluding that simple models always win, or that these synthetic results characterize real Tanzanian insurance data.
 
-Conclude: understanding what information a model uses can suggest a transparent baseline, and fresh data help test its usefulness. Avoid teaching regression mechanics in this introduction.
+End with the key lesson: understand which information a model uses, try the simplest meaningful comparison, and validate on new data. There is no need to teach the mechanics of Poisson regression in this session.
 :::
 
 ## Choose a method because of the question
