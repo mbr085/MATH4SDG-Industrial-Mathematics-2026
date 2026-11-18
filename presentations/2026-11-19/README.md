@@ -1,6 +1,6 @@
 # MATH4SDG presentation — Quarto + Reveal.js
 
-Editable source for the eight-slide Thursday 19 November 2026 presentation.
+Editable source for the nine-slide Friday 20 November 2026 presentation.
 
 ## Contents
 
@@ -22,13 +22,13 @@ The render command produces `index.html` and any support assets needed by your l
 
 Press **S** in the Reveal.js presentation to open the presenter view, including the slide's `.notes` content. (For this reason, do not distribute full presenter notes in advance.)
 
-The YAML deliberately **does not contain a title field**, preventing Quarto from inserting an automatic extra title slide. The first `##` heading is the visual title slide.
+The YAML deliberately **does not contain a title field**, preventing Quarto from inserting an automatic extra title slide. The first `##` heading is the visual title slide. A ninth slide introduces the independent clustering sample after students have recorded their predictions.
 
-The two student notebooks and their public CSV datasets are already in the main [MATH4SDG repository](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026). The slides only link to those resources; they do not run any Python code while rendering.
+The staged clustering notebooks, the independent feature-selection investigation and their public CSV datasets are in the main [MATH4SDG repository](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026). The slides only link to those resources; they do not run any Python code while rendering.
 
 ## Editing tips
 
-- Each `##` heading begins a new slide; there are eight slides.
+- Each `##` heading begins a new slide; there are nine slides.
 - Slide text, equations, and tables are ordinary Markdown or LaTeX.
 - `::: {.columns}` and `::: {.column width="..."}` create multi-column layouts.
 - `::: {.notes}` contains speaker notes that appear in the presenter view, not the projected slide.

@@ -1,6 +1,6 @@
 # Facilitator notes — Synthetic insurance claims
 
-**Role:** An optional, self-contained backup for the 18–23 November 2026 industry bootcamp; not a compulsory lesson and not an industry deliverable. Use only if one or more groups lack a tractable industry-supplied question. The group should choose a manageable question and proceed at its own pace.
+**Role:** An optional, self-contained backup for the 19–24 November 2026 industry bootcamp (draft programme); not a compulsory lesson and not an industry deliverable. Use only if one or more groups lack a tractable industry-supplied question. The group should choose a manageable question and proceed at its own pace.
 
 ## Core mathematical idea
 
