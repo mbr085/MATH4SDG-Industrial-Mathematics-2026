@@ -351,11 +351,15 @@ One working Jupyter environment per group is enough to start.
 ::: {.columns}
 ::: {.column width="68%"}
 ::: {.activity-steps}
-**Get the workshop materials and start JupyterLab**
+**Student installation instructions — Windows and macOS**
 
-[**Student installation instructions — Windows and macOS**](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
+Type this address into your browser (or scan the QR code):
 
-Download the ZIP and follow the guide. You do not need Git or a GitHub account.
+::: {.installation-url}
+[https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
+:::
+
+Download the ZIP and follow the guide. No Git or GitHub account is needed.
 :::
 :::
 
@@ -375,7 +379,7 @@ Download the ZIP and follow the guide. You do not need Git or a GitHub account.
 ::: {.notes}
 **Time: approximately 2–3 minutes introduction, then 15 minutes setup.**
 
-Invite students to open the installation guide using the link or QR code. The guide gives the direct ZIP download and step-by-step instructions for Windows and macOS; nothing needs to be copied from the presentation slide. **No Git or GitHub account is needed.**
+Students can type the **full URL displayed on the slide** into a browser, click it directly, or scan the QR code. It points to the same installation guide. The guide gives the direct ZIP download and step-by-step instructions for Windows and macOS; nothing needs to be copied from the presentation slide. **No Git or GitHub account is needed.**
 
 The guide explains how to install uv, open a terminal in the extracted folder, and launch JupyterLab. Help students as needed. One working computer per group is sufficient to begin.
 
