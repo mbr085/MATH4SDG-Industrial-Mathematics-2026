@@ -1,59 +1,29 @@
 # MATH4SDG — Industrial Mathematics Bootcamp and Workshop 2026
 
-Python and computational teaching resources for the **University of Dar es Salaam (UDSM)** MATH4SDG industrial mathematics bootcamp (18–23 November 2026) and follow-up workshop (3–4 December 2026).
+Python and computational teaching resources for the **University of Dar es Salaam (UDSM)** MATH4SDG industrial mathematics bootcamp (draft programme: 19–24 November 2026) and follow-up workshop (3–4 December 2026).
 
-The bootcamp is principally **group work on industry-provided problems**. Facilitators circulate between groups; short morning demonstrations and end-of-day progress discussions support the investigations. Public backup projects (including East African temperature trends using NASA POWER and synthetic insurance-claims analysis) may be introduced if industry data are difficult to use.
+The bootcamp is principally **group work on industry-provided problems**. All industrial partners are expected to attend and provide data. Approximately **27 students and five facilitators** are expected; five groups of roughly five or six students may be a useful starting point, depending on the industrial problems. Facilitators circulate and share expertise. Check each partner's data-access and confidentiality conditions. Public synthetic investigations and climate-data examples remain optional teaching resources, not replacements for the industry problems.
 
 ## Getting started — Windows and macOS
 
-Students need **uv**, an Internet connection for the initial installation, and a copy of this repository. **No separate workshop Python package is required.** The `uv.lock` file contains the resolved dependencies for the workshop, including JupyterLab, pandas, NumPy, Matplotlib, SciPy, scikit-learn, statsmodels and Meteostat.
+1. **[Download the workshop materials (ZIP)](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/archive/refs/heads/main.zip)** and extract them. No Git installation or GitHub account is needed.
+2. **[Install uv](https://docs.astral.sh/uv/getting-started/installation/)** for Windows or macOS. It manages Python 3.12 and the required packages.
+3. Open PowerShell or Terminal **inside the extracted folder** and run:
 
-### Windows (PowerShell)
-
-Open **PowerShell** and install uv using Windows Package Manager:
-
-```powershell
-winget install --id=astral-sh.uv -e
-```
-
-If WinGet is unavailable, use the [official Windows installer](https://docs.astral.sh/uv/getting-started/installation/):
-
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-### macOS (Terminal)
-
-Open **Terminal** and install uv using its [official installer](https://docs.astral.sh/uv/getting-started/installation/):
-
-```sh
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-If you already use Homebrew, `brew install uv` is an alternative.
-
-### Download the workshop and start JupyterLab
-
-After installing uv, **open a new terminal**, verify `uv --version`, and clone the repository (or download the ZIP from GitHub and open a terminal in its extracted folder):
-
-```sh
-git clone https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026.git
-cd MATH4SDG-Industrial-Mathematics-2026
+```bash
 uv sync --locked
 uv run jupyter lab
 ```
 
-The same last two commands work in PowerShell and macOS Terminal. uv automatically sets up a project-local `.venv` with the required **Python 3.12** and the locked dependencies. Use `uv run jupyter lab` rather than installing JupyterLab globally. If Git is not installed, the GitHub **Code → Download ZIP** option works as well.
-
-See the [full student installation guide](INSTALL.md) for more detail, verification and troubleshooting. Complete the initial installation **while online**, before the workshop.
+For detailed Windows and macOS guidance, see [INSTALL.md](INSTALL.md). Git is optional. Download the ZIP and run the first setup while Internet access is available.
 
 ## Project data
 
 **Do not commit confidential partner data to this public repository.** Dataset ownership, access conditions and publication permissions must be checked individually. In particular, making a dataset available for workshop analysis does not imply permission to publish it. Code is licensed [MIT](LICENSE); original teaching notes are [CC BY 4.0](LICENSE-CONTENT.md); datasets have [separate terms](DATA_LICENSES.md).
 
-## Thursday plenary — editable Quarto slides
+## Friday plenary — editable Quarto slides
 
-The eight-slide presentation for **19 November 2026**, *From Industrial Problems to Mathematical Models — and Reliable Conclusions*, is maintained as editable [Quarto / Reveal.js source](presentations/2026-11-19/index.qmd), with [presentation instructions](presentations/2026-11-19/README.md). It introduces experimental design, transparent baselines, model validation, and the optional clustering activity; the data-generating reveal is deliberately kept outside this public repository.
+The nine-slide presentation for **20 November 2026**, *From Industrial Problems to Mathematical Models — and Reliable Conclusions*, is maintained as editable [Quarto / Reveal.js source](presentations/2026-11-19/index.qmd), with [presentation instructions](presentations/2026-11-19/README.md). It introduces experimental design, transparent baselines, model validation, and the optional clustering activity; the data-generating reveal is deliberately kept outside this public repository.
 
 After entering the repository's Nix development shell (via direnv or `nix develop`), preview it locally with:
 
@@ -74,9 +44,9 @@ The two optional backup notebooks link directly to both references. In JupyterLa
 
 ## Student investigations — apparent patterns and independent validation
 
-Two **independent, optional** Jupyter activities invite students to propose candidate groups or distinguishing measurements and then evaluate their interpretations on fresh data. They use entirely synthetic teaching measurements and only packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
+Two **optional** Jupyter investigations invite students to propose candidate groups or distinguishing measurements and evaluate interpretations on fresh data. The clustering exercise is split into two notebooks, with a deliberate prediction-and-discussion checkpoint between them. They use entirely synthetic teaching measurements and only packages already included in the workshop environment. The data-generating mechanisms are deliberately withheld from the student notebooks and will be discussed with the facilitator after students record their initial interpretations.
 
-- [Are these groups real? — clustering investigation](notebooks/clustering_investigation.ipynb). Apply a fixed sign-based rule to two-dimensional measurements, then check whether its geometric quality persists in an **independent sample**. The rows are not paired or remeasurements of the same objects; K-means is an optional extension.
+- [Are these groups real? — clustering, part 1](notebooks/clustering_investigation.ipynb). Inspect 90 observations, apply the fixed sign rule and examine a silhouette score. **Stop and record a prediction** before the facilitator introduces the independent second notebook during the session. The samples are independent, not remeasurements or paired rows; K-means is optional.
 - [Which measurement distinguishes the groups? — feature selection investigation](notebooks/feature_selection_investigation.ipynb). Start with 100 observations, two supplied labels, and 200 measurements, then select a distinguishing feature and test the **same selected feature** on independent measurements.
 
 The pre-generated, wholly fictional CSV files are under [`data/exercises/`](data/exercises/). Keep the repository folder structure when opening the notebooks locally; they load their files using relative paths. **Run the discovery part and write down an interpretation before opening the fresh data.** These are independent exercises rather than a required sequence. They do not use data from any Tanzanian institution or industrial partner.
@@ -154,7 +124,7 @@ For groups wishing to explore a **non-statistical** industrial mathematics probl
 
 A second, complementary [student-led insurance investigation](projects/insurance-claims/README.md) works **completely offline** and requires no industry records. All establishment identifiers, sectors, zones, claim counts, and cost values are **invented** and are not statistics from WCF, TIRA, an insurer, or Tanzania.
 
-The notebook asks how to estimate *expected claim counts* while accounting for exposure measured in worker-years. Students compare a pooled constant-rate baseline, an exposure-adjusted rate for each sector–zone–programme profile (with simple smoothing), and a Poisson regression. All three are trained on 2021–2024 and evaluated on held-out 2025 data. The profile baseline uses the same recorded predictors but can be more flexible than the regression; students discuss what each comparison establishes.
+The notebook asks how to estimate *expected claim counts* while accounting for exposure measured in worker-years. Students compare a pooled constant-rate baseline, an exposure-adjusted rate for each sector–zone–programme profile (without smoothing), and a Poisson regression. All three are trained on 2021–2024 and evaluated on held-out 2025 data. The profile baseline uses the same recorded predictors but can be more flexible than the regression; students discuss what each comparison establishes.
 
 ```sh
 uv sync --locked

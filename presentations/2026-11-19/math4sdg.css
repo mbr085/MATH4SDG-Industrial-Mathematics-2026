@@ -82,3 +82,6 @@
 .reveal .activity-steps li { padding: .18em 0 .43em; }
 .reveal .slide-number { font-size: 16px !important; }
 .reveal .footer { font-size: .35em; opacity: .75; }
+/* Keep the entire installation address legible and wrappable on slide 7. */
+.reveal .installation-url { font-size: .87em; line-height: 1.35; overflow-wrap: anywhere; word-break: break-word; }
+.reveal .installation-url a { text-decoration: underline; }

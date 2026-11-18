@@ -2,7 +2,7 @@
 
 **Question:** Has the estimated annual mean two-metre air temperature at the grid cell containing Dar es Salaam increased between 1986 and 2025, and how confident should we be?
 
-**This is an optional student-led project**, used only when partner projects are unavailable or need a fallback. It is not an extra lecture day. Industry partners present problems on 18 November; group investigations take place principally from 19 November with morning tool demos and end-of-day progress summaries.
+**This is an optional student-led project**, used only when partner projects are unavailable or need a fallback. It is not an extra lecture day. Under the draft programme, industry partners present problems on Thursday 19 November; group investigations take place principally on 21–23 November, with group presentations on Tuesday 24 November. Industry partners will provide datasets; this climate exercise remains optional.
 
 ### Why NASA POWER?
 

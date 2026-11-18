@@ -15,7 +15,7 @@ format:
     controls: true
     progress: true
     slide-number: "c/t"
-    footer: "MATH4SDG · UDSM · 19 NOV 2026"
+    footer: "MATH4SDG · UDSM · 20 NOV 2026"
     auto-stretch: false
 execute:
   enabled: false
@@ -24,7 +24,7 @@ execute:
 ## From industrial problems to mathematical models {.opening-slide}
 
 ::: {.eyebrow}
-MATH4SDG · UDSM · 19 NOVEMBER 2026
+MATH4SDG · UDSM · 20 NOVEMBER 2026
 :::
 
 ::: {.lead-subtitle}
@@ -252,14 +252,14 @@ Held-out **synthetic** 2025 · 600 establishment-years · lower error scores are
 :::
 
 ::: {.results-table}
-| Approach | Expected claims | $\ell^1$ error | Mean Poisson deviance |
+| Approach | Expected claims | MAE | Mean Poisson deviance |
 |:--|--:|--:|--:|
-| One common rate | 1,651 | 1,298 | 2.607 |
-| **Profile-specific rates** | 1,622 | **1,107** | **1.988** |
-| Poisson regression | 1,648 | 1,253 | 2.458 |
-| Simulation truth *(oracle)* | 1,995 | 776 | 1.044 |
+| One common rate | 1,651 | 2.16 | 2.607 |
+| **Profile-specific rates** | 1,622 | **1.85** | **1.988** |
+| Poisson regression | 1,648 | 2.09 | 2.458 |
+| Simulation truth *(oracle)* | 1,995 | 1.29 | 1.044 |
 
-<small>Observed: <strong>1,996 claims</strong>. Expected totals and L¹ distances rounded; the oracle knows the simulator.</small>
+<small>Observed: <strong>1,996 claims</strong>. Expected totals rounded; MAE is per establishment-year. The oracle knows the simulator.</small>
 :::
 
 ::: {.takeaway}
@@ -277,9 +277,9 @@ Now we have three models giving three different predictions. **Which model shoul
 
 The last row is different: it gives the **true conditional expected claim counts from the simulator**, using the mechanism that generated the data, including unobserved risk and the 2025 change. It is not another fitted model or another sample of observed counts. The **1,996 actual simulated claims** are the random outcomes; the oracle's expected total is about 1,995.
 
-Which fitted model predicts the **total number of claims** most accurately? The common-rate model comes closest to that total, yet has the worst two establishment-level scores. How do you think the **$\ell^1$-error** is calculated? We sum the absolute differences between each predicted count and observed count. Errors of opposite signs can cancel in a total, but not in this sum.
+Which fitted model predicts the **total number of claims** most accurately? The common-rate model comes closest to that total, yet has the worst two establishment-level scores. How is **mean absolute error (MAE)** calculated? We average the absolute differences between each predicted and observed claim count across the 600 establishment-years. Errors of opposite signs can cancel when predicting a total, but not in the MAE.
 
-The deviance is a **theoretically motivated goodness-of-fit score when predicting Poisson mean counts**. It measures individual discrepancies differently from $\ell^1$, but it is **not automatically the best measure for every purpose**. If the insurer mainly needs the overall total, the error in the total is relevant; if it needs reliable establishment-level predictions, the other scores matter. Here the profile model has the best $\ell^1$ and Poisson deviance among the fitted models, although it is not closest to the overall total.
+The deviance is a **theoretically motivated goodness-of-fit score when predicting Poisson mean counts**. It measures individual discrepancies differently from MAE, but it is **not automatically the best measure for every purpose**. If the insurer mainly needs the overall total, the error in the total is relevant; if it needs reliable establishment-level predictions, the other scores matter. Here the profile model has the best MAE and Poisson deviance among the fitted models, although it is not closest to the overall total.
 
 Even the oracle has nonzero errors: knowing the true conditional *means* does not tell us exactly which random counts will occur. All three fitted models underestimate the 2025 total; the simulator includes a change in incidence in 2025. The example is wholly synthetic and says nothing about actual Tanzanian insurance claims.
 
@@ -349,24 +349,25 @@ One working Jupyter environment per group is enough to start.
 :::
 
 ::: {.columns}
-::: {.column width="73%"}
-::: {.terminal-panel}
-**TERMINAL**
+::: {.column width="68%"}
+::: {.activity-steps}
+**Student installation instructions — Windows and macOS**
 
-```bash
-git clone https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026.git
-cd MATH4SDG-Industrial-Mathematics-2026
-uv sync --locked
-uv run jupyter lab
-```
+Type this address into your browser (or scan the QR code):
+
+::: {.installation-url}
+[https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
+:::
+
+Download the ZIP and follow the guide. No Git or GitHub account is needed.
 :::
 :::
 
-::: {.column width="25%"}
+::: {.column width="30%"}
 ::: {.qr-panel}
-![](assets/repo_qr.svg){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
+![](assets/install_guide_qr.png){width="210" fig-alt="QR code linking directly to the MATH4SDG student installation instructions"}
 
-[Repository and setup guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026)
+[Open the installation guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
 :::
 :::
 :::
@@ -378,23 +379,21 @@ uv run jupyter lab
 ::: {.notes}
 **Time: approximately 2–3 minutes introduction, then 15 minutes setup.**
 
-Here are instructions on how to start exploring the material I have provided for the workshop.
+Students can type the **full URL displayed on the slide** into a browser, click it directly, or scan the QR code. It points to the same installation guide. The guide gives the direct ZIP download and step-by-step instructions for Windows and macOS; nothing needs to be copied from the presentation slide. **No Git or GitHub account is needed.**
 
-I will help you with this now. Let's take **15 minutes** for this. I can also help you after this session.
+The guide explains how to install uv, open a terminal in the extracted folder, and launch JupyterLab. Help students as needed. One working computer per group is sufficient to begin.
 
-Ask students to open the repository, consult `INSTALL.md` if necessary, and start JupyterLab using the commands on the screen. If setup is difficult, students can share computers; one working environment per group is enough to begin. A ZIP download is possible if Git is not installed.
-
-**Reminder:** Work locally by default. Do not upload restricted industry data, notebook outputs or partner material to public GitHub, cloud notebooks or external AI services without permission.
+Work locally. Industrial partners will provide data, but workshop access is not automatically permission to publish. Do not upload restricted partner data or outputs to public GitHub, cloud notebooks or external AI services without permission.
 :::
 
 ## Your challenge: are these groups real?
 
 ::: {.eyebrow}
-STUDENT INVESTIGATION
+STUDENT INVESTIGATION · PART 1
 :::
 
 ::: {.slide-subtitle}
-Investigate the evidence **before** deciding what the groups mean.
+Investigate the evidence. **Stop and make a prediction before proceeding.**
 :::
 
 ::: {.columns}
@@ -402,32 +401,71 @@ Investigate the evidence **before** deciding what the groups mean.
 ::: {.activity-steps}
 1. **Inspect** — Explore 90 observations with two measurements each.
 2. **Partition** — Split by the sign of the first coordinate.
-3. **Predict** — Record what you expect for a fresh sample.
-4. **Test** — Apply the *same rule* to independent observations.
+3. **Measure** — Calculate the silhouette score.
+4. **Stop** — Record a prediction for fresh observations.
 :::
 :::
 
 ::: {.column width="26%"}
 ::: {.qr-panel}
-![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the clustering investigation notebook in the repository"}
+![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the first clustering notebook"}
 
-[Open the student notebook](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
+[Open notebook 1](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
 :::
 :::
 :::
 
 ::: {.notes}
-**Time: approximately 1 minute introduction; then 15–20 minutes investigation and 15–20 minutes discussion.**
+**Time: approximately 1 minute introduction, then about 10 minutes for part 1.**
 
-Here is a simple notebook I would like you to explore: `notebooks/clustering_investigation.ipynb`.
+Students open `notebooks/clustering_investigation.ipynb`. They see only the first sample. Ask them to write an interpretation and prediction before continuing. Do not introduce notebook 2 until the group has discussed those predictions.
 
-The notebook imports **two independent samples**. Please, **before examining the fresh sample, record a prediction**.
+Ask: Does the sign partition seem geometrically convincing? Will the **same rule** yield similar quality on independent observations? Do not disclose the Gaussian data-generating mechanism or any precomputed scores.
 
-Let me keep the debrief questions until after you have worked on the notebook. I will help during the investigation.
+This is a deliberate pause: students should commit to a prediction rather than running ahead.
+:::
 
-**For the discussion afterwards:** Does a similar geometric clustering score on the new sample show that there are distinct real populations? What else would we need to investigate? Could another simple dividing rule work as well? This is a question about evidence and interpretation, not just about obtaining a score.
+## Now test your prediction
 
-Do not disclose the Gaussian data-generating mechanism or precomputed scores before the students have completed the investigation and recorded their ideas. Keep the private facilitator reveal out of public slides and notes shared in advance.
+::: {.eyebrow}
+STUDENT INVESTIGATION · PART 2
+:::
 
-At the end, return to the industrial problems: What is your question, what simple baseline could you use, and what evidence would count as a good answer?
+::: {.slide-subtitle}
+Independent observations. **The same rule, unchanged.**
+:::
+
+::: {.columns}
+::: {.column width="72%"}
+::: {.activity-steps}
+1. **Open** — Start notebook 2 after the prediction checkpoint.
+2. **Test** — Apply the fixed sign rule to 90 fresh observations.
+3. **Compare** — Are the silhouette scores similar?
+4. **Interpret** — Is this evidence for two natural populations?
+:::
+:::
+
+::: {.column width="26%"}
+::: {.qr-panel}
+![](assets/clustering_validation_qr.png){width="180" fig-alt="QR code linking to the independent clustering validation notebook"}
+
+[Open notebook 2](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_validation.ipynb)
+:::
+:::
+:::
+
+::: {.takeaway}
+A reproducible clustering score is **not proof** that distinct natural populations exist.
+:::
+
+::: {.notes}
+**Time: approximately 10 minutes for part 2, then discussion and reveal.**
+
+Reveal this slide **only after students have recorded and discussed their predictions**. Notebook 2 runs independently and loads new observations, applying the same fixed sign rule without tuning.
+
+Ask what has been reproduced: the rule, its geometrical quality, or the existence of two underlying populations? Could another arbitrary dividing rule work equally well? What external evidence would make a group meaningful for a genuine industrial or biological question?
+
+Do not disclose the Gaussian data-generating mechanism before students have completed the investigation. Keep the facilitator's explanation separate from public notes.
+
+Finish by returning to the industrial problems: What is the actual partner's question? Which simple baseline can we try? What would count as a reliable answer?
 :::
