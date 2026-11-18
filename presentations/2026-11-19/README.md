@@ -6,7 +6,8 @@ Editable source for the nine-slide Friday 20 November 2026 presentation.
 
 - `index.qmd` — **primary presentation source**, text and equations in Quarto Markdown, plus speaker notes.
 - `math4sdg.css` — global slide typography, spacing, panels, tables, and colors.
-- `assets/repo_qr.svg` and `assets/clustering_qr.svg` — existing QR codes for the repository and first activity.
+- `assets/install_guide_qr.png` — QR code linking directly to `INSTALL.md` on the setup slide.
+- `assets/clustering_qr.svg` — QR code for the first clustering activity; `assets/repo_qr.svg` is retained as an earlier repository link.
 - `assets/clustering_validation_qr.png` — QR code for the second activity; reveal the ninth slide only after the prediction checkpoint.
 - Private facilitator reveal and discussion notes are **kept outside this public repository**. Do not share them with students in advance.
 

@@ -349,26 +349,21 @@ One working Jupyter environment per group is enough to start.
 :::
 
 ::: {.columns}
-::: {.column width="73%"}
-::: {.terminal-panel}
-**GET STARTED — NO GIT REQUIRED**
+::: {.column width="68%"}
+::: {.activity-steps}
+**Get the workshop materials and start JupyterLab**
 
-[Download workshop ZIP](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/archive/refs/heads/main.zip) and extract the folder.
+[**Student installation instructions — Windows and macOS**](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
 
-[Install uv](https://docs.astral.sh/uv/getting-started/installation/); open a terminal in the extracted folder.
-
-```bash
-uv sync --locked
-uv run jupyter lab
-```
+Download the ZIP and follow the guide. You do not need Git or a GitHub account.
 :::
 :::
 
-::: {.column width="25%"}
+::: {.column width="30%"}
 ::: {.qr-panel}
-![](assets/repo_qr.svg){width="170" fig-alt="QR code linking to the public MATH4SDG repository"}
+![](assets/install_guide_qr.png){width="210" fig-alt="QR code linking directly to the MATH4SDG student installation instructions"}
 
-[Repository and setup guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026)
+[Open the installation guide](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/INSTALL.md)
 :::
 :::
 :::
@@ -380,11 +375,11 @@ uv run jupyter lab
 ::: {.notes}
 **Time: approximately 2–3 minutes introduction, then 15 minutes setup.**
 
-The easiest way to obtain the materials is the direct ZIP download. **No Git or GitHub account is needed.** Students extract the archive, install uv once, and open a terminal inside the extracted folder.
+Invite students to open the installation guide using the link or QR code. The guide gives the direct ZIP download and step-by-step instructions for Windows and macOS; nothing needs to be copied from the presentation slide. **No Git or GitHub account is needed.**
 
-Refer to `INSTALL.md` for Windows and macOS instructions. The two commands install the Python environment and launch JupyterLab. If necessary, one computer per group is enough to begin. Approximately 27 students and five facilitators are expected; small groups make setup support manageable.
+The guide explains how to install uv, open a terminal in the extracted folder, and launch JupyterLab. Help students as needed. One working computer per group is sufficient to begin.
 
-Work locally. The industrial partners are coming and will provide data; access for the workshop does not automatically grant permission to publish. Do not upload restricted industry data or outputs to public GitHub, cloud notebooks or external AI services without permission.
+Work locally. Industrial partners will provide data, but workshop access is not automatically permission to publish. Do not upload restricted partner data or outputs to public GitHub, cloud notebooks or external AI services without permission.
 :::
 
 ## Your challenge: are these groups real?

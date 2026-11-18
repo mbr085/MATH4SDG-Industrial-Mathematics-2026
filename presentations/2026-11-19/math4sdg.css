@@ -72,7 +72,6 @@
 .reveal .tool-card { border-left: 5px solid var(--m4-blue); background: #f3f7f9; border-radius: 7px; padding: .52em .6em; min-height: 150px; margin-bottom: .45em; font-size: .72em; }
 .reveal .tool-card p { margin: .15em 0 .25em; }
 .reveal .terminal-panel { background: #18283a; color: #eef8f8; border-radius: 12px; padding: .55em .65em; min-height: 278px; }
-.reveal .terminal-panel a { color: #78e3d2; }
 .reveal .terminal-panel strong { color: #78e3d2; font-family: monospace; font-size: .63em; letter-spacing: .15em; }
 .reveal .terminal-panel pre { width: 100%; background: transparent; box-shadow: none; margin: .15em 0; }
 .reveal .terminal-panel code { background: transparent !important; color: #f0f5f6; font-size: 0.53em; line-height: 1.65; overflow-wrap: anywhere; white-space: pre-wrap; }
