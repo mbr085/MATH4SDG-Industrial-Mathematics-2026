@@ -126,7 +126,7 @@ Let's look at the screen.
 This is **not a one-way pipeline**. Evidence may force us to revise the model, the formulation, or even the question. Sometimes the most important work happens before anyone collects data.
 :::
 
-## Some of the best mathematics happens before the data exist
+## Some of the best work happens before reading the data
 
 ::: {.eyebrow}
 EXPERIMENTAL DESIGN
@@ -163,9 +163,9 @@ Exploration is valuable. **Confirmation is a different task.**
 :::
 
 ::: {.notes}
-**Time: approximately 7 minutes, including a short discussion.**
+**Time: approximately 3 minutes.**
 
-**Some of the best mathematics happens before the data exist.** Plan what an experiment is designed to test.
+**Some of the best work happens before reading the data.** Plan what an experiment is designed to test.
 
 I have done some work with biologists. It is always interesting. In their way, they know a lot of mathematical truths. Sometimes they have come to me after collecting and inspecting data. At other times, we have planned experiments together.
 
@@ -173,20 +173,9 @@ When we plan together, there is some tension. They know what they would like to 
 
 Look at the two approaches on the screen: *collect first* and *plan the test*. Exploration is valuable. Confirmation is a different task. Exploring data can suggest questions and patterns; if we want to confirm a claim, we should be clear about the comparison and how it will be assessed. A pattern found by looking at the data is not independently confirmed merely by evaluating it on those same data.
 
-**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
-
-What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
-
-Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
-
-**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
-
-**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
-
-This leads us to a very simple insurance prediction.
 :::
 
-## Insurance claims: counts need a denominator
+## Insurance claims
 
 ::: {.eyebrow}
 A SIMPLE BASELINE
@@ -224,7 +213,19 @@ Start with one claim rate for all companies. Could it vary by profile?
 :::
 
 ::: {.notes}
-**Time: approximately 4 minutes.**
+**Time: approximately 8 minutes, including a short discussion.**
+
+**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
+
+What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
+
+Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
+
+**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
+
+**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
+
+This leads us to a very simple insurance prediction.
 
 In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into **36 different "profiles"**, as in the synthetic notebook.
 
@@ -241,7 +242,7 @@ Is there a good way to decide which model to use? Can we assess the accuracy of 
 Transition to slide 5: compare predictions on data not used to fit the models.
 :::
 
-## Does a more sophisticated model help?
+## Which model is best?
 
 ::: {.eyebrow}
 MODEL COMPARISON
