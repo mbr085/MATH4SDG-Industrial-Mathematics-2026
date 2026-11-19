@@ -400,10 +400,13 @@ Investigate the evidence. **Stop and make a prediction before proceeding.**
 ::: {.columns}
 ::: {.column width="72%"}
 ::: {.activity-steps}
-1. **Inspect** — Explore 90 observations with two measurements each.
-2. **Partition** — Split by the sign of the first coordinate.
-3. **Measure** — Calculate the silhouette score.
-4. **Stop** — Record a prediction for fresh observations.
+**In JupyterLab:**
+
+1. In the **file browser on the left**, double-click the folder `notebooks`.
+2. Double-click **`clustering_investigation.ipynb`**.
+3. To run a code cell, click it and press **Shift + Enter**. Continue in order.
+4. Inspect the partition and calculate the silhouette score.
+5. **Stop** at “Stop here — record your prediction.” Do not open Part 2 yet.
 :::
 :::
 
@@ -411,7 +414,7 @@ Investigate the evidence. **Stop and make a prediction before proceeding.**
 ::: {.qr-panel}
 ![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the first clustering notebook"}
 
-[Open notebook 1](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
+[Notebook 1 — online copy](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
 :::
 :::
 :::
@@ -419,7 +422,7 @@ Investigate the evidence. **Stop and make a prediction before proceeding.**
 ::: {.notes}
 **Time: approximately 1 minute introduction, then about 10 minutes for part 1.**
 
-Students open `notebooks/clustering_investigation.ipynb`. They see only the first sample. Ask them to write an interpretation and prediction before continuing. Do not introduce notebook 2 until the group has discussed those predictions.
+Once JupyterLab is running, direct students to the **file browser on the left**. They double-click the `notebooks` folder, then double-click `clustering_investigation.ipynb`. Show them that **Shift + Enter** runs a selected code cell and advances to the next. The QR code is an optional online reference, not needed when working locally. They see only the first sample. Ask them to write an interpretation and prediction before continuing. Do not introduce notebook 2 until the group has discussed those predictions.
 
 Ask: Does the sign partition seem geometrically convincing? Will the **same rule** yield similar quality on independent observations? Do not disclose the Gaussian data-generating mechanism or any precomputed scores.
 
@@ -439,10 +442,12 @@ Independent observations. **The same rule, unchanged.**
 ::: {.columns}
 ::: {.column width="72%"}
 ::: {.activity-steps}
-1. **Open** — Start notebook 2 after the prediction checkpoint.
-2. **Test** — Apply the fixed sign rule to 90 fresh observations.
-3. **Compare** — Are the silhouette scores similar?
-4. **Interpret** — Is this evidence for two natural populations?
+**In JupyterLab, after the prediction checkpoint:**
+
+1. In the left file browser, double-click `notebooks` if needed.
+2. Double-click **`clustering_validation.ipynb`**.
+3. Run the code cells in order using **Shift + Enter**.
+4. Compare the silhouette scores. What do they tell us about the groups?
 :::
 :::
 
@@ -450,7 +455,7 @@ Independent observations. **The same rule, unchanged.**
 ::: {.qr-panel}
 ![](assets/clustering_validation_qr.png){width="180" fig-alt="QR code linking to the independent clustering validation notebook"}
 
-[Open notebook 2](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_validation.ipynb)
+[Notebook 2 — online copy](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_validation.ipynb)
 :::
 :::
 :::
@@ -462,7 +467,7 @@ A reproducible clustering score is **not proof** that distinct natural populatio
 ::: {.notes}
 **Time: approximately 10 minutes for part 2, then discussion and reveal.**
 
-Reveal this slide **only after students have recorded and discussed their predictions**. Notebook 2 runs independently and loads new observations, applying the same fixed sign rule without tuning.
+Reveal this slide **only after students have recorded and discussed their predictions**. Students return to the JupyterLab file browser, open the `notebooks` folder if needed, and double-click `clustering_validation.ipynb`. As in Part 1, use **Shift + Enter** to run the cells. The QR code is only an optional online reference. Notebook 2 runs independently and loads new observations, applying the same fixed sign rule without tuning.
 
 Ask what has been reproduced: the rule, its geometrical quality, or the existence of two underlying populations? Could another arbitrary dividing rule work equally well? What external evidence would make a group meaningful for a genuine industrial or biological question?
 
