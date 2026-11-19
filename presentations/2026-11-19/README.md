@@ -7,8 +7,8 @@ Editable source for the nine-slide Friday 20 November 2026 presentation.
 - `index.qmd` — **primary presentation source**, text and equations in Quarto Markdown, plus speaker notes.
 - `math4sdg.css` — global slide typography, spacing, panels, tables, and colors.
 - `assets/install_guide_qr.png` — QR code linking directly to `INSTALL.md` on the setup slide.
-- `assets/clustering_qr.svg` — QR code for the first clustering activity; `assets/repo_qr.svg` is retained as an earlier repository link.
-- `assets/clustering_validation_qr.png` — QR code for the second activity; reveal the ninth slide only after the prediction checkpoint.
+- The two clustering slides give **local JupyterLab instructions and filenames**, without GitHub links or QR codes. The earlier clustering QR assets remain in `assets/` but are not displayed.
+- Reveal the ninth slide only after students have recorded and discussed their predictions.
 - Private facilitator reveal and discussion notes are **kept outside this public repository**. Do not share them with students in advance.
 
 ## Preview and render
@@ -26,7 +26,7 @@ Press **S** in the Reveal.js presentation to open the presenter view, including 
 
 The YAML deliberately **does not contain a title field**, preventing Quarto from inserting an automatic extra title slide. The first `##` heading is the visual title slide. A ninth slide introduces the independent clustering sample after students have recorded their predictions.
 
-The staged clustering notebooks, the independent feature-selection investigation and their public CSV datasets are in the main [MATH4SDG repository](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026). The slides only link to those resources; they do not run any Python code while rendering.
+The staged clustering notebooks, the independent feature-selection investigation and their public CSV datasets are in the main [MATH4SDG repository](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026). Students open the clustering notebooks **locally in JupyterLab** using the filenames shown on slides 8 and 9; the slides do not execute Python code while rendering.
 
 ## Editing tips
 

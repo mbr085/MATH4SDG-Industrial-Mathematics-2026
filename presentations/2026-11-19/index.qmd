@@ -126,7 +126,7 @@ Let's look at the screen.
 This is **not a one-way pipeline**. Evidence may force us to revise the model, the formulation, or even the question. Sometimes the most important work happens before anyone collects data.
 :::
 
-## Some of the best mathematics happens before the data exist
+## Some of the best work happens before reading the data
 
 ::: {.eyebrow}
 EXPERIMENTAL DESIGN
@@ -163,9 +163,9 @@ Exploration is valuable. **Confirmation is a different task.**
 :::
 
 ::: {.notes}
-**Time: approximately 7 minutes, including a short discussion.**
+**Time: approximately 3 minutes.**
 
-**Some of the best mathematics happens before the data exist.** Plan what an experiment is designed to test.
+**Some of the best work happens before reading the data.** Plan what an experiment is designed to test.
 
 I have done some work with biologists. It is always interesting. In their way, they know a lot of mathematical truths. Sometimes they have come to me after collecting and inspecting data. At other times, we have planned experiments together.
 
@@ -173,20 +173,9 @@ When we plan together, there is some tension. They know what they would like to 
 
 Look at the two approaches on the screen: *collect first* and *plan the test*. Exploration is valuable. Confirmation is a different task. Exploring data can suggest questions and patterns; if we want to confirm a claim, we should be clear about the comparison and how it will be assessed. A pattern found by looking at the data is not independently confirmed merely by evaluating it on those same data.
 
-**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
-
-What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
-
-Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
-
-**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
-
-**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
-
-This leads us to a very simple insurance prediction.
 :::
 
-## Insurance claims: counts need a denominator
+## Insurance claims
 
 ::: {.eyebrow}
 A SIMPLE BASELINE
@@ -224,7 +213,19 @@ Start with one claim rate for all companies. Could it vary by profile?
 :::
 
 ::: {.notes}
-**Time: approximately 4 minutes.**
+**Time: approximately 8 minutes, including a short discussion.**
+
+**Hypothetical example:** Suppose we are tasked with helping an insurance provider predict more accurately how many claims different companies are going to make. It provides some information about the individual companies, such as size, sector and geographical location. It is willing to collect more information and asks us which information to collect and how to use it.
+
+What information would we suggest collecting? How would we use it? And how would we know if the claim predictions improve?
+
+Do we need a control group for evaluation? What is one thing we should decide before starting the investigation? Would we collect much information and look for patterns, or conduct controlled experiments one factor at a time? If we were provided a lot of information, how would we start examining it?
+
+**One question to ask the room:** "Before collecting more information, how would we know whether our predictions had improved?" Take a short response; the other questions can be explored by students in their groups.
+
+**Caution:** This hypothetical task is about *prediction*. We can evaluate predictions on new observations without necessarily conducting a controlled experiment. If we want to establish that a factor *causes* a change in claims, controls and confounding become much more important. Neither panel on the screen is universally the right method.
+
+This leads us to a very simple insurance prediction.
 
 In the hypothetical example about insurance claims, assume that we have collected information and used it to split the companies into **36 different "profiles"**, as in the synthetic notebook.
 
@@ -241,7 +242,7 @@ Is there a good way to decide which model to use? Can we assess the accuracy of 
 Transition to slide 5: compare predictions on data not used to fit the models.
 :::
 
-## Does a more sophisticated model help?
+## Which model is best?
 
 ::: {.eyebrow}
 MODEL COMPARISON
@@ -396,29 +397,20 @@ STUDENT INVESTIGATION · PART 1
 Investigate the evidence. **Stop and make a prediction before proceeding.**
 :::
 
-::: {.columns}
-::: {.column width="72%"}
 ::: {.activity-steps}
-1. **Inspect** — Explore 90 observations with two measurements each.
-2. **Partition** — Split by the sign of the first coordinate.
-3. **Measure** — Calculate the silhouette score.
-4. **Stop** — Record a prediction for fresh observations.
-:::
-:::
+**In JupyterLab:**
 
-::: {.column width="26%"}
-::: {.qr-panel}
-![](assets/clustering_qr.svg){width="180" fig-alt="QR code linking to the first clustering notebook"}
-
-[Open notebook 1](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_investigation.ipynb)
-:::
-:::
+1. In the **file browser on the left**, double-click the folder `notebooks`.
+2. Double-click **`clustering_investigation.ipynb`**.
+3. Click a code cell and press **Shift + Enter** to run it. Continue in order.
+4. Inspect the partition and calculate the silhouette score.
+5. **Stop** at “Stop here — record your prediction.” Do not open Part 2 yet.
 :::
 
 ::: {.notes}
 **Time: approximately 1 minute introduction, then about 10 minutes for part 1.**
 
-Students open `notebooks/clustering_investigation.ipynb`. They see only the first sample. Ask them to write an interpretation and prediction before continuing. Do not introduce notebook 2 until the group has discussed those predictions.
+Once JupyterLab is running, direct students to the **file browser on the left**. They double-click the `notebooks` folder, then double-click `clustering_investigation.ipynb`. Show them that **Shift + Enter** runs a selected code cell and advances to the next. They see only the first sample. Ask them to write an interpretation and prediction before continuing. Do not introduce notebook 2 until the group has discussed those predictions.
 
 Ask: Does the sign partition seem geometrically convincing? Will the **same rule** yield similar quality on independent observations? Do not disclose the Gaussian data-generating mechanism or any precomputed scores.
 
@@ -435,23 +427,13 @@ STUDENT INVESTIGATION · PART 2
 Independent observations. **The same rule, unchanged.**
 :::
 
-::: {.columns}
-::: {.column width="72%"}
 ::: {.activity-steps}
-1. **Open** — Start notebook 2 after the prediction checkpoint.
-2. **Test** — Apply the fixed sign rule to 90 fresh observations.
-3. **Compare** — Are the silhouette scores similar?
-4. **Interpret** — Is this evidence for two natural populations?
-:::
-:::
+**In JupyterLab, after the prediction checkpoint:**
 
-::: {.column width="26%"}
-::: {.qr-panel}
-![](assets/clustering_validation_qr.png){width="180" fig-alt="QR code linking to the independent clustering validation notebook"}
-
-[Open notebook 2](https://github.com/mbr085/MATH4SDG-Industrial-Mathematics-2026/blob/main/notebooks/clustering_validation.ipynb)
-:::
-:::
+1. In the **file browser on the left**, double-click `notebooks` if needed.
+2. Double-click **`clustering_validation.ipynb`**.
+3. Run the code cells in order using **Shift + Enter**.
+4. Compare the silhouette scores. What do they tell us about the groups?
 :::
 
 ::: {.takeaway}
@@ -461,7 +443,7 @@ A reproducible clustering score is **not proof** that distinct natural populatio
 ::: {.notes}
 **Time: approximately 10 minutes for part 2, then discussion and reveal.**
 
-Reveal this slide **only after students have recorded and discussed their predictions**. Notebook 2 runs independently and loads new observations, applying the same fixed sign rule without tuning.
+Reveal this slide **only after students have recorded and discussed their predictions**. Students return to the JupyterLab file browser, open the `notebooks` folder if needed, and double-click `clustering_validation.ipynb`. As in Part 1, use **Shift + Enter** to run the cells. Notebook 2 runs independently and loads new observations, applying the same fixed sign rule without tuning.
 
 Ask what has been reproduced: the rule, its geometrical quality, or the existence of two underlying populations? Could another arbitrary dividing rule work equally well? What external evidence would make a group meaningful for a genuine industrial or biological question?
 
