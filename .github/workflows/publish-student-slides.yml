@@ -1,13 +1,12 @@
-name: Publish student presentation (without notes)
+name: Publish student presentations (without notes)
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
-      - "presentations/2026-11-19/index.qmd"
-      - "presentations/2026-11-19/math4sdg.css"
-      - "presentations/2026-11-19/assets/**"
+      - "presentations/2026-11-19/**"
+      - "presentations/2026-11-21/**"
       - "scripts/prepare_student_slides.py"
       - ".github/workflows/publish-student-slides.yml"
 
@@ -33,41 +32,59 @@ jobs:
       - name: Install Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Prepare notes-free student source
+      - name: Prepare notes-free student sources
         run: |
           python scripts/prepare_student_slides.py \
             presentations/2026-11-19/index.qmd \
             presentations/2026-11-19/student-public.qmd
+          python presentations/2026-11-21/prepare_student.py \
+            presentations/2026-11-21/index.qmd \
+            presentations/2026-11-21/student-public.qmd
 
-      - name: Render self-contained student presentation
+      - name: Render self-contained presentations
         run: |
-          # Quarto/Pandoc resolve local CSS, QR images and Reveal.js assets
-          # relative to the working directory. Render *inside* the deck folder.
+          # Render each deck from its own directory so Quarto finds its CSS.
           (
             cd presentations/2026-11-19
             quarto render student-public.qmd \
               --to revealjs --output index.html -M embed-resources:true
           )
-          mkdir -p public
+          (
+            cd presentations/2026-11-21
+            quarto render student-public.qmd \
+              --to revealjs --output index.html -M embed-resources:true
+          )
+          # The Friday address remains unchanged; Saturday gets its own path.
+          mkdir -p public/2026-11-21
           cp presentations/2026-11-19/index.html public/index.html
+          cp presentations/2026-11-21/index.html public/2026-11-21/index.html
           touch public/.nojekyll
 
-      - name: Reject any leaked presenter notes
+      - name: Check that public presentations exclude speaker notes
         run: |
           python - <<'PY'
           from pathlib import Path
 
-          html = Path("public/index.html").read_text(encoding="utf-8")
-          for forbidden in (
-              'aside class="notes"',
-              'aside class="speaker-notes"',
-              "I have done some work with biologists",
-              "Do not disclose the Gaussian",
-              "The notebook imports two independent samples",
-          ):
-              if forbidden in html:
-                  raise SystemExit(f"Private presenter note found in HTML: {forbidden}")
-          print("Student HTML passes speaker-note exclusion checks")
+          decks = {
+              Path("public/index.html"): 9,
+              Path("public/2026-11-21/index.html"): 7,
+          }
+          for path, slides in decks.items():
+              html = path.read_text(encoding="utf-8")
+              if len(html) < 1000:
+                  raise SystemExit(f"Suspiciously small render: {path}")
+              for forbidden in (
+                  'aside class="notes"',
+                  'aside class="speaker-notes"',
+                  "I have done some work with biologists",
+                  "Do not disclose the Gaussian",
+                  "The notebook imports two independent samples",
+                  "return 2 + 3*x",
+                  "return 2 + 3 * x",
+              ):
+                  if forbidden in html:
+                      raise SystemExit(f"Private presenter material in {path}: {forbidden}")
+              print(f"Checked notes-free HTML: {path} ({slides} source slides)")
           PY
 
       - name: Configure GitHub Pages

@@ -23,7 +23,7 @@ quarto render student-public.qmd --to revealjs --output student.html -M embed-re
 
 The script verifies that it removed exactly seven note blocks from seven slides.
 
-A standalone offline notes-free browser HTML and presentation package are also supplied as separate conversation downloads. The existing Friday-only GitHub Pages workflow is **not** modified and will not automatically publish these Saturday slides.
+A standalone offline notes-free browser HTML and presentation package are also supplied as separate conversation downloads. The GitHub Pages workflow publishes this notes-free student deck at [Saturday's slides](https://mbr085.github.io/MATH4SDG-Industrial-Mathematics-2026/2026-11-21/) while retaining [Friday's slides](https://mbr085.github.io/MATH4SDG-Industrial-Mathematics-2026/) at the original address. Share only the Saturday link with students; the instructor source contains notes.
 
 Do not reveal the `deobfuscation(x)` function until students have explicitly chosen a model. Do not include restricted partner data in public materials.
 
@@ -31,4 +31,4 @@ Do not reveal the `deobfuscation(x)` function until students have explicitly cho
 
 Students remain in the five existing project groups and work in pairs. Each pair constructs two models, selects one using validation results **before** the final test, and tests it once. Afterwards, each group reports the two lowest final-test MAEs among the pairs' preselected models. This ranking is for description, not a second model-selection step.
 
-**Review status:** These slides remain a draft for author review. Do not merge, publish GitHub Pages, or release the final ZIP until approved.
+**Publication status:** The accepted presentation is merged. GitHub Pages deploys the notes-free student version after the publishing workflow succeeds.
