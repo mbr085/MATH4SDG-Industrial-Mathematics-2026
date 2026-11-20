@@ -41,8 +41,13 @@ jobs:
 
       - name: Render self-contained student presentation
         run: |
-          quarto render presentations/2026-11-19/student-public.qmd \
-            --to revealjs --output index.html -M embed-resources:true
+          # Quarto/Pandoc resolve local CSS, QR images and Reveal.js assets
+          # relative to the working directory. Render *inside* the deck folder.
+          (
+            cd presentations/2026-11-19
+            quarto render student-public.qmd \
+              --to revealjs --output index.html -M embed-resources:true
+          )
           mkdir -p public
           cp presentations/2026-11-19/index.html public/index.html
           touch public/.nojekyll
