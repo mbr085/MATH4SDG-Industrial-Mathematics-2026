@@ -35,11 +35,15 @@ The presentation is **not a compulsory machine-learning lesson**. Students work 
 
 ## Saturday workshop — AI as a mathematical collaborator (21 November)
 
-The [AI-assisted weather modelling notebook](notebooks/ai_assisted_weather_modelling.ipynb) supports a 60-minute, student-led investigation. It uses **wholly synthetic** temperature, humidity and wind data, not observations supplied by TMA or any industry partner. No additional Python packages are required.
+The [two-station AI weather notebook](notebooks/ai_assisted_weather_modelling.ipynb) supports a **60-minute student-led exercise** in reconstructing missing temperatures from incomplete time series. All measurements are **entirely synthetic**; they are not data supplied by TMA or another industry partner.
 
-In JupyterLab, double-click the `notebooks` folder and then double-click `ai_assisted_weather_modelling.ipynb`. Work through the notebook in order: establish the baseline, ask a generative AI assistant to construct **two different prediction models**, evaluate both on the same chronological validation period, and ask AI to compare and criticize them. Try an improvement only if time allows, then **select the final predictor explicitly before unlocking the separate final-test dataset**. The workshop ends with a five-group comparison of the results. The files in `data/exercises/` must remain in their original locations.
+Students inspect 270 days with missing temperatures at **both stations**. The helper constructs one prediction case per station/day, using the other station's **observed same-day** temperature when available and only **earlier** station temperatures. The first 210 days provide training examples and the next 60 days provide held-out validation examples; some originally observed validation values were deliberately concealed and are recorded in [validation answers](data/exercises/ai_weather_validation_answers.csv) for scoring only.
 
-Do not upload confidential or partner-provided data to an external AI assistant without explicit permission. The exercise demonstrates an investigative workflow, not a validated real-world weather model.
+Students compare a simple baseline with **two different models constructed using generative AI**, ask AI to criticize both models, then **explicitly choose a prediction function** before independent testing. The [final 60-day dataset](data/exercises/ai_weather_final.csv) is **obfuscated**, not securely encrypted. The instructor reveals a short deobfuscation function after the model decision. The notebook ends with a five-group comparison table. No new packages or plenary intervention are required.
+
+**For students who already unpacked the original repository ZIP:** copy the updated notebook into `notebooks/`, and copy all **three** `ai_weather_*.csv` files into `data/exercises/` without replacing either folder. Start JupyterLab as before, double-click `notebooks`, and open `ai_assisted_weather_modelling.ipynb`. Do not reuse older weather workshop CSVs with this redesigned notebook.
+
+Do not upload confidential or partner-provided data to an external AI assistant without authorization. These synthetic results do not demonstrate a validated real-world weather imputation system.
 
 ## Student quick references
 
