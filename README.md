@@ -33,6 +33,14 @@ quarto preview presentations/2026-11-19/index.qmd
 
 The presentation is **not a compulsory machine-learning lesson**. Students work primarily on partner-provided problems; the slide source and synthetic exercises are open resources.
 
+## Saturday workshop — AI as a mathematical collaborator (21 November)
+
+The [AI-assisted weather modelling notebook](notebooks/ai_assisted_weather_modelling.ipynb) supports a 60-minute, student-led investigation. It uses **wholly synthetic** temperature, humidity and wind data, not observations supplied by TMA or any industry partner. No additional Python packages are required.
+
+In JupyterLab, double-click the `notebooks` folder and then double-click `ai_assisted_weather_modelling.ipynb`. Work through the notebook in order: run the baseline, use a generative AI assistant to create a prediction function, challenge and revise its proposal, and compare validation errors. **Lock the chosen model before unlocking the final-test cell.** The files in `data/exercises/` must remain in their original locations.
+
+Do not upload confidential or partner-provided data to an external AI assistant without explicit permission. The exercise demonstrates an investigative workflow, not a validated real-world weather model.
+
 ## Student quick references
 
 These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
