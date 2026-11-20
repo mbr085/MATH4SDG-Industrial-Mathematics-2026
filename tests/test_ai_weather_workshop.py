@@ -2,11 +2,13 @@
 """Independent checks for the wholly synthetic two-station weather exercise."""
 
 import json
+import ast
 import unittest
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from sklearn.metrics import mean_absolute_error
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "exercises"
@@ -133,6 +135,111 @@ class TwoStationWorkshopTests(unittest.TestCase):
         self.assertAlmostEqual(yesterday(3, 1), 24.0)
         # Day 5: observed A=15 provides a B estimate of 15, passed to day 6.
         self.assertAlmostEqual(yesterday(5, 1), 15.0)
+
+
+    def test_score_restricts_training_dates_and_supplies_one_case(self):
+        # Extract the notebook's real score function, without executing other cells.
+        notebook = json.loads(
+            (ROOT / "notebooks" / "ai_assisted_weather_modelling.ipynb").read_text()
+        )
+        source = "".join(notebook["cells"][8]["source"])
+        tree = ast.parse(source)
+        func = next(
+            node for node in tree.body
+            if isinstance(node, ast.FunctionDef) and node.name == "score"
+        )
+        features = [
+            "station_code", "other_today_c", "own_yesterday_c",
+            "other_yesterday_c", "humidity_pct", "wind_speed_m_s",
+            "day_of_year",
+        ]
+        namespace = {"np": np, "mean_absolute_error": mean_absolute_error,
+                     "FEATURES": features}
+        module = ast.fix_missing_locations(
+            ast.Module(body=[func], type_ignores=[])
+        )
+        exec(compile(module, "score", "exec"), namespace)
+        score = namespace["score"]
+
+        train = pd.DataFrame({
+            "date": pd.to_datetime([
+                "2025-01-01", "2025-01-03", "2025-01-04", "2025-01-10"
+            ]),
+            "target_temp_c": [10., 70., 40., 100.],
+        })
+        cases = pd.DataFrame({
+            "date": pd.to_datetime(["2025-01-03", "2025-01-09"]),
+            "station_code": [0, 1],
+            "other_today_c": [25., np.nan],
+            "own_yesterday_c": [24., 28.],
+            "other_yesterday_c": [27., 25.],
+            "humidity_pct": [70., 75.],
+            "wind_speed_m_s": [1., 2.],
+            "day_of_year": [3, 9],
+            "truth_temp_c": [10., 40.],
+        })
+        calls = []
+
+        def predictor(past, today):
+            day = cases.iloc[len(calls)]["date"]
+            self.assertEqual(len(today), 1)
+            self.assertEqual(today.columns.tolist(), features)
+            self.assertTrue((past["date"] < day).all())
+            self.assertEqual(
+                past["date"].tolist(),
+                train.loc[train["date"] < day, "date"].tolist(),
+            )
+            calls.append(day)
+            return np.array([past["target_temp_c"].mean()])
+
+        self.assertAlmostEqual(score(predictor, train, cases), 0.)
+        self.assertEqual(len(calls), 2)
+
+        # Changing same-day or future targets cannot change an earlier result.
+        future_changed = train.copy()
+        future_changed.loc[
+            future_changed["date"] >= pd.Timestamp("2025-01-03"),
+            "target_temp_c"
+        ] = 99999.
+        earlier_case = cases.iloc[[0]]
+        def mean_predictor(past, today):
+            return np.array([past["target_temp_c"].mean()])
+        self.assertEqual(
+            score(mean_predictor, train, earlier_case),
+            score(mean_predictor, future_changed, earlier_case),
+        )
+
+    def test_score_rejects_multiple_predictions_for_one_case(self):
+        notebook = json.loads(
+            (ROOT / "notebooks" / "ai_assisted_weather_modelling.ipynb").read_text()
+        )
+        code = "".join(notebook["cells"][8]["source"])
+        tree = ast.parse(code)
+        func = next(
+            node for node in tree.body
+            if isinstance(node, ast.FunctionDef) and node.name == "score"
+        )
+        features = [
+            "station_code", "other_today_c", "own_yesterday_c",
+            "other_yesterday_c", "humidity_pct", "wind_speed_m_s", "day_of_year",
+        ]
+        env = {"np": np, "mean_absolute_error": mean_absolute_error,
+               "FEATURES": features}
+        module = ast.fix_missing_locations(ast.Module(body=[func], type_ignores=[]))
+        exec(compile(module, "score", "exec"), env)
+        one_case = pd.DataFrame({
+            "date": [pd.Timestamp("2025-01-03")],
+            "truth_temp_c": [25.],
+            **{feature: [1.] for feature in features},
+        })
+        training = pd.DataFrame({
+            "date": [pd.Timestamp("2025-01-01")],
+            "target_temp_c": [23.],
+        })
+        with self.assertRaisesRegex(ValueError, "one temperature prediction"):
+            env["score"](
+                lambda earlier, current: [1., 2.], training, one_case
+            )
 
 
 if __name__ == "__main__":
