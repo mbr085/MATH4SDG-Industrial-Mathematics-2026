@@ -37,7 +37,7 @@ The presentation is **not a compulsory machine-learning lesson**. Students work 
 
 The [AI-assisted weather modelling notebook](notebooks/ai_assisted_weather_modelling.ipynb) supports a 60-minute, student-led investigation. It uses **wholly synthetic** temperature, humidity and wind data, not observations supplied by TMA or any industry partner. No additional Python packages are required.
 
-In JupyterLab, double-click the `notebooks` folder and then double-click `ai_assisted_weather_modelling.ipynb`. Work through the notebook in order: run the baseline, use a generative AI assistant to create a prediction function, challenge and revise its proposal, and compare validation errors. **Lock the chosen model before unlocking the final-test cell.** The files in `data/exercises/` must remain in their original locations.
+In JupyterLab, double-click the `notebooks` folder and then double-click `ai_assisted_weather_modelling.ipynb`. Work through the notebook in order: establish the baseline, ask a generative AI assistant to construct **two different prediction models**, evaluate both on the same chronological validation period, and ask AI to compare and criticize them. Try an improvement only if time allows, then **select the final predictor explicitly before unlocking the separate final-test dataset**. The workshop ends with a five-group comparison of the results. The files in `data/exercises/` must remain in their original locations.
 
 Do not upload confidential or partner-provided data to an external AI assistant without explicit permission. The exercise demonstrates an investigative workflow, not a validated real-world weather model.
 
