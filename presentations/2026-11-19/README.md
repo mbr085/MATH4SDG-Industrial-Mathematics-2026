@@ -40,3 +40,18 @@ The staged clustering notebooks, the independent feature-selection investigation
 ## Environment status
 
 The source has been checked with Pandoc's Markdown parser. Preview it using the project's Nix/direnv environment, then inspect the rendered slides locally before presenting.
+## Student version for GitHub Pages
+
+The **instructor** file `index.qmd` contains speaker notes. Do **not** publish its ordinary `index.html` output: Reveal.js speaker view can display those notes.
+
+The workflow [`publish-student-slides.yml`](../../.github/workflows/publish-student-slides.yml) instead:
+
+1. Builds a temporary `.student-public.qmd` from `index.qmd`, removing all nine `.notes` sections with [`prepare_student_slides.py`](../../scripts/prepare_student_slides.py).
+2. Refuses to publish if the number of slides or notes differs from nine or if the activity reveal appears in the public source.
+3. Renders a **self-contained**, notes-free Reveal.js `index.html` and deploys **only that HTML file** to GitHub Pages.
+
+The two clustering notebooks are named on slides 8–9, but the Gaussian data-generating mechanism and instructor discussion prompts are excluded. Reveal the second notebook only after students have recorded their prediction; a publicly accessible slide deck cannot enforce that staging.
+
+To activate GitHub Pages, select **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow runs on relevant changes to `main` and can also be run manually under **Actions → Publish student presentation (without notes) → Run workflow**.
+
+Expected Pages address after successful deployment: `https://mbr085.github.io/MATH4SDG-Industrial-Mathematics-2026/`. Verify that it actually loads before sharing it.

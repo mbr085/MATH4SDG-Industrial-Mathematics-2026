@@ -1,0 +1,78 @@
+name: Publish student presentation (without notes)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "presentations/2026-11-19/index.qmd"
+      - "presentations/2026-11-19/math4sdg.css"
+      - "presentations/2026-11-19/assets/**"
+      - "scripts/prepare_student_slides.py"
+      - ".github/workflows/publish-student-slides.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "student-slides-pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Prepare notes-free student source
+        run: |
+          python scripts/prepare_student_slides.py \
+            presentations/2026-11-19/index.qmd \
+            presentations/2026-11-19/.student-public.qmd
+
+      - name: Render self-contained student presentation
+        run: |
+          quarto render presentations/2026-11-19/.student-public.qmd \
+            --to revealjs --output index.html -M embed-resources:true
+          mkdir -p public
+          cp presentations/2026-11-19/index.html public/index.html
+          touch public/.nojekyll
+
+      - name: Reject any leaked presenter notes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          html = Path("public/index.html").read_text(encoding="utf-8")
+          for forbidden in (
+              'aside class="notes"',
+              'aside class="speaker-notes"',
+              "I have done some work with biologists",
+              "Do not disclose the Gaussian",
+              "The notebook imports two independent samples",
+          ):
+              if forbidden in html:
+                  raise SystemExit(f"Private presenter note found in HTML: {forbidden}")
+          print("Student HTML passes speaker-note exclusion checks")
+          PY
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
