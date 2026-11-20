@@ -47,7 +47,7 @@ Do not upload confidential or partner-provided data to an external AI assistant 
 
 ## Saturday AI collaborator slides (21 November)
 
-The separate seven-slide [Saturday Quarto presentation](presentations/2026-11-21/index.qmd) accompanies the hands-on [two-station weather notebook](notebooks/ai_assisted_weather_modelling.ipynb). The presentation gives local JupyterLab instructions, two AI-assisted model-building stages, a critical comparison, a final-test checkpoint and the five-group discussion. The public browser version contains no speaker notes or deobfuscation key. The previously accepted Friday presentation and its GitHub Pages workflow are unchanged.
+The separate seven-slide [Saturday Quarto presentation](presentations/2026-11-21/index.qmd) accompanies the hands-on [two-station weather notebook](notebooks/ai_assisted_weather_modelling.ipynb). The presentation gives local JupyterLab instructions, two AI-assisted model-building stages, a critical comparison, a final-test checkpoint and the five-group discussion. The [Saturday student slides](https://mbr085.github.io/MATH4SDG-Industrial-Mathematics-2026/2026-11-21/) and [Friday student slides](https://mbr085.github.io/MATH4SDG-Industrial-Mathematics-2026/) are published separately, without speaker notes or the deobfuscation key. The Friday root URL remains unchanged.
 
 ## Student quick references
 
