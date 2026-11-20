@@ -71,24 +71,68 @@ class TwoStationWorkshopTests(unittest.TestCase):
         source = "".join(notebook["cells"][6]["source"])
         env = {"pd": pd, "development": self.dev, "display": lambda *_: None}
         exec(source, env)
-        cases = env["make_cases"](self.dev)
+        make_cases = env["make_cases"]
+        cases = make_cases(self.dev)
+
         for t in [0, 1, 2, 15, 60, 209, 210, 225, 269]:
             day = self.dev.iloc[t]
             past = self.dev.iloc[:t]
+            completed_a = past[OBSERVED[0]].fillna(past[OBSERVED[1]]).ffill()
+            completed_b = past[OBSERVED[1]].fillna(past[OBSERVED[0]]).ffill()
+            last_completed = [
+                completed_a.iloc[-1] if len(completed_a) else np.nan,
+                completed_b.iloc[-1] if len(completed_b) else np.nan,
+            ]
             for station in (0, 1):
                 case = cases.loc[
                     (cases["date"] == day.date) & (cases["station_code"] == station)
                 ].iloc[0]
-                own, other = OBSERVED[station], OBSERVED[1 - station]
-                recent = past[own].dropna()
-                if len(recent):
-                    self.assertAlmostEqual(case["own_last_c"], recent.iloc[-1])
-                else:
-                    self.assertTrue(pd.isna(case["own_last_c"]))
-                if pd.notna(day[other]):
-                    self.assertAlmostEqual(case["other_today_c"], day[other])
-                else:
-                    self.assertTrue(pd.isna(case["other_today_c"]))
+                other = OBSERVED[1 - station]
+                expected_yesterday = last_completed[station]
+                expected_other_yesterday = last_completed[1 - station]
+                for actual, expected in (
+                    (case["own_yesterday_c"], expected_yesterday),
+                    (case["other_yesterday_c"], expected_other_yesterday),
+                    (case["other_today_c"], day[other]),
+                ):
+                    if pd.isna(expected):
+                        self.assertTrue(pd.isna(actual))
+                    else:
+                        self.assertAlmostEqual(actual, expected)
+
+            # Appending future data may not change features of an earlier day.
+            prefix_cases = make_cases(self.dev.iloc[: t + 1])
+            earlier_rows = cases.loc[cases["date"] <= day.date].reset_index(drop=True)
+            pd.testing.assert_frame_equal(prefix_cases, earlier_rows)
+
+    def test_previous_day_can_itself_be_an_estimate(self):
+        notebook = json.loads(
+            (ROOT / "notebooks" / "ai_assisted_weather_modelling.ipynb").read_text()
+        )
+        source = "".join(notebook["cells"][6]["source"])
+        toy = pd.DataFrame({
+            "date": pd.date_range("2025-01-01", periods=6),
+            "station_a_temp_c": [10.0, np.nan, np.nan, np.nan, 15.0, np.nan],
+            "station_b_temp_c": [20.0, 24.0, np.nan, np.nan, np.nan, np.nan],
+            "humidity_pct": [70.0] * 6,
+            "wind_speed_m_s": [2.0] * 6,
+        })
+        env = {"pd": pd, "development": toy, "display": lambda *_: None}
+        exec(source, env)
+        cases = env["make_cases"](toy)
+        def yesterday(day_idx, station):
+            return cases.loc[
+                (cases["date"] == toy.iloc[day_idx].date)
+                & (cases["station_code"] == station), "own_yesterday_c"
+            ].iloc[0]
+
+        # Day 2: station A is estimated at 24 from same-day observed B.
+        # Days 3-4: both temperatures are missing; carry forward that estimate.
+        self.assertAlmostEqual(yesterday(2, 0), 24.0)
+        self.assertAlmostEqual(yesterday(3, 0), 24.0)
+        self.assertAlmostEqual(yesterday(3, 1), 24.0)
+        # Day 5: observed A=15 provides a B estimate of 15, passed to day 6.
+        self.assertAlmostEqual(yesterday(5, 1), 15.0)
 
 
 if __name__ == "__main__":
