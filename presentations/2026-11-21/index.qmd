@@ -1,0 +1,220 @@
+---
+format:
+  revealjs:
+    theme: default
+    css: workshop.css
+    slide-level: 2
+    width: 1280
+    height: 720
+    margin: 0.055
+    center: false
+    transition: fade
+    controls: true
+    progress: true
+    slide-number: "c/t"
+    footer: "MATH4SDG · UDSM · 21 NOV 2026"
+    auto-stretch: false
+execute:
+  enabled: false
+---
+
+## AI as a Mathematical Collaborator {.opening-slide}
+
+::: {.eyebrow}
+MATH4SDG · UDSM · SATURDAY 21 NOVEMBER 2026
+:::
+
+::: {.lead-subtitle}
+Build two models. Question the AI. Test the evidence.
+:::
+
+::: {.big-question}
+**Can we reconstruct missing weather measurements without looking into the future?**
+:::
+
+::: {.time-cue}
+60-minute workshop · work in pairs within your five project groups
+:::
+
+::: {.notes}
+0–2 min. This is a student workshop, not an additional lecture. Students already used JupyterLab. Explain that pairs within their existing project groups will build two different models with generative AI, then check whether the claims and results withstand scrutiny. The data are completely synthetic.
+:::
+
+## Two stations, incomplete observations
+
+::: {.eyebrow}
+THE MATHEMATICAL PROBLEM · 2–6 MIN
+:::
+
+::: {.slide-subtitle}
+Estimate missing temperatures at A or B using available information.
+:::
+
+::: {.small-results}
+| Day | A (°C) | B (°C) | Humidity | Wind |
+|:--|--:|--:|:--|:--|
+| 1 | 28.5 | 28.1 | available | available |
+| 2 | **missing** | 29.0 | available | available |
+| 3 | **missing** | **missing** | available | available |
+| 4 | 30.1 | **missing** | available | available |
+:::
+
+::: {.takeaway}
+**Allowed:** measurements from today and earlier days. **Not allowed:** later measurements or concealed answers.
+:::
+
+::: {.notes}
+2–6 min. Same-day observed values at the other station are allowed. The baseline carries forward yesterday's completed temperature when both stations are missing; that previous value may have been estimated. Ask which readings may inform a prediction for day 3. Day 4 is excluded.
+:::
+
+## Open the activity in JupyterLab
+
+::: {.eyebrow}
+STUDENT ACTION · 6–12 MIN
+:::
+
+::: {.activity-steps}
+1. Extract the **Saturday student update ZIP** shared by the facilitator.
+2. Copy its notebook into the existing **notebooks/** folder and its three CSVs into **data/exercises/**. **Do not replace the folders.**
+3. In the **left JupyterLab file browser**, double-click **notebooks**, then double-click **ai_assisted_weather_modelling.ipynb**.
+4. Run code cells with **Shift + Enter**. Explore the data, completion rule and baseline.
+:::
+
+::: {.takeaway}
+**Stay in your project group and work in pairs.** Keep JupyterLab and your AI assistant open side by side.
+:::
+
+::: {.notes}
+6–12 min. Guide students through the local files; they have already started JupyterLab. Facilitators circulate among the five project groups. Show that Shift+Enter runs a cell. Ensure files stay in their original directory structure. Do not ask students to upload partner data to an AI service.
+:::
+
+## Ask AI for two different models
+
+::: {.eyebrow}
+PAIR INVESTIGATION · 12–32 MIN
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.model-card}
+**First model · 10 min**
+
+Ask AI for a simple predictor.
+
+**first_predict_temperature**
+
+Run it. Record the validation MAE.
+:::
+:::
+
+::: {.column width="49%"}
+::: {.model-card}
+**Second model · 10 min**
+
+Ask AI for a different mathematical approach.
+
+**second_predict_temperature**
+
+Run it on the **same validation cases**.
+:::
+:::
+:::
+
+::: {.takeaway}
+Only **earlier training rows** and **one prediction case** may be used. No global data, hidden answers or future observations.
+:::
+
+::: {.notes}
+12–32 min. Every pair constructs two different models; pairs in one group may try different approaches. Let students explore different algorithms. Encourage a different model family for the second attempt: linear/ridge regression, SVR, tree, random forest or a simple rule. The notebook supplies each function strictly earlier training rows and one current feature row. AI-generated code must not access globals or CSV files.
+:::
+
+## Compare, criticize and discuss
+
+::: {.eyebrow}
+PAIRS + GROUP DISCUSSION · 32–43 MIN
+:::
+
+::: {.activity-steps}
+1. **In your pair:** What assumptions differ between your two models?
+2. **In your group:** Compare findings with other pairs. Which approaches emerged?
+3. **Challenge AI:** How might either model fail on missing or later observations?
+4. **Verify:** Independently check one AI-generated claim; improve only if time allows.
+:::
+
+::: {.takeaway}
+A convincing-sounding answer is not evidence. **Check one AI claim yourself.**
+:::
+
+::: {.notes}
+32–43 min. Each pair first asks AI to criticize its two models. Then encourage brief discussion with other pairs in the same project group. Discuss assumptions, missing data, scaling, leakage and overfitting. Each pair checks one AI-generated claim independently. Optional modifications must be assessed on validation, not final test. Groups do not have to agree on one model.
+:::
+
+## Choose first. Reveal second.
+
+::: {.eyebrow}
+FINAL TEST · 43–48 MIN
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.model-card}
+**1. Each pair locks one model**
+
+Compare the baseline and both AI models **on validation**.
+
+Assign **chosen_predict_temperature** to the chosen function.
+
+*Record why you chose it.*
+:::
+:::
+
+::: {.column width="49%"}
+::: {.model-card}
+**2. Test once**
+
+The facilitator reveals the **deobfuscation function**.
+
+Complete **deobfuscation(x)** in JupyterLab.
+
+Compare the final-test MAE with the baseline.
+:::
+:::
+:::
+
+::: {.takeaway}
+Do not change the selected model after seeing the final-test result.
+:::
+
+::: {.notes}
+43–48 min. Each pair consults its group if helpful but locks one predictor before the reveal. Check students have recorded the selected function and their reason before revealing the deobfuscation formula. Reveal it orally or on the whiteboard only, never in the public repository or pre-distributed slides. Final test values are obfuscated, not securely encrypted.
+:::
+
+## Each group reports two results
+
+::: {.eyebrow}
+FIVE GROUPS · 48–60 MIN
+:::
+
+::: {.slide-subtitle}
+Each pair chooses before the reveal. Each group reports its **two lowest final-test MAEs**.
+:::
+
+::: {.small-results .group-results}
+| Group | Lowest MAE: model (°C) | Next-lowest MAE: model (°C) |
+|:--|:--|:--|
+| 1 | — | — |
+| 2 | — | — |
+| 3 | — | — |
+| 4 | — | — |
+| 5 | — | — |
+:::
+
+**Common baseline final-test MAE:** ______ °C
+
+::: {.takeaway}
+This post-test ranking is **for reporting only**. Do not reselect or improve models using test results.
+:::
+
+::: {.notes}
+48–60 min. Each pair has already selected one model using validation data. Collect each pair's final-test MAE and ask each project group to report the **two preselected pair models with the lowest final-test MAEs**. Record both model names and MAEs; compare them with the common baseline. These reported rankings are descriptive, not a second model-selection or tuning opportunity. Invite one short observation per group, such as a checked AI claim or unexpected result. Return to the five industrial challenges and scientific responsibility.
+:::

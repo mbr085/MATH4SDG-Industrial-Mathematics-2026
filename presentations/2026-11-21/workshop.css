@@ -1,0 +1,28 @@
+:root { --m4-navy:#142a3d; --m4-teal:#007f78; --m4-blue:#2f6f98; --m4-border:#d8e4e6; --m4-soft:#eff5f6; }
+.reveal {font-family:"Source Sans Pro","DejaVu Sans",Arial,sans-serif;color:#1b2b39;font-size:30px}
+.reveal .slides section{text-align:left}
+.reveal h2{color:var(--m4-navy);font-size:1.45em;line-height:1.13;font-weight:700;margin:0 0 .23em}
+.reveal p{margin:.32em 0 .65em}
+.reveal strong{color:var(--m4-navy)}
+.reveal .eyebrow{color:var(--m4-teal);text-transform:uppercase;letter-spacing:.1em;font-weight:750;font-size:.47em;margin-top:.18em;margin-bottom:1.05em}
+.reveal .slide-subtitle{color:#526877;font-size:.75em;margin:0 0 1.1em}
+.reveal .opening-slide{padding-top:2em}
+.reveal .opening-slide h2{max-width:1050px;font-size:1.85em}
+.reveal .lead-subtitle{font-size:1.13em;color:var(--m4-blue);font-weight:650;margin:.8em 0 1em}
+.reveal .big-question{background:var(--m4-soft);border-left:6px solid var(--m4-teal);border-radius:9px;padding:.55em .75em;font-size:.85em}
+.reveal .time-cue{color:#526877;font-size:.64em;margin-top:1.9em}
+.reveal .takeaway{border-left:6px solid var(--m4-teal);background:var(--m4-soft);padding:.4em .6em;margin-top:1em;border-radius:5px;font-size:.73em}
+.reveal .takeaway p{margin:.1em 0}
+.reveal .activity-steps{background:#f5f9fa;border:1px solid var(--m4-border);border-radius:12px;padding:.34em .8em;font-size:.78em}
+.reveal .activity-steps ol{margin-left:1em}
+.reveal .activity-steps li{padding:.2em 0 .32em}
+.reveal .columns{gap:.7em}
+.reveal .model-card{border:1px solid var(--m4-border);background:#f5f9fa;border-radius:12px;padding:.6em .7em;font-size:.78em;min-height:220px}
+.reveal .model-card p{margin:.55em 0 .85em}
+.reveal .model-card strong{color:var(--m4-teal);font-size:1.08em}
+.reveal .small-results table{width:100%;font-size:.77em}
+.reveal .small-results th{background:var(--m4-navy);color:white;padding:.35em .46em}
+.reveal .small-results td{border-bottom:1px solid var(--m4-border);padding:.34em .46em}
+.reveal .group-results table{font-size:.66em}
+.reveal .slide-number{font-size:16px!important}
+.reveal .footer{font-size:.34em;opacity:.75}

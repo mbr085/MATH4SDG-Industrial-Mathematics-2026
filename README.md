@@ -33,6 +33,22 @@ quarto preview presentations/2026-11-19/index.qmd
 
 The presentation is **not a compulsory machine-learning lesson**. Students work primarily on partner-provided problems; the slide source and synthetic exercises are open resources.
 
+## Saturday workshop — AI as a mathematical collaborator (21 November)
+
+The [two-station AI weather notebook](notebooks/ai_assisted_weather_modelling.ipynb) supports a **60-minute student-led exercise** in reconstructing missing temperatures from incomplete time series. All measurements are **entirely synthetic**; they are not data supplied by TMA or another industry partner.
+
+Students inspect 270 days with missing temperatures at **both stations**. A short, explicit NumPy recursion `complete(a, b)` fills gaps using the other station's **observed same-day** temperature or **yesterday's completed temperature**. A separate `make_cases` function only arranges the arrays into station/day rows for the AI models. The first 210 days provide training examples and the next 60 days provide held-out validation examples; some originally observed validation values were deliberately concealed and are recorded in [validation answers](data/exercises/ai_weather_validation_answers.csv) for scoring only.
+
+Students compare a simple baseline with **two different models constructed using generative AI**, ask AI to criticize both models, then **explicitly choose a prediction function** before independent testing. Each evaluation now supplies only **strictly earlier training observations** and **one station/day case at a time**, avoiding accidental future information in the provided inputs. The [final 60-day dataset](data/exercises/ai_weather_final.csv) is **obfuscated**, not securely encrypted. The instructor reveals a short deobfuscation function after the model decision. The notebook ends with a five-group comparison table. No new packages or plenary intervention are required.
+
+**For students who already unpacked the original repository ZIP:** copy the updated notebook into `notebooks/`, and copy all **three** `ai_weather_*.csv` files into `data/exercises/` without replacing either folder. Start JupyterLab as before, double-click `notebooks`, and open `ai_assisted_weather_modelling.ipynb`. Do not reuse older weather workshop CSVs with this redesigned notebook.
+
+Do not upload confidential or partner-provided data to an external AI assistant without authorization. These synthetic results do not demonstrate a validated real-world weather imputation system.
+
+## Saturday AI collaborator slides (21 November)
+
+The separate seven-slide [Saturday Quarto presentation](presentations/2026-11-21/index.qmd) accompanies the hands-on [two-station weather notebook](notebooks/ai_assisted_weather_modelling.ipynb). The presentation gives local JupyterLab instructions, two AI-assisted model-building stages, a critical comparison, a final-test checkpoint and the five-group discussion. The public browser version contains no speaker notes or deobfuscation key. The previously accepted Friday presentation and its GitHub Pages workflow are unchanged.
+
 ## Student quick references
 
 These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
