@@ -45,6 +45,10 @@ Students compare a simple baseline with **two different models constructed using
 
 Do not upload confidential or partner-provided data to an external AI assistant without authorization. These synthetic results do not demonstrate a validated real-world weather imputation system.
 
+## Saturday AI collaborator slides (21 November)
+
+The separate seven-slide [Saturday Quarto presentation](presentations/2026-11-21/index.qmd) accompanies the hands-on [two-station weather notebook](notebooks/ai_assisted_weather_modelling.ipynb). The presentation gives local JupyterLab instructions, two AI-assisted model-building stages, a critical comparison, a final-test checkpoint and the five-group discussion. The public browser version contains no speaker notes or deobfuscation key. The previously accepted Friday presentation and its GitHub Pages workflow are unchanged.
+
 ## Student quick references
 
 These short **executable Jupyter notebooks** support students who are learning Python while investigating mathematical questions. They are **not additional compulsory lessons**. Each starts with a small, wholly invented dataset so students can run and edit examples without downloading data or executing another notebook; each also links to official documentation and suggests focused AI questions that students can independently verify.
