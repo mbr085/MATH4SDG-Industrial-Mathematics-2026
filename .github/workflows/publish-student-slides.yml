@@ -37,11 +37,11 @@ jobs:
         run: |
           python scripts/prepare_student_slides.py \
             presentations/2026-11-19/index.qmd \
-            presentations/2026-11-19/.student-public.qmd
+            presentations/2026-11-19/student-public.qmd
 
       - name: Render self-contained student presentation
         run: |
-          quarto render presentations/2026-11-19/.student-public.qmd \
+          quarto render presentations/2026-11-19/student-public.qmd \
             --to revealjs --output index.html -M embed-resources:true
           mkdir -p public
           cp presentations/2026-11-19/index.html public/index.html

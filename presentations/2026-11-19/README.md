@@ -46,7 +46,7 @@ The **instructor** file `index.qmd` contains speaker notes. Do **not** publish i
 
 The workflow [`publish-student-slides.yml`](../../.github/workflows/publish-student-slides.yml) instead:
 
-1. Builds a temporary `.student-public.qmd` from `index.qmd`, removing all nine `.notes` sections with [`prepare_student_slides.py`](../../scripts/prepare_student_slides.py).
+1. Builds a temporary `student-public.qmd` from `index.qmd`, removing all nine `.notes` sections with [`prepare_student_slides.py`](../../scripts/prepare_student_slides.py).
 2. Refuses to publish if the number of slides or notes differs from nine or if the activity reveal appears in the public source.
 3. Renders a **self-contained**, notes-free Reveal.js `index.html` and deploys **only that HTML file** to GitHub Pages.
 
