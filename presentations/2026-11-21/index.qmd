@@ -33,11 +33,11 @@ Build two models. Question the AI. Test the evidence.
 :::
 
 ::: {.time-cue}
-60-minute student workshop · work alone or in pairs
+60-minute workshop · work in pairs within your five project groups
 :::
 
 ::: {.notes}
-0–2 min. This is a student workshop, not an additional lecture. Students already used JupyterLab. Explain that everyone will build two different models with generative AI, then check whether the claims and results withstand scrutiny. The data are completely synthetic.
+0–2 min. This is a student workshop, not an additional lecture. Students already used JupyterLab. Explain that pairs within their existing project groups will build two different models with generative AI, then check whether the claims and results withstand scrutiny. The data are completely synthetic.
 :::
 
 ## Two stations, incomplete observations
@@ -81,17 +81,17 @@ STUDENT ACTION · 6–12 MIN
 :::
 
 ::: {.takeaway}
-Keep JupyterLab and your AI assistant open side by side. **No new installation.**
+**Stay in your project group and work in pairs.** Keep JupyterLab and your AI assistant open side by side.
 :::
 
 ::: {.notes}
-6–12 min. Guide students through the local files; they have already started JupyterLab. Facilitators circulate. Show that Shift+Enter runs a cell. Ensure files stay in their original directory structure. Do not ask students to upload partner data to an AI service.
+6–12 min. Guide students through the local files; they have already started JupyterLab. Facilitators circulate among the five project groups. Show that Shift+Enter runs a cell. Ensure files stay in their original directory structure. Do not ask students to upload partner data to an AI service.
 :::
 
 ## Ask AI for two different models
 
 ::: {.eyebrow}
-INDEPENDENT INVESTIGATION · 12–32 MIN
+PAIR INVESTIGATION · 12–32 MIN
 :::
 
 ::: {.columns}
@@ -125,28 +125,28 @@ Only **earlier training rows** and **one prediction case** may be used. No globa
 :::
 
 ::: {.notes}
-12–32 min. Let groups explore different algorithms. Encourage a different model family for the second attempt: linear/ridge regression, SVR, tree, random forest or a simple rule. The notebook supplies each function strictly earlier training rows and one current feature row. AI-generated code must not access globals or CSV files.
+12–32 min. Every pair constructs two different models; pairs in one group may try different approaches. Let students explore different algorithms. Encourage a different model family for the second attempt: linear/ridge regression, SVR, tree, random forest or a simple rule. The notebook supplies each function strictly earlier training rows and one current feature row. AI-generated code must not access globals or CSV files.
 :::
 
-## Now challenge your AI assistant
+## Compare, criticize and discuss
 
 ::: {.eyebrow}
-CRITICISM AND COMPARISON · 32–43 MIN
+PAIRS + GROUP DISCUSSION · 32–43 MIN
 :::
 
 ::: {.activity-steps}
-1. **Compare:** Which mathematical assumptions differ between the models?
-2. **Criticize:** How could either fail during missing observations or on new days?
-3. **Verify:** Independently check **one AI-generated claim**.
-4. **Optional:** Make one change, then measure validation MAE again.
+1. **In your pair:** What assumptions differ between your two models?
+2. **In your group:** Compare findings with other pairs. Which approaches emerged?
+3. **Challenge AI:** How might either model fail on missing or later observations?
+4. **Verify:** Independently check one AI-generated claim; improve only if time allows.
 :::
 
 ::: {.takeaway}
-More complicated—or more convincing-sounding—does not necessarily mean more accurate.
+A convincing-sounding answer is not evidence. **Check one AI claim yourself.**
 :::
 
 ::: {.notes}
-32–43 min. Have students request a critique after both models have been constructed. Encourage questions about missing inputs, scaling, leakage, overfitting and long gaps. The result they share should include a checked claim, not simply an improved score.
+32–43 min. Each pair first asks AI to criticize its two models. Then encourage brief discussion with other pairs in the same project group. Discuss assumptions, missing data, scaling, leakage and overfitting. Each pair checks one AI-generated claim independently. Optional modifications must be assessed on validation, not final test. Groups do not have to agree on one model.
 :::
 
 ## Choose first. Reveal second.
@@ -158,9 +158,9 @@ FINAL TEST · 43–48 MIN
 ::: {.columns}
 ::: {.column width="49%"}
 ::: {.model-card}
-**1. Lock your choice**
+**1. Each pair locks one model**
 
-Compare the baseline and both AI models.
+Compare the baseline and both AI models **on validation**.
 
 Assign **chosen_predict_temperature** to the chosen function.
 
@@ -186,29 +186,35 @@ Do not change the selected model after seeing the final-test result.
 :::
 
 ::: {.notes}
-43–48 min. Check students have recorded the selected function and their reason before revealing the deobfuscation formula. Reveal it orally or on the whiteboard only, never in the public repository or pre-distributed slides. Final test values are obfuscated, not securely encrypted.
+43–48 min. Each pair consults its group if helpful but locks one predictor before the reveal. Check students have recorded the selected function and their reason before revealing the deobfuscation formula. Reveal it orally or on the whiteboard only, never in the public repository or pre-distributed slides. Final test values are obfuscated, not securely encrypted.
 :::
 
-## What happened across the five groups?
+## Each group reports two results
 
 ::: {.eyebrow}
-COLLECTIVE EXPERIMENT · 48–60 MIN
+FIVE GROUPS · 48–60 MIN
+:::
+
+::: {.slide-subtitle}
+Each pair chooses before the reveal. Each group reports its **two lowest final-test MAEs**.
 :::
 
 ::: {.small-results .group-results}
-| Group | First model | Second model | Chosen | Test MAE | Better than baseline? |
-|:--|:--|:--|:--|--:|:--|
-| 1 | — | — | — | — | — |
-| 2 | — | — | — | — | — |
-| 3 | — | — | — | — | — |
-| 4 | — | — | — | — | — |
-| 5 | — | — | — | — | — |
+| Group | Lowest MAE: model (°C) | Next-lowest MAE: model (°C) |
+|:--|:--|:--|
+| 1 | — | — |
+| 2 | — | — |
+| 3 | — | — |
+| 4 | — | — |
+| 5 | — | — |
 :::
 
+**Common baseline final-test MAE:** ______ °C
+
 ::: {.takeaway}
-**What did AI suggest? What did the data support? What did you verify independently?**
+This post-test ranking is **for reporting only**. Do not reselect or improve models using test results.
 :::
 
 ::: {.notes}
-48–60 min. Collect the five groups' model families, chosen method, final-test MAE relative to the shared baseline, and one critically checked AI claim. Use the table as a blank live template; do not invent scores. A single synthetic dataset does not establish a universally best algorithm.
+48–60 min. Each pair has already selected one model using validation data. Collect each pair's final-test MAE and ask each project group to report the **two preselected pair models with the lowest final-test MAEs**. Record both model names and MAEs; compare them with the common baseline. These reported rankings are descriptive, not a second model-selection or tuning opportunity. Invite one short observation per group, such as a checked AI claim or unexpected result. Return to the five industrial challenges and scientific responsibility.
 :::

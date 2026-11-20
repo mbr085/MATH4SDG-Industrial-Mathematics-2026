@@ -33,7 +33,7 @@ Build two models. Question the AI. Test the evidence.
 :::
 
 ::: {.time-cue}
-60-minute student workshop · work alone or in pairs
+60-minute workshop · work in pairs within your five project groups
 :::
 
 
@@ -77,7 +77,7 @@ STUDENT ACTION · 6–12 MIN
 :::
 
 ::: {.takeaway}
-Keep JupyterLab and your AI assistant open side by side. **No new installation.**
+**Stay in your project group and work in pairs.** Keep JupyterLab and your AI assistant open side by side.
 :::
 
 
@@ -85,7 +85,7 @@ Keep JupyterLab and your AI assistant open side by side. **No new installation.*
 ## Ask AI for two different models
 
 ::: {.eyebrow}
-INDEPENDENT INVESTIGATION · 12–32 MIN
+PAIR INVESTIGATION · 12–32 MIN
 :::
 
 ::: {.columns}
@@ -120,21 +120,21 @@ Only **earlier training rows** and **one prediction case** may be used. No globa
 
 
 
-## Now challenge your AI assistant
+## Compare, criticize and discuss
 
 ::: {.eyebrow}
-CRITICISM AND COMPARISON · 32–43 MIN
+PAIRS + GROUP DISCUSSION · 32–43 MIN
 :::
 
 ::: {.activity-steps}
-1. **Compare:** Which mathematical assumptions differ between the models?
-2. **Criticize:** How could either fail during missing observations or on new days?
-3. **Verify:** Independently check **one AI-generated claim**.
-4. **Optional:** Make one change, then measure validation MAE again.
+1. **In your pair:** What assumptions differ between your two models?
+2. **In your group:** Compare findings with other pairs. Which approaches emerged?
+3. **Challenge AI:** How might either model fail on missing or later observations?
+4. **Verify:** Independently check one AI-generated claim; improve only if time allows.
 :::
 
 ::: {.takeaway}
-More complicated—or more convincing-sounding—does not necessarily mean more accurate.
+A convincing-sounding answer is not evidence. **Check one AI claim yourself.**
 :::
 
 
@@ -148,9 +148,9 @@ FINAL TEST · 43–48 MIN
 ::: {.columns}
 ::: {.column width="49%"}
 ::: {.model-card}
-**1. Lock your choice**
+**1. Each pair locks one model**
 
-Compare the baseline and both AI models.
+Compare the baseline and both AI models **on validation**.
 
 Assign **chosen_predict_temperature** to the chosen function.
 
@@ -177,24 +177,30 @@ Do not change the selected model after seeing the final-test result.
 
 
 
-## What happened across the five groups?
+## Each group reports two results
 
 ::: {.eyebrow}
-COLLECTIVE EXPERIMENT · 48–60 MIN
+FIVE GROUPS · 48–60 MIN
+:::
+
+::: {.slide-subtitle}
+Each pair chooses before the reveal. Each group reports its **two lowest final-test MAEs**.
 :::
 
 ::: {.small-results .group-results}
-| Group | First model | Second model | Chosen | Test MAE | Better than baseline? |
-|:--|:--|:--|:--|--:|:--|
-| 1 | — | — | — | — | — |
-| 2 | — | — | — | — | — |
-| 3 | — | — | — | — | — |
-| 4 | — | — | — | — | — |
-| 5 | — | — | — | — | — |
+| Group | Lowest MAE: model (°C) | Next-lowest MAE: model (°C) |
+|:--|:--|:--|
+| 1 | — | — |
+| 2 | — | — |
+| 3 | — | — |
+| 4 | — | — |
+| 5 | — | — |
 :::
 
+**Common baseline final-test MAE:** ______ °C
+
 ::: {.takeaway}
-**What did AI suggest? What did the data support? What did you verify independently?**
+This post-test ranking is **for reporting only**. Do not reselect or improve models using test results.
 :::
 
 
