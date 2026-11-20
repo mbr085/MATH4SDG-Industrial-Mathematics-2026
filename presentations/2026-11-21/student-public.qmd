@@ -1,0 +1,200 @@
+---
+format:
+  revealjs:
+    theme: default
+    css: workshop.css
+    slide-level: 2
+    width: 1280
+    height: 720
+    margin: 0.055
+    center: false
+    transition: fade
+    controls: true
+    progress: true
+    slide-number: "c/t"
+    footer: "MATH4SDG · UDSM · 21 NOV 2026"
+    auto-stretch: false
+execute:
+  enabled: false
+---
+
+## AI as a Mathematical Collaborator {.opening-slide}
+
+::: {.eyebrow}
+MATH4SDG · UDSM · SATURDAY 21 NOVEMBER 2026
+:::
+
+::: {.lead-subtitle}
+Build two models. Question the AI. Test the evidence.
+:::
+
+::: {.big-question}
+**Can we reconstruct missing weather measurements without looking into the future?**
+:::
+
+::: {.time-cue}
+60-minute student workshop · work alone or in pairs
+:::
+
+
+
+## Two stations, incomplete observations
+
+::: {.eyebrow}
+THE MATHEMATICAL PROBLEM · 2–6 MIN
+:::
+
+::: {.slide-subtitle}
+Estimate missing temperatures at A or B using available information.
+:::
+
+::: {.small-results}
+| Day | A (°C) | B (°C) | Humidity | Wind |
+|:--|--:|--:|:--|:--|
+| 1 | 28.5 | 28.1 | available | available |
+| 2 | **missing** | 29.0 | available | available |
+| 3 | **missing** | **missing** | available | available |
+| 4 | 30.1 | **missing** | available | available |
+:::
+
+::: {.takeaway}
+**Allowed:** measurements from today and earlier days. **Not allowed:** later measurements or concealed answers.
+:::
+
+
+
+## Open the activity in JupyterLab
+
+::: {.eyebrow}
+STUDENT ACTION · 6–12 MIN
+:::
+
+::: {.activity-steps}
+1. Extract the **Saturday student update ZIP** shared by the facilitator.
+2. Copy its notebook into the existing **notebooks/** folder and its three CSVs into **data/exercises/**. **Do not replace the folders.**
+3. In the **left JupyterLab file browser**, double-click **notebooks**, then double-click **ai_assisted_weather_modelling.ipynb**.
+4. Run code cells with **Shift + Enter**. Explore the data, completion rule and baseline.
+:::
+
+::: {.takeaway}
+Keep JupyterLab and your AI assistant open side by side. **No new installation.**
+:::
+
+
+
+## Ask AI for two different models
+
+::: {.eyebrow}
+INDEPENDENT INVESTIGATION · 12–32 MIN
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.model-card}
+**First model · 10 min**
+
+Ask AI for a simple predictor.
+
+**first_predict_temperature**
+
+Run it. Record the validation MAE.
+:::
+:::
+
+::: {.column width="49%"}
+::: {.model-card}
+**Second model · 10 min**
+
+Ask AI for a different mathematical approach.
+
+**second_predict_temperature**
+
+Run it on the **same validation cases**.
+:::
+:::
+:::
+
+::: {.takeaway}
+Only **earlier training rows** and **one prediction case** may be used. No global data, hidden answers or future observations.
+:::
+
+
+
+## Now challenge your AI assistant
+
+::: {.eyebrow}
+CRITICISM AND COMPARISON · 32–43 MIN
+:::
+
+::: {.activity-steps}
+1. **Compare:** Which mathematical assumptions differ between the models?
+2. **Criticize:** How could either fail during missing observations or on new days?
+3. **Verify:** Independently check **one AI-generated claim**.
+4. **Optional:** Make one change, then measure validation MAE again.
+:::
+
+::: {.takeaway}
+More complicated—or more convincing-sounding—does not necessarily mean more accurate.
+:::
+
+
+
+## Choose first. Reveal second.
+
+::: {.eyebrow}
+FINAL TEST · 43–48 MIN
+:::
+
+::: {.columns}
+::: {.column width="49%"}
+::: {.model-card}
+**1. Lock your choice**
+
+Compare the baseline and both AI models.
+
+Assign **chosen_predict_temperature** to the chosen function.
+
+*Record why you chose it.*
+:::
+:::
+
+::: {.column width="49%"}
+::: {.model-card}
+**2. Test once**
+
+The facilitator reveals the **deobfuscation function**.
+
+Complete **deobfuscation(x)** in JupyterLab.
+
+Compare the final-test MAE with the baseline.
+:::
+:::
+:::
+
+::: {.takeaway}
+Do not change the selected model after seeing the final-test result.
+:::
+
+
+
+## What happened across the five groups?
+
+::: {.eyebrow}
+COLLECTIVE EXPERIMENT · 48–60 MIN
+:::
+
+::: {.small-results .group-results}
+| Group | First model | Second model | Chosen | Test MAE | Better than baseline? |
+|:--|:--|:--|:--|--:|:--|
+| 1 | — | — | — | — | — |
+| 2 | — | — | — | — | — |
+| 3 | — | — | — | — | — |
+| 4 | — | — | — | — | — |
+| 5 | — | — | — | — | — |
+:::
+
+::: {.takeaway}
+**What did AI suggest? What did the data support? What did you verify independently?**
+:::
+
+
